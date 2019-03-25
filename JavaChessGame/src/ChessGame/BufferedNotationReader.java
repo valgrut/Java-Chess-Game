@@ -7,7 +7,7 @@ import java.io.IOException;
 public class BufferedNotationReader implements IReader {
 	private BufferedReader reader;
 	private String inputFilePath;
-	
+
 	/**
 	 * @author Jiri Peska
 	 * @param input file path
