@@ -1,4 +1,4 @@
-package ChessGame;
+package Loader;
 
 import java.util.regex.Pattern;
 

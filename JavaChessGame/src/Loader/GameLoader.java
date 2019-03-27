@@ -1,10 +1,15 @@
-package ChessGame;
+package Loader;
+
+import ChessGame.BufferedNotationReader;
+import GameRecord.BasicGameRecord;
+import GameRecord.MoveData;
+import GameRecord.Pair;
 
 public class GameLoader {
-	public GameLoader(GameRecord gameRecord, String notationFile)
+	public GameLoader(BasicGameRecord gameRecord, String notationFile)
 	{
 		//IReader reader = new BufferedNotationReader(notationFile);
-		IReader reader = new BufferedNotationReader("/root/eclipse-workspace/FileReader/Notation_1"); 
+		IReader reader = new BufferedNotationReader("/root/git/JavaChessGame/JavaChessGame/Notation_1"); 
 		IParser parser = new NotationParser();
 		
 		String fullMoveLine;

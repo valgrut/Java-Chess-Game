@@ -1,108 +1,168 @@
 package ChessGame;
-import Figures.IBoardEntity;
+import java.util.Vector;
+
+import Figures.AbstractPiece;
+import Figures.PieceColor;
+import GameRecord.PairInt;
+import GameRecord.PositionTranslator;
+import Loader.FigureFactory;
 
 public class ChessBoard {
-	private IBoardEntity[][] board;
+	private BoardTile[][] board;
 	private int width = 8;
 	private int height = 8;
+	
+	private Vector<AbstractPiece> allFigures;
 	
 	private final Character initialSetup[][] = {
 			{'V', 'J', 'S', 'D', 'K', 'S', 'J', 'V'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
 			{'.', '.', '.', '.', '.', '.', '.', '.'},
 			{'.', '.', '.', '.', '.', '.', '.', '.'},
-			{'.', '.', '.', '.', '.', '.', '.', '.'},
+			{'.', '.', 'S', '.', '.', '.', '.', '.'},
 			{'.', '.', '.', '.', '.', '.', '.', '.'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
 			{'V', 'J', 'S', 'K', 'D', 'S', 'J', 'V'}
 	};
 	
+	/*
+	 * initializes board tiles, sets pieces to corresponding tiles and creates vector of pieces.
+	 */
 	public ChessBoard()
-	{
-		FigureFactory figureBuilder = new FigureFactory();
+	{		
+		this.board = new BoardTile[width][height];
+		this.allFigures = new Vector<AbstractPiece>();
 		
-		this.board = new IBoardEntity[width][height];
-		
-		for(int w = 0; w < width; w++)
+		for(int row = 0; row < 8; row++)
 		{
-			for(int h = 0; h < height; h++)
+			for(int col = 0; col < 8; col++)
 			{
-				this.board[w][h] = figureBuilder.createFigureByNotation(this.initialSetup[w][h]);
+				AbstractPiece newFigure = FigureFactory.createFigureByNotation(this.initialSetup[row][col]);
+				if(row > 5)
+				{
+					newFigure.setColor(PieceColor.WHITE);
+				}
+				if(row < 2)
+				{
+					newFigure.setColor(PieceColor.BLACK);
+				}
+				
+				BoardTile newTile = new BoardTile(row+1, col+1); 
+				newFigure.setPosition(newTile);
+				newTile.setFigure(newFigure);
+				
+				this.board[row][col] = newTile;
+				
+				if(newFigure.isMovable() == true)
+				{
+					allFigures.add(newFigure);
+				}
+			}
+		}
+		
+		/* Initializes surrounding of tiles */
+		for(int row = 1; row <= getSize(); row++)
+		{
+			for(int col = 1; col <= getSize(); col++)
+			{
+				BoardTile activeField = getField(col, row);
+				setSurroundingOfField(activeField);
 			}
 		}
 	}
 	
-	public void take(String srcPosition, String dstPosition)
-	{
-		// ???
+	
+	public BoardTile getBoardField(int col, int row) {
+		// assert
+		if((col > 0 && col <= getSize()) && (row > 0 && row <= getSize()))
+		{
+			return this.board[9-row-1][col-1];
+		}
+		return null;
 	}
 	
-	public void swap(String srcPosition, String dstPosition)
-	{
-		// parse src position
-		String src1 = Character.toString(srcPosition.charAt(0));
-		src1 = src1.replace("a", "1");
-		src1 = src1.replace("b", "2");
-		src1 = src1.replace("c", "3");
-		src1 = src1.replace("d", "4");
-		src1 = src1.replace("e", "5");
-		src1 = src1.replace("f", "6");
-		src1 = src1.replace("g", "7");
-		src1 = src1.replace("h", "8");	
-		int src_x = Integer.parseInt(src1);
-
-		String src2= Character.toString(srcPosition.charAt(1));		
-		int src_y = Integer.parseInt(src2);
+	/*
+	 * Get Tile by notation position, ex.: c3, a8, g4, ...
+	 */
+	public BoardTile getBoardField(String tile) {
+		PairInt coords = PositionTranslator.positionToCoords(tile);
+		int col = coords.getFirst();
+		int row = coords.getSecond();
 		
-		// parse dst position
-		String dst1 = Character.toString(dstPosition.charAt(0));
-		dst1 = dst1.replace("a", "1");
-		dst1 = dst1.replace("b", "2");
-		dst1 = dst1.replace("c", "3");
-		dst1 = dst1.replace("d", "4");
-		dst1 = dst1.replace("e", "5");
-		dst1 = dst1.replace("f", "6");
-		dst1 = dst1.replace("g", "7");
-		dst1 = dst1.replace("h", "8");	
-		int dst_x = Integer.parseInt(dst1);
-
-		String dst2= Character.toString(dstPosition.charAt(1));		
-		int dst_y = Integer.parseInt(dst2);
+		if((col > 0 && col <= getSize()) && (row > 0 && row <= getSize()))
+		{
+			return this.board[9-row-1][col-1];
+		}
 		
-		// swap
-		IBoardEntity tmp = this.board[dst_y-1][dst_x-1];
-		this.board[dst_y-1][dst_x-1] = this.board[src_y-1][src_x-1];
-		this.board[src_y-1][src_x-1] = tmp;
+		return null;
 	}
 	
-	public IBoardEntity getFigureOnPosition(String position)
-	{		
-		String src1 = Character.toString(position.charAt(0));
-		src1 = src1.replace("a", "1");
-		src1 = src1.replace("b", "2");
-		src1 = src1.replace("c", "3");
-		src1 = src1.replace("d", "4");
-		src1 = src1.replace("e", "5");
-		src1 = src1.replace("f", "6");
-		src1 = src1.replace("g", "7");
-		src1 = src1.replace("h", "8");
-		int x = Integer.parseInt(src1);
-
-		String src2= Character.toString(position.charAt(1));		
-		int y = Integer.parseInt(src2);
-				
-		return this.board[y-1][x-1];
+	/*
+	 * Get Tile by coords , ex.: [1,1], [3,4], [7,2], ...
+	 */
+	private BoardTile getField(int col, int row) {
+		// assert
+		if((col > 0 && col <= getSize()) && (row > 0 && row <= getSize()))
+		{
+			return this.board[col-1][row-1];
+		}
+		return null;
+	}
+	
+	/*
+	 * Method used during initialization of Board Tiles
+	 */
+	private void setSurroundingOfField(BoardTile activeField) 
+	{	
+		int row = activeField.getArrayRowY();
+		int col = activeField.getArrayColX();
+		
+		activeField.addNextField(BoardTile.Direction.R,  getField(col, row+1));
+		activeField.addNextField(BoardTile.Direction.RU, getField(col-1, row+1));
+		activeField.addNextField(BoardTile.Direction.U,  getField(col-1, row));
+		activeField.addNextField(BoardTile.Direction.LU, getField(col-1, row-1));
+		activeField.addNextField(BoardTile.Direction.L,  getField(col, row-1));
+		activeField.addNextField(BoardTile.Direction.LD, getField(col+1, row-1));
+		activeField.addNextField(BoardTile.Direction.D,  getField(col+1, row));
+		activeField.addNextField(BoardTile.Direction.RD, getField(col+1, row+1)); 
 	}
 	
 	public void printBoard()
 	{	
+		/*
+		System.out.print("  ");
+		for(char col = 'a'; col <= 'h'; col++)
+			System.out.print(col);
+		System.out.print('\n');
+		*/
+		
+		/*
+		System.out.print("  ");
+		for(int h = 0; h < 8; h++)
+			System.out.print('|');
+		System.out.print('\n');
+		 */
+			
 		for(int w = 0; w < 8; w++)
 		{
+			System.out.print( 8-w + "|");
 			for(int h = 0; h < 8; h++)
 			{
-				System.out.print(this.board[w][h]);
+				System.out.print(this.board[w][h].getFigure());
 			}
 			System.out.print('\n');
 		}
+		
+		System.out.print("  ");
+		for(char col = 'A'; col <= 'H'; col++)
+			System.out.print(col);
+		System.out.print('\n');
+		System.out.print('\n');
 	}
+
+	public int getSize() {
+		return this.width;
+	}
+
+
 }

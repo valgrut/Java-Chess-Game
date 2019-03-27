@@ -1,4 +1,15 @@
+import java.util.Vector;
+
+import ChessGame.BoardTile;
+import ChessGame.ChessBoard;
 import ChessGame.TerminalUserInterface;
+import ChessGame.BoardTile.Direction;
+import Figures.EmptyPlace;
+import Figures.PieceColor;
+import GameRecord.GameRecord;
+import GameRecord.MoveData;
+import GameRecord.PositionTranslator;
+import GameRecord.MoveCommand;
 
 public class Main {
 
@@ -43,12 +54,67 @@ public class Main {
 	
 	public static void main(String[] args) 
 	{
-		//ChessBoard board = new ChessBoard();
-		//board.printBoard();
+		//TerminalUserInterface UI = new TerminalUserInterface();
+		//UI.GameLoop();
 		
-		TerminalUserInterface UI = new TerminalUserInterface();
-		UI.GameLoop();
 		
+		ChessBoard board = new ChessBoard();
+		board.printBoard();
+		
+		/*
+		BoardTile g11 = board.getBoardField(5, 1); // a2 (col, row)
+		System.out.println("Color: " + g11.getFigure().getColor());
+		System.out.println("Notation: " + g11.getFigure().getNotation());
+		System.out.println("ColX " + g11.getChessColX() + "    RowY " + g11.getChessRowY());
+		//System.out.println("Down: " + g11.nextField(Direction.D).getFigure().getNotation());
+		//System.out.println("Up: " + g11.nextField(Direction.U).getFigure().getNotation());
+		//System.out.println("Left: " + g11.nextField(Direction.L).getFigure().getNotation());
+		//System.out.println("Right: " + g11.nextField(Direction.R).getFigure().getNotation());
+		//System.out.println("Up: " + g11.nextField(Direction.D).getColX() + " " + g11.nextField(Direction.D).getRowY());
+		//System.out.println("Right: " + g11.nextField(Direction.L).getFigure().getNotation());
+		
+		System.out.println("");
+		
+		EmptyPlace em = new EmptyPlace();
+		em.setNotation("x");
+		
+		g11.setFigure(em);
+		board.printBoard();
+		*/
+		
+		/* Test moznosti pohybu figurek, dle jejich barvy */
+		BoardTile knightTile = board.getBoardField("c4");
+		System.out.println(knightTile.getFigure().getNotation());
+		knightTile.getFigure().setColor(PieceColor.WHITE);
+		
+		Vector<BoardTile> candidates = knightTile.getFigure().getPossibleMoves();
+		for (BoardTile tile : candidates)
+		{
+			System.out.println(tile);
+			tile.getFigure().setNotation("x");
+		}
+		board.printBoard();
+		
+		/* Test pohybu figurek, dle jejich barvy */
+		BoardTile testTile = board.getBoardField("b4");
+		System.out.println(knightTile.getFigure().canMoveTo(testTile));
+		System.out.println(knightTile.getFigure().move(testTile));
+		board.printBoard();
+		
+		
+		/*
+		GameRecord record = new GameRecord();
+		for(int moveNumber = 1; moveNumber < 10; moveNumber++)
+		{
+			Move newMove = new Move();
+			newMove.setMoveNumber(moveNumber);
+			MoveCommand command = new MoveCommand(newMove);
+			record.addMove(command);
+				
+		}
+		*/
+				
+		//System.out.println("Fuck yeah");
 	}
 
 }

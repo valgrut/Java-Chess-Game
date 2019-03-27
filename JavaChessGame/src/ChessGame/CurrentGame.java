@@ -1,15 +1,18 @@
 package ChessGame;
 
-import Figures.IBoardEntity;
+import Figures.AbstractPiece;
+import GameRecord.BasicGameRecord;
+import GameRecord.MoveData;
+import Loader.GameLoader;
 
 public class CurrentGame {
 	private ChessBoard board;
-	private GameRecord gameRecord;
+	private BasicGameRecord gameRecord;
 	
 	public CurrentGame()
 	{
 		board = new ChessBoard();
-		gameRecord = new GameRecord();
+		gameRecord = new BasicGameRecord();
 	}
 	
 	public void saveGame() 
@@ -28,15 +31,15 @@ public class CurrentGame {
 		this.board.printBoard();
 	}
 	
-	public void nextMove() 
+	public void nextMove()
 	{
-		Move nextMove = this.gameRecord.getNextMove();
-		IBoardEntity figure = this.board.getFigureOnPosition(nextMove.getSourcePosition());
+		//MoveData nextMove = this.gameRecord.getNextMove();
+		//BoardTile figure = this.board.getFigureOnPosition(nextMove.getSourcePosition());
 		// if(figure.isValidMove(nextMove.getDestinationPosition())) {}
-		this.board.swap(nextMove.getSourcePosition(), nextMove.getDestinationPosition());
+		//this.board.swap(nextMove.getSourcePosition(), nextMove.getDestinationPosition());
 	}
 	
-	public void lastMove() 
+	public void prevMove() 
 	{
 		
 	}

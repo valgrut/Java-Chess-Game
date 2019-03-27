@@ -1,4 +1,8 @@
-package ChessGame;
+package Loader;
+
+import Figures.PieceColor;
+import GameRecord.MoveData;
+import GameRecord.Pair;
 
 public class NotationParser implements IParser 
 {
@@ -20,14 +24,14 @@ public class NotationParser implements IParser
 		
 		String partials[] = this.splitString(line);
 		
-		Move whiteMove = new Move();
-		Move blackMove = new Move();
+		MoveData whiteMove = new MoveData();
+		MoveData blackMove = new MoveData();
 		
 		Integer moveNumber = this.parseMoveNumber(partials[0]);
 		whiteMove.setMoveNumber(moveNumber);
-		whiteMove.setChessColor(ChessColor.WHITE);
+		whiteMove.setChessColor(PieceColor.WHITE);
 		blackMove.setMoveNumber(moveNumber);
-		blackMove.setChessColor(ChessColor.BLACK);
+		blackMove.setChessColor(PieceColor.BLACK);
 		
 		this.parseSubMove(partials[1], whiteMove);
 		this.parseSubMove(partials[2], blackMove);
@@ -41,7 +45,7 @@ public class NotationParser implements IParser
 	 * @param move
 	 * @param moveObj - modified
 	 */
-	private void parseSubMove(String move, Move moveObj)
+	private void parseSubMove(String move, MoveData moveObj)
 	{
 		String figure = null;
 		String dstPosition = null;

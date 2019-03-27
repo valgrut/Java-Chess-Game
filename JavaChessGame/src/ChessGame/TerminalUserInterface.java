@@ -28,12 +28,12 @@ public class TerminalUserInterface {
 		System.out.println("----Game MENU----");
 		System.out.println("0. back to Main Menu");
 		System.out.println("1. nextMove");
-		System.out.println("2. lastMove");
-		System.out.println("3. ToStart");
-		System.out.println("4. ToEnd");
+		System.out.println("2. prevMove");
+		//System.out.println("3. ToStart"); // to move x
+		//System.out.println("4. ToEnd"); // to move x
 		System.out.println("5. goto tah X");
 		System.out.println("6. hraj ty: (normalne napis src pozici a dst pozici.)");
-		System.out.println("7. ((autoplay))");
+		//System.out.println("7. ((autoplay))");
 		System.out.println("8. Undo");
 		System.out.println("9. Redo");
 	}
@@ -114,7 +114,7 @@ public class TerminalUserInterface {
 						break;
 
 					case 2:
-						this.gameManager.getActiveGame().lastMove();
+						this.gameManager.getActiveGame().prevMove();
 						break;
 						
 					case 3:

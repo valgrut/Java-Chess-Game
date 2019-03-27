@@ -3,7 +3,7 @@ package Tests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import ChessGame.NotationValidator;
+import Loader.NotationValidator;
 
 class TestNotationValidator {
 	private NotationValidator tester = new NotationValidator();

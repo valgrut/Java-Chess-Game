@@ -1,46 +1,26 @@
-package ChessGame;
+package GameRecord;
 
 import java.util.Vector;
 
+import Figures.PieceColor;
+import GameRecord.MoveComposite;
+
 public class GameRecord {
 	private int currentMove = -1;
-	
-	class GameNode
-	{
-		private Move valueMove;
-		private Vector<GameNode> innerMoves; // branches comming from this move
-		
-		public GameNode(Move newMove)
-		{
-			this.valueMove = newMove;
-			innerMoves = new Vector<GameNode>();
-		}
-		
-		public Move getMove()
-		{
-			return this.valueMove;
-		}
-		
-		public void setMove(Move newMove)
-		{
-			this.valueMove = newMove;
-		}
-	} // end of InnerMove class
-	
-	Vector<GameNode> moves;
-	GameNode activeNode;
-	
+	Vector<MoveComposite> moves;
+	MoveComposite activeNode;
+
 	public GameRecord()
 	{
-		moves = new Vector<GameNode>();
+		moves = new Vector<MoveComposite>();
 	}
 	
-	public void addMove(Move newMove)
+	public void addMove(MoveComposite newMove)
 	{
-		this.moves.addElement(new GameNode(newMove));
+		moves.addElement(newMove);
 	}
 	
-	public Move getNextMove()
+	public MoveCommand getNextMove()
 	{
 		if(currentMove+1 < moves.size())
 		{
@@ -53,7 +33,7 @@ public class GameRecord {
 		}
 	}
 	
-	public Move getPrevMove()
+	public MoveCommand getPrevMove()
 	{
 		if(currentMove-1 >= 0)
 		{
@@ -66,7 +46,7 @@ public class GameRecord {
 		}
 	}
 	
-	public Move getCurrentMove()
+	public MoveCommand getCurrentMove()
 	{
 		if(this.moves.isEmpty() || this.currentMove == -1)
 		{
@@ -79,16 +59,14 @@ public class GameRecord {
 		}
 	}
 	
-	public Move getMoveWithNumber(int moveNumber, ChessColor color)
+	public MoveCommand getMoveWithNumber(int moveNumber, PieceColor color)
 	{
 		if(! this.moves.isEmpty() && moveNumber < this.moves.size() && moveNumber >= 0)
 		{
 			return moves.elementAt(moveNumber).getMove();
 		}
-		else
-		{
-			return null;
-		}
+		
+		return null;
 	}
 
 	

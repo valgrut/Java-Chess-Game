@@ -1,7 +1,7 @@
-package ChessGame;
+package Loader;
+import Figures.AbstractPiece;
 import Figures.Bishop;
 import Figures.EmptyPlace;
-import Figures.IBoardEntity;
 import Figures.King;
 import Figures.Knight;
 import Figures.Pawn;
@@ -13,7 +13,7 @@ import Figures.Rook;
  *
  */
 public class FigureFactory {
-	IBoardEntity createFigureByNotation(Character figureNotation) //, Color color, ChessPosition position)
+	public static AbstractPiece createFigureByNotation(Character figureNotation) //, Color color, ChessPosition position)
 	{
 		switch(figureNotation)
 		{

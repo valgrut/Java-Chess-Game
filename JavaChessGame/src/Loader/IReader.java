@@ -1,4 +1,4 @@
-package ChessGame;
+package Loader;
 
 
 public interface IReader {

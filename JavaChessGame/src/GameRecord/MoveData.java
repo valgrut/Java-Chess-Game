@@ -1,8 +1,11 @@
-package ChessGame;
-public class Move 
+package GameRecord;
+
+import Figures.PieceColor;
+
+public class MoveData 
 {
 	private Integer moveNumber;
-	private ChessColor color;
+	private PieceColor color;
 	private String figure;
 	private String sourcePosition;
 	private String destinationPosition;
@@ -17,8 +20,8 @@ public class Move
 	 * pridat sem atribut kterej bude drzet vzatou figurku, pokud v tomto tahu doslo k vzati figurky.
 	 */
 	
-	public Move() {}
-	public Move(int number, ChessColor currentColor) 
+	public MoveData() {}
+	public MoveData(int number, PieceColor currentColor) 
 	{
 		this.moveNumber = number;
 		this.color = currentColor;
@@ -55,12 +58,12 @@ public class Move
 		this.destinationPosition = destinationPosition;
 	}
 	
-	public void setChessColor(ChessColor color)
+	public void setChessColor(PieceColor color)
 	{
 		this.color = color;
 	}
 	
-	public ChessColor getChessColor()
+	public PieceColor getChessColor()
 	{
 		return this.color;
 	}
