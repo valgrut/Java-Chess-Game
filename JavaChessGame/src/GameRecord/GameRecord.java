@@ -2,18 +2,11 @@ package GameRecord;
 
 import java.util.ArrayList;
 import java.util.Stack;
-import java.util.Vector;
 
 import Figures.PieceColor;
-import GameRecord.MoveComposite;
 
 public class GameRecord {
 	private int currentMove = -1;
-	//Vector<MoveComposite> moves;
-	//MoveComposite activeNode;
-	/*
-	 * Composite asi pujde zase do pryc a zustane zase jen MoveCommand
-	 */
 	
 	MoveCommand lastPlayersMove = null;
 	ArrayList<MoveCommand> moves;
@@ -31,44 +24,33 @@ public class GameRecord {
 		previousMoveStack = new Stack<MoveCommand>();
 	}
 	
+	/*
+	 * Initializes basic game loaded from notation and prepares stack for game stepping. 
+	 */
 	public void addMove(MoveCommand newMove)
 	{
 		moves.add(newMove);
-		nextMoveStack.add(newMove);
+		nextMoveStack.add(0, newMove);
 	}
 	
-	public MoveCommand getNextMove()
+	public MoveCommand getNextMove() throws Exception
 	{
-		/*
-		if(currentMove+1 < moves.size())
+		if(nextMoveStack.empty())
 		{
-			currentMove += 1;
-			return moves.elementAt(currentMove).getMove();
-		} 
-		else 
-		{
-			return null;
+			throw new Exception("previousMoveStack is empty.");
 		}
-		*/
 		
 		MoveCommand topMove = nextMoveStack.pop();
 		previousMoveStack.push(topMove);
 		return topMove;
 	}
 	
-	public MoveCommand getPrevMove()
+	public MoveCommand getPrevMove() throws Exception
 	{
-		/*
-		if(currentMove-1 >= 0)
+		if(previousMoveStack.empty())
 		{
-			currentMove -= 1;
-			return moves.elementAt(currentMove).getMove();
-		} 
-		else 
-		{
-			return null;
+			throw new Exception("previousMoveStack is empty.");
 		}
-		*/
 		
 		MoveCommand topMove = previousMoveStack.pop();
 		nextMoveStack.push(topMove);

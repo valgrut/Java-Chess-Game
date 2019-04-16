@@ -1,5 +1,6 @@
 package GameRecord;
 
+import Figures.AbstractPiece;
 import Figures.PieceColor;
 
 public class MoveData 
@@ -7,6 +8,7 @@ public class MoveData
 	private Integer moveNumber;
 	private PieceColor color;
 	private String figure;
+	private String takenFigure;
 	private String sourcePosition;
 	private String destinationPosition;
 	private String additional = "+#KDJVSp";

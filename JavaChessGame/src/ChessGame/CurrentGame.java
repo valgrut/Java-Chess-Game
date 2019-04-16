@@ -1,21 +1,25 @@
 package ChessGame;
 
-import GameRecord.BasicGameRecord;
-import GameRecord.MoveData;
+//import GameRecord.BasicGameRecord;
+import GameRecord.GameRecord;
+import GameRecord.MoveCommand;
+//import GameRecord.MoveData;
 import Loader.GameLoader;
 
 public class CurrentGame {
 	private ChessBoard board;
-	private BasicGameRecord gameRecord;
+	private GameRecord gameRecord;
 	
 	public CurrentGame()
 	{
 		board = new ChessBoard();
-		gameRecord = new BasicGameRecord();
+		gameRecord = new GameRecord();
 	}
 	
 	public void saveGame() 
-	{}
+	{
+		// take GameRecord object and save current game, using GameSaver class.
+	}
 	
 	public void loadGame(String notationFile) 
 	{
@@ -32,28 +36,34 @@ public class CurrentGame {
 	
 	public void nextMove()
 	{
-		MoveData nextMove = this.gameRecord.getNextMove();
-		
-		BoardTile sourceTile = this.board.getBoardField(nextMove.getSourcePosition());
-		BoardTile destinationTile = this.board.getBoardField(nextMove.getDestinationPosition());
-		
-		sourceTile.getFigure().move(destinationTile);
+		MoveCommand nextMove;
+		try {
+			nextMove = this.gameRecord.getNextMove();
+			nextMove.execute(this.board);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Nelze provest dalsi tah, jsi na konci partie!");
+		}
 	}
 	
 	public void prevMove() 
 	{
-		MoveData nextMove = this.gameRecord.getCurrentMove();
-		this.gameRecord.getPrevMove();
-		
-		BoardTile sourceTile = this.board.getBoardField(nextMove.getSourcePosition());
-		BoardTile destinationTile = this.board.getBoardField(nextMove.getDestinationPosition());
-		
-		destinationTile.getFigure().moveHard(sourceTile);
+		MoveCommand nextMove;
+		try {
+			nextMove = this.gameRecord.getPrevMove();
+			nextMove.revert(this.board);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Nelze provest dalsi tah, jsi na zacatku partie!");
+		}
 	}
 	
-	public void toEnd() {}
-	public void toStart() {}
-	public void gotoTah(int playersMove) {}
+	public void toEnd() {} // mozna
+	public void toStart() {} // mozna
+	public void gotoTah(int numberOfMove) {}
 	public void playersMove(String sourcePosition, String destinationPosition) {}
 	public void undo() {}
 	public void redo() {}

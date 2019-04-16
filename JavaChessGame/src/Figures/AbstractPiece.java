@@ -21,6 +21,7 @@ public abstract class AbstractPiece implements IMovable {
 		return false;
 	}
 	
+	/* Function swaps positions of source and destination figures and sets new tiles for them */
 	@Override
 	public boolean move(BoardTile dst) {
 		if(this.canMoveTo(dst) == false)
@@ -30,12 +31,15 @@ public abstract class AbstractPiece implements IMovable {
 		
 		// neni tam nepratelska figurka
 		if(dst.isEmpty())
-		{
-			AbstractPiece dstFigure = dst.getFigure();
+		{	
+			AbstractPiece tmpNullFigure = dst.getFigure();
+			BoardTile sourceTile = this.getPosition();
+			
 			dst.setFigure(this);
-			getPosition().setFigure(dstFigure);
 			this.setPosition(dst);
-			dstFigure.setPosition(getPosition());
+
+			sourceTile.setFigure(tmpNullFigure);
+			tmpNullFigure.setPosition(sourceTile);
 		}
 		else
 		{	

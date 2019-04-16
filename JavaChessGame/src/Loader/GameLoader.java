@@ -1,11 +1,13 @@
 package Loader;
 
-import GameRecord.BasicGameRecord;
-import GameRecord.MoveData;
+//import GameRecord.BasicGameRecord;
+import GameRecord.GameRecord;
+import GameRecord.MoveCommand;
+//import GameRecord.MoveData;
 import GameRecord.Pair;
 
 public class GameLoader {
-	public GameLoader(BasicGameRecord gameRecord, String notationFile)
+	public GameLoader(GameRecord gameRecord, String notationFile)
 	{
 		//IReader reader = new BufferedNotationReader(notationFile);
 		IReader reader = new BufferedNotationReader("/root/git/JavaChessGame/JavaChessGame/Notation_1"); 
@@ -20,8 +22,8 @@ public class GameLoader {
 			fullMove.getFirst().printThisMove();
 			fullMove.getSecond().printThisMove();
 			
-			gameRecord.addMove(fullMove.getFirst()); //white
-			gameRecord.addMove(fullMove.getSecond()); //black
+			gameRecord.addMove(new MoveCommand(fullMove.getFirst())); //white
+			gameRecord.addMove(new MoveCommand(fullMove.getSecond())); //black // TODO zkontrolovat, ze partie obsahuje jako posledni tah cerny
 		}
 	}
 	
