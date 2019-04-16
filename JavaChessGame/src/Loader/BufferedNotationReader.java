@@ -1,9 +1,7 @@
-package ChessGame;
+package Loader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import Loader.IReader;
 
 
 public class BufferedNotationReader implements IReader {

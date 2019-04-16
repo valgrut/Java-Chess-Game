@@ -1,4 +1,4 @@
-package ChessGame;
+package GameSaver;
 
 public class NotationBuilder {
 

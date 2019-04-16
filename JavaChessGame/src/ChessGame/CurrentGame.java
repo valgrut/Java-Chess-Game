@@ -1,6 +1,5 @@
 package ChessGame;
 
-import Figures.AbstractPiece;
 import GameRecord.BasicGameRecord;
 import GameRecord.MoveData;
 import Loader.GameLoader;
@@ -33,15 +32,23 @@ public class CurrentGame {
 	
 	public void nextMove()
 	{
-		//MoveData nextMove = this.gameRecord.getNextMove();
-		//BoardTile figure = this.board.getFigureOnPosition(nextMove.getSourcePosition());
-		// if(figure.isValidMove(nextMove.getDestinationPosition())) {}
-		//this.board.swap(nextMove.getSourcePosition(), nextMove.getDestinationPosition());
+		MoveData nextMove = this.gameRecord.getNextMove();
+		
+		BoardTile sourceTile = this.board.getBoardField(nextMove.getSourcePosition());
+		BoardTile destinationTile = this.board.getBoardField(nextMove.getDestinationPosition());
+		
+		sourceTile.getFigure().move(destinationTile);
 	}
 	
 	public void prevMove() 
 	{
+		MoveData nextMove = this.gameRecord.getCurrentMove();
+		this.gameRecord.getPrevMove();
 		
+		BoardTile sourceTile = this.board.getBoardField(nextMove.getSourcePosition());
+		BoardTile destinationTile = this.board.getBoardField(nextMove.getDestinationPosition());
+		
+		destinationTile.getFigure().moveHard(sourceTile);
 	}
 	
 	public void toEnd() {}

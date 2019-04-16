@@ -56,7 +56,36 @@ public abstract class AbstractPiece implements IMovable {
 		}
 		
 		return true;
+	}
+	
+	public boolean moveHard(BoardTile dst) {
+		// neni tam nepratelska figurka
+		if(dst.isEmpty())
+		{
+			AbstractPiece dstFigure = dst.getFigure();
+			dst.setFigure(this);
+			getPosition().setFigure(dstFigure);
+			this.setPosition(dst);
+			dstFigure.setPosition(getPosition());
+		}
+		else
+		{	
+			AbstractPiece dstFigure = dst.getFigure();
+			//dstFigure.setCaptured(true);
+			
+			EmptyPlace nullPiece = new EmptyPlace();
+			nullPiece.setPosition(this.getPosition());
+			
+			BoardTile tmp = this.getPosition();
+			
+			this.setPosition(dst);
+			dst.setFigure(this);
+			
+			tmp.setFigure(nullPiece);
+			//dstFigure.setPosition(getPosition());
+		}
 		
+		return true;
 	}
 	
 	

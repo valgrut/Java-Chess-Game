@@ -1,6 +1,5 @@
 package Loader;
 
-import ChessGame.BufferedNotationReader;
 import GameRecord.BasicGameRecord;
 import GameRecord.MoveData;
 import GameRecord.Pair;

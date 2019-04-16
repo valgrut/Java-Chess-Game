@@ -71,7 +71,9 @@ public class ChessBoard {
 		}
 	}
 	
-	
+	/*
+	 * returns BoardTile located on col and row, counted from bottom left
+	 */
 	public BoardTile getBoardField(int col, int row) {
 		// assert
 		if((col > 0 && col <= getSize()) && (row > 0 && row <= getSize()))

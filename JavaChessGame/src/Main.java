@@ -6,9 +6,11 @@ import ChessGame.TerminalUserInterface;
 import ChessGame.BoardTile.Direction;
 import Figures.EmptyPlace;
 import Figures.PieceColor;
+import GameRecord.BasicGameRecord;
 import GameRecord.GameRecord;
 import GameRecord.MoveData;
 import GameRecord.PositionTranslator;
+import Loader.GameLoader;
 import GameRecord.MoveCommand;
 
 public class Main {
@@ -54,12 +56,13 @@ public class Main {
 	
 	public static void main(String[] args) 
 	{
-		//TerminalUserInterface UI = new TerminalUserInterface();
-		//UI.GameLoop();
+		
+		TerminalUserInterface UI = new TerminalUserInterface();
+		UI.GameLoop();
 		
 		
-		ChessBoard board = new ChessBoard();
-		board.printBoard();
+		//ChessBoard board = new ChessBoard();
+		//board.printBoard();
 		
 		/*
 		BoardTile g11 = board.getBoardField(5, 1); // a2 (col, row)
@@ -83,6 +86,7 @@ public class Main {
 		*/
 		
 		/* Test moznosti pohybu figurek, dle jejich barvy */
+		/*
 		BoardTile knightTile = board.getBoardField("c4");
 		System.out.println(knightTile.getFigure().getNotation());
 		knightTile.getFigure().setColor(PieceColor.WHITE);
@@ -94,16 +98,22 @@ public class Main {
 			tile.getFigure().setNotation("x");
 		}
 		board.printBoard();
+		*/
 		
-		/* Test pohybu figurek, dle jejich barvy */
-		BoardTile testTile = board.getBoardField("b4");
+		/*
+		BoardTile testTile = board.getBoardField("e3");
 		System.out.println(knightTile.getFigure().canMoveTo(testTile));
 		System.out.println(knightTile.getFigure().move(testTile));
 		board.printBoard();
 		
 		
+		BasicGameRecord record = new BasicGameRecord();
+		GameLoader loader = new GameLoader(record, "Notation_1");
+		loader = null;
+		System.out.println(record.getNextMove().getSourcePosition());
+		*/
+		
 		/*
-		GameRecord record = new GameRecord();
 		for(int moveNumber = 1; moveNumber < 10; moveNumber++)
 		{
 			Move newMove = new Move();
