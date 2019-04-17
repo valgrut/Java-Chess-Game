@@ -72,10 +72,17 @@ public class CurrentGame {
 		}
 	}
 	
+	public void playersMove(String sourcePosition, String destinationPosition)
+	{
+		
+	}
+	public void undo() {}
+	public void redo() {}
+	
 	public void toEnd() {} // mozna
 	public void toStart() {} // mozna
 	
-	public void gotoTah(int numberOfMove)
+	public void gotoMove(int numberOfMove)
 	{
 		assert(numberOfMove >= 0);
 		
@@ -100,11 +107,4 @@ public class CurrentGame {
 			}
 		}
 	}
-	
-	public void playersMove(String sourcePosition, String destinationPosition)
-	{
-		
-	}
-	public void undo() {}
-	public void redo() {}
 }

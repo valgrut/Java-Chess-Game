@@ -127,7 +127,7 @@ public class TerminalUserInterface {
 						
 					case 5:
 						int moveNumber = reader.nextInt();
-						this.gameManager.getActiveGame().gotoTah(moveNumber);
+						this.gameManager.getActiveGame().gotoMove(moveNumber);
 						break;
 						
 					case 6:
