@@ -31,40 +31,80 @@ public class CurrentGame {
 	
 	public void printBoard() 
 	{
+		System.out.println("Aktualne provedeny tah: " + gameRecord.getCurrentMove());
 		this.board.printBoard();
 	}
 	
 	public void nextMove()
 	{
 		MoveCommand nextMove;
-		try {
+		try 
+		{
 			nextMove = this.gameRecord.getNextMove();
-			nextMove.execute(this.board);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+		}
+		catch (Exception e) {
 			System.out.println("Nelze provest dalsi tah, jsi na konci partie!");
+			System.out.println("NEBO byl nacteny invalidni tah z notace!");
+			return;
+		}
+		try 
+		{
+			nextMove.execute(this.board);
+		} 
+		catch (Exception e) {
+			System.out.println("Invalidni tah byl nacten z notace a nelze pokracovat!");
+			this.gameRecord.setInvalidMove(true);
 		}
 	}
 	
 	public void prevMove() 
 	{
 		MoveCommand nextMove;
-		try {
+		try 
+		{
 			nextMove = this.gameRecord.getPrevMove();
 			nextMove.revert(this.board);
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+		} 
+		catch (Exception e) {
 			System.out.println("Nelze provest dalsi tah, jsi na zacatku partie!");
+			System.out.println("NEBO Invalidni tah byl nacten z notace a nelze pokracovat!");
+			return;
 		}
 	}
 	
 	public void toEnd() {} // mozna
 	public void toStart() {} // mozna
-	public void gotoTah(int numberOfMove) {}
-	public void playersMove(String sourcePosition, String destinationPosition) {}
+	
+	public void gotoTah(int numberOfMove)
+	{
+		assert(numberOfMove >= 0);
+		
+		int currentMove = this.gameRecord.getCurrentMove();
+		if(currentMove == numberOfMove)
+		{
+			System.out.println("Uz se nachazis na zadanem tahu.");
+			return;
+		}
+		if(currentMove < numberOfMove)
+		{
+			for(int iMove = 0; iMove < Math.abs(currentMove-numberOfMove); iMove++)
+			{
+				nextMove();
+			}
+		}
+		if(currentMove > numberOfMove)
+		{
+			for(int iMove = 0; iMove < Math.abs(currentMove-numberOfMove); iMove++)
+			{
+				prevMove();
+			}
+		}
+	}
+	
+	public void playersMove(String sourcePosition, String destinationPosition)
+	{
+		
+	}
 	public void undo() {}
 	public void redo() {}
 }

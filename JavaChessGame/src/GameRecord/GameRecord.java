@@ -6,8 +6,9 @@ import java.util.Stack;
 import Figures.PieceColor;
 
 public class GameRecord {
-	private int currentMove = -1;
-	
+	private int currentMove = 0;
+	private boolean invalidMove = false;
+
 	MoveCommand lastPlayersMove = null;
 	ArrayList<MoveCommand> moves;
 	Stack<MoveCommand> undoMoveStack;
@@ -39,7 +40,13 @@ public class GameRecord {
 		{
 			throw new Exception("previousMoveStack is empty.");
 		}
+	
+		if(isInvalidMove())
+		{
+			throw new Exception("Byl nacten invalidni tah a proto nelze pokracovat dal.");
+		}
 		
+		currentMove++;
 		MoveCommand topMove = nextMoveStack.pop();
 		previousMoveStack.push(topMove);
 		return topMove;
@@ -52,13 +59,21 @@ public class GameRecord {
 			throw new Exception("previousMoveStack is empty.");
 		}
 		
+		if(isInvalidMove())
+		{
+			throw new Exception("Byl nacten invalidni tah a proto nelze pokracovat dal.");
+		}
+		
+		currentMove--;
+
 		MoveCommand topMove = previousMoveStack.pop();
 		nextMoveStack.push(topMove);
 		return topMove;
 	}
 	
-	public MoveCommand getCurrentMove()
-	{
+	
+	//public MoveCommand getCurrentMove()
+	//{
 		/*
 		if(this.moves.isEmpty() || this.currentMove == -1)
 		{
@@ -70,9 +85,9 @@ public class GameRecord {
 			return moves.elementAt(currentMove).getMove();
 		}
 		*/
-		return null;
+		//return null;
 
-	}
+	//}
 	
 	public MoveCommand getMoveWithNumber(int moveNumber, PieceColor color)
 	{
@@ -85,5 +100,17 @@ public class GameRecord {
 		return null;
 	}
 
-	
+	public boolean isInvalidMove() {
+		return invalidMove;
+	}
+
+	public void setInvalidMove(boolean invalidMove) {
+		this.invalidMove = invalidMove;
+	}
+	public void setCurrentMove(int currentMove) {
+		this.currentMove = currentMove;
+	}
+	public int getCurrentMove() {
+		return this.currentMove;
+	}
 }

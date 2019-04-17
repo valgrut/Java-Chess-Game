@@ -4,7 +4,7 @@ import ChessGame.ChessBoard;
 
 public interface IMoveCommand {
 
-	boolean execute(ChessBoard board);
+	boolean execute(ChessBoard board) throws Exception;
 
 	MoveData getMove();
 

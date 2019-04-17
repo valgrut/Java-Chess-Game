@@ -19,14 +19,14 @@ public class MoveCommand implements IMoveCommand {
 	 * @see GameRecord.IMoveCommand#execute()
 	 */
 	@Override
-	public boolean execute(ChessBoard board) 
+	public boolean execute(ChessBoard board) throws Exception 
 	{
 		BoardTile sourceTile = board.getBoardField(this.move.getSourcePosition());
 		BoardTile destinationTile = board.getBoardField(this.move.getDestinationPosition());
 		
 		if(sourceTile.getFigure().canMoveTo(destinationTile) == false)
 		{
-			return false;
+			throw new Exception("Byl nacten invalidni tah v notaci. Nelze hrat dal!");
 		}
 		// TODO // zde asi budou nejake cachry v pripade kratke notace, a jen v pripade, ze to nezaridim uz pri inicializaci.
 		// cachry ve smyslu: najdi figurku, ktera muze na tohle pole (protoze nemam src tile)
@@ -78,19 +78,9 @@ public class MoveCommand implements IMoveCommand {
 	@Override
 	public boolean revert(ChessBoard board)
 	{	
-		/* -------- old -----------
-		MoveCommand nextMove = this.gameRecord.getCurrentMove();
-		
-		BoardTile sourceTile = this.board.getBoardField(nextMove.getSourcePosition());
-		BoardTile destinationTile = this.board.getBoardField(nextMove.getDestinationPosition());
-		
-		destinationTile.getFigure().moveHard(sourceTile);
-		*/
-		
 		BoardTile destinationTile = board.getBoardField(this.move.getSourcePosition());
 		BoardTile sourceTile = board.getBoardField(this.move.getDestinationPosition());
 
-		/* ------ new ------ */
 		AbstractPiece sourceFigure = sourceTile.getFigure();
 		
 		// pokud byl v tomto tahu vzat nepritel, vratime ho zpet.
