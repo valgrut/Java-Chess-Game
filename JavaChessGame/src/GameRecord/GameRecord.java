@@ -21,6 +21,9 @@ public class GameRecord {
 	Stack<MoveCommand> nextMoveStack;
 	Stack<MoveCommand> previousMoveStack;
 
+	/*
+	 * 
+	 */
 	public GameRecord()
 	{
 		moves = new ArrayList<MoveCommand>();
@@ -48,37 +51,50 @@ public class GameRecord {
 		if(currentMoveNumber == lastMoveNumber)
 		{
 			undoMoveStack.push(newMove);
-			//previousMoveStack.push(newMove);
 			nextMoveStack.push(newMove);
 			
 			lastPlayersMove = newMove;
 			lastMoveNumber++; // pokud vkladame za posledni tah, tak se zvysuje posledni mozny.
 		}
+		else
+		{
+			// forking
+			/*
+			 * TODO v undo a redo asi bude potreba neco jako "Restore lastMoveNumber" atd.
+			 */
+			
+			undoMoveStack.push(newMove);
+			nextMoveStack.push(newMove);
+			
+			lastPlayersMove = newMove;
+			lastMoveNumber = newMove.getMove().getMoveNumber();
+		}
 		
 	}
 	
+	/*
+	 * 
+	 */
 	public MoveCommand getNextMove() throws Exception
 	{
 		if(nextMoveStack.empty())
 		{
-			throw new EmptyMoveStackException("previousMoveStack is empty.");
+			throw new EmptyMoveStackException("getNextMove: previousMoveStack is empty.");
 		}
 		
 		if(isInvalidMove())
 		{
-			throw new InvalidMoveException("Byl nacten invalidni tah a proto nelze pokracovat dal.");
+			throw new InvalidMoveException("getNextMove: Byl nacten invalidni tah a proto nelze pokracovat dal.");
 		}
 		
 		/* Players Move: krok pro prepsani partie od hracova tahu */
 		if(lastPlayersMove != null)
 		{
-			
-			if( ! previousMoveStack.empty() && lastPlayersMove == previousMoveStack.peek())
-			//System.out.println(">>>>>Hracuv tah je posledni tah, kam lze partii prehrat!");
-			throw new EmptyMoveStackException("Hracuv tah je posledni tah, kam lze partii prehrat!");
-			//return null;
+			if( ! previousMoveStack.empty() && lastPlayersMove == previousMoveStack.peek()) 
+			{
+				throw new EmptyMoveStackException("getNextMove: Hracuv tah je posledni tah, kam lze partii prehrat!");
+			}
 		}
-		
 		
 		currentMoveNumber++;
 		MoveCommand topMove = nextMoveStack.pop();
@@ -86,16 +102,19 @@ public class GameRecord {
 		return topMove;
 	}
 	
+	/*
+	 * 
+	 */
 	public MoveCommand getPrevMove() throws Exception
 	{
 		if(previousMoveStack.empty())
 		{
-			throw new EmptyMoveStackException("previousMoveStack is empty.");
+			throw new EmptyMoveStackException("getPrevMove: previousMoveStack is empty.");
 		}
 		
 		if(isInvalidMove())
 		{
-			throw new InvalidMoveException("Byl nacten invalidni tah a proto nelze pokracovat dal.");
+			throw new InvalidMoveException("getPrevMove: Byl nacten invalidni tah a proto nelze pokracovat dal.");
 		}
 		
 		currentMoveNumber--;
@@ -105,6 +124,7 @@ public class GameRecord {
 		return topMove;
 	}
 
+	
 	public boolean isInvalidMove() {
 		return invalidMove;
 	}

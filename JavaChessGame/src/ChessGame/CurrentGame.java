@@ -24,6 +24,9 @@ public class CurrentGame {
 		// take GameRecord object and save current game, using GameSaver class.
 	}
 	
+	/*
+	 * 
+	 */
 	public void loadGame(String notationFile) 
 	{
 		System.out.println("Inicializuje se hra ze souboru...");
@@ -32,12 +35,18 @@ public class CurrentGame {
 		System.out.println("Hra byla nactena.");
 	}
 	
+	/*
+	 * 
+	 */
 	public void printBoard() 
 	{
 		System.out.println("Aktualne provedeny tah: " + gameRecord.getCurrentMoveNumber() + "/" + gameRecord.getLastMoveNumber());
 		this.board.printBoard();
 	}
 	
+	/*
+	 * 
+	 */
 	public void stepForward()
 	{
 		MoveCommand nextMove;
@@ -47,10 +56,12 @@ public class CurrentGame {
 		}
 		catch (EmptyMoveStackException e) {
 			System.out.println("Nelze provest dalsi tah, jsi na konci partie!");
+			System.out.println(e.getMessage());
 			return;
 		}
 		catch (InvalidMoveException e) {
 			System.out.println("Byl nacteny invalidni tah z notace!");
+			e.printStackTrace();
 			return;
 		}
 		catch (Exception e) {
@@ -74,6 +85,9 @@ public class CurrentGame {
 		}
 	}
 	
+	/*
+	 * 
+	 */
 	public void stepBackward() 
 	{
 		MoveCommand nextMove;
@@ -97,6 +111,9 @@ public class CurrentGame {
 		}
 	}
 	
+	/*
+	 * 
+	 */
 	public void playersMove(String sourcePosition, String destinationPosition)
 	{
 		// konstrukce MoveData
@@ -125,12 +142,23 @@ public class CurrentGame {
 		}
 		
 	}
+	
+	/*
+	 * 
+	 */
 	public void undo() {}
+	
+	/*
+	 * 
+	 */
 	public void redo() {}
 	
 	public void toEnd() {} // mozna
 	public void toStart() {} // mozna
 	
+	/*
+	 * 
+	 */
 	public void gotoMove(int numberOfMove)
 	{
 		assert(numberOfMove >= 0);
