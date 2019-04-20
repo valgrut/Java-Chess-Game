@@ -13,6 +13,7 @@ public class TerminalUserInterface {
 	public void printMainMenu()
 	{
 		System.out.println("----MENU----");
+		System.out.println("0. goto Active Game");
 		System.out.println("1. Load Game (notation file)");
 		System.out.println("2. Load new Game");
 		System.out.println("3. Vypsat Aktivni hry (taby)");
@@ -46,6 +47,8 @@ public class TerminalUserInterface {
 		String menuType = "MainMenu";
 		while(userInput != 7)
 		{	
+			System.out.println("///////////////////////////////////////////////////////////////////");
+
 			if(menuType == "MainMenu")
 			{
 				this.printMainMenu();
@@ -110,11 +113,11 @@ public class TerminalUserInterface {
 						break;
 					
 					case 1:
-						this.gameManager.getActiveGame().nextMove();
+						this.gameManager.getActiveGame().stepForward();
 						break;
 
 					case 2:
-						this.gameManager.getActiveGame().prevMove();
+						this.gameManager.getActiveGame().stepBackward();
 						break;
 						
 					case 3:

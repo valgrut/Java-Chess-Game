@@ -2,6 +2,7 @@ package GameRecord;
 
 import ChessGame.BoardTile;
 import ChessGame.ChessBoard;
+import Exceptions.InvalidMoveException;
 import Figures.AbstractPiece;
 import Loader.FigureFactory;
 
@@ -26,7 +27,7 @@ public class MoveCommand implements IMoveCommand {
 		
 		if(sourceTile.getFigure().canMoveTo(destinationTile) == false)
 		{
-			throw new Exception("Byl nacten invalidni tah v notaci. Nelze hrat dal!");
+			throw new InvalidMoveException("Byl nacten invalidni tah v notaci. Nelze hrat dal!");
 		}
 		// TODO // zde asi budou nejake cachry v pripade kratke notace, a jen v pripade, ze to nezaridim uz pri inicializaci.
 		// cachry ve smyslu: najdi figurku, ktera muze na tohle pole (protoze nemam src tile)

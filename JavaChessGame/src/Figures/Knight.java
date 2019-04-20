@@ -20,21 +20,15 @@ public class Knight extends AbstractPiece implements IMovable {
 		BoardTile currentPosition = getPosition();
 		
 		Vector<BoardTile> candidates = new Vector<BoardTile>();
-		try {
-			candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.U).nextField(Direction.L));
-			candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.U).nextField(Direction.R));
-			candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.L).nextField(Direction.L));
-			candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.R).nextField(Direction.R));
-			
-			candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.D).nextField(Direction.L));
-			candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.D).nextField(Direction.R));
-			candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.L).nextField(Direction.L));
-			candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.R).nextField(Direction.R));
-		}
-		catch(java.lang.NullPointerException e)
-		{
-			//none
-		}
+		try {candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.U).nextField(Direction.L));} catch(java.lang.NullPointerException e) {}
+		try {candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.U).nextField(Direction.R));} catch(java.lang.NullPointerException e) {}
+		try {candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.L).nextField(Direction.L));} catch(java.lang.NullPointerException e) {}
+		try {candidates.add(currentPosition.nextField(Direction.U).nextField(Direction.R).nextField(Direction.R));} catch(java.lang.NullPointerException e) {}
+		
+		try {candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.D).nextField(Direction.L));} catch(java.lang.NullPointerException e) {}
+		try {candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.D).nextField(Direction.R));} catch(java.lang.NullPointerException e) {}
+		try {candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.L).nextField(Direction.L));} catch(java.lang.NullPointerException e) {}
+		try {candidates.add(currentPosition.nextField(Direction.D).nextField(Direction.R).nextField(Direction.R));} catch(java.lang.NullPointerException e) {}
 
 		Vector<BoardTile> possibleMoves = new Vector<BoardTile>();
 		for(BoardTile tile : candidates)

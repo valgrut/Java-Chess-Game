@@ -60,9 +60,10 @@ public class Main {
 		TerminalUserInterface UI = new TerminalUserInterface();
 		UI.GameLoop();
 		
-		
-		//ChessBoard board = new ChessBoard();
-		//board.printBoard();
+		/*
+		ChessBoard board = new ChessBoard();
+		board.printBoard();
+		*/
 		
 		/*
 		BoardTile g11 = board.getBoardField(5, 1); // a2 (col, row)
@@ -87,9 +88,9 @@ public class Main {
 		
 		/* Test moznosti pohybu figurek, dle jejich barvy */
 		/*
-		BoardTile knightTile = board.getBoardField("c4");
+		BoardTile knightTile = board.getBoardField("b8");
 		System.out.println(knightTile.getFigure().getNotation());
-		knightTile.getFigure().setColor(PieceColor.WHITE);
+		//knightTile.getFigure().setColor(PieceColor.BLACK);
 		
 		Vector<BoardTile> candidates = knightTile.getFigure().getPossibleMoves();
 		for (BoardTile tile : candidates)

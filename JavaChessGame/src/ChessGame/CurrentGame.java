@@ -1,8 +1,11 @@
 package ChessGame;
 
+import Exceptions.EmptyMoveStackException;
+import Exceptions.InvalidMoveException;
 //import GameRecord.BasicGameRecord;
 import GameRecord.GameRecord;
 import GameRecord.MoveCommand;
+import GameRecord.MoveData;
 //import GameRecord.MoveData;
 import Loader.GameLoader;
 
@@ -31,33 +34,47 @@ public class CurrentGame {
 	
 	public void printBoard() 
 	{
-		System.out.println("Aktualne provedeny tah: " + gameRecord.getCurrentMove());
+		System.out.println("Aktualne provedeny tah: " + gameRecord.getCurrentMoveNumber() + "/" + gameRecord.getLastMoveNumber());
 		this.board.printBoard();
 	}
 	
-	public void nextMove()
+	public void stepForward()
 	{
 		MoveCommand nextMove;
 		try 
 		{
 			nextMove = this.gameRecord.getNextMove();
 		}
-		catch (Exception e) {
+		catch (EmptyMoveStackException e) {
 			System.out.println("Nelze provest dalsi tah, jsi na konci partie!");
-			System.out.println("NEBO byl nacteny invalidni tah z notace!");
 			return;
 		}
+		catch (InvalidMoveException e) {
+			System.out.println("Byl nacteny invalidni tah z notace!");
+			return;
+		}
+		catch (Exception e) {
+			System.out.println("General Exception Catched.");
+			e.printStackTrace();
+			return;
+		}
+		
 		try 
 		{
 			nextMove.execute(this.board);
 		} 
-		catch (Exception e) {
+		catch (InvalidMoveException e) {
 			System.out.println("Invalidni tah byl nacten z notace a nelze pokracovat!");
 			this.gameRecord.setInvalidMove(true);
 		}
+		catch (Exception e) {
+			System.out.println("General Exception Catched.");
+			e.printStackTrace();
+			return;
+		}
 	}
 	
-	public void prevMove() 
+	public void stepBackward() 
 	{
 		MoveCommand nextMove;
 		try 
@@ -65,15 +82,47 @@ public class CurrentGame {
 			nextMove = this.gameRecord.getPrevMove();
 			nextMove.revert(this.board);
 		} 
-		catch (Exception e) {
+		catch (EmptyMoveStackException e) {
 			System.out.println("Nelze provest dalsi tah, jsi na zacatku partie!");
-			System.out.println("NEBO Invalidni tah byl nacten z notace a nelze pokracovat!");
+			return;
+		}
+		catch (InvalidMoveException e) {
+			System.out.println("Invalidni tah byl nacten z notace a nelze pokracovat!");
+			return;
+		}
+		catch (Exception e) {
+			System.out.println("General Exception Catched.");
+			e.printStackTrace();
 			return;
 		}
 	}
 	
 	public void playersMove(String sourcePosition, String destinationPosition)
 	{
+		// konstrukce MoveData
+		MoveData moveData = new MoveData();
+		moveData.setDestinationPosition(destinationPosition);
+		moveData.setSourcePosition(sourcePosition);
+		moveData.setFigure(board.getBoardField(sourcePosition).getFigure().getNotation());
+		moveData.setChessColor(board.getBoardField(sourcePosition).getFigure().getColor());
+		moveData.setMoveNumber(gameRecord.getCurrentMoveNumber() + 1);
+		
+		// konstrukce MoveCommand
+		MoveCommand newMove = new MoveCommand(moveData);
+		
+		gameRecord.addPlayersMove(newMove);
+		this.stepForward();
+		
+		try 
+		{
+			//nextMove();
+			//newMove.execute(board);
+		} 
+		catch (Exception e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	public void undo() {}
@@ -86,7 +135,7 @@ public class CurrentGame {
 	{
 		assert(numberOfMove >= 0);
 		
-		int currentMove = this.gameRecord.getCurrentMove();
+		int currentMove = this.gameRecord.getCurrentMoveNumber();
 		if(currentMove == numberOfMove)
 		{
 			System.out.println("Uz se nachazis na zadanem tahu.");
@@ -96,14 +145,14 @@ public class CurrentGame {
 		{
 			for(int iMove = 0; iMove < Math.abs(currentMove-numberOfMove); iMove++)
 			{
-				nextMove();
+				stepForward();
 			}
 		}
 		if(currentMove > numberOfMove)
 		{
 			for(int iMove = 0; iMove < Math.abs(currentMove-numberOfMove); iMove++)
 			{
-				prevMove();
+				stepBackward();
 			}
 		}
 	}
