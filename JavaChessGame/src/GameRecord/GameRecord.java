@@ -18,6 +18,7 @@ public class GameRecord {
 	ArrayList<MoveCommand> moves;
 	Stack<MoveCommand> undoMoveStack;
 	Stack<MoveCommand> redoMoveStack;
+	
 	Stack<MoveCommand> nextMoveStack;
 	Stack<MoveCommand> previousMoveStack;
 
@@ -119,7 +120,46 @@ public class GameRecord {
 		return topMove;
 	}
 
+	/*
+	 * 
+	 */
+	public void undoLastPlayersMove() throws EmptyMoveStackException
+	{
+		if(undoMoveStack.empty())
+		{
+			throw new EmptyMoveStackException("UndoMoveStack je prazdny, nelze provest Undo.");
+		}
+		
+		nextMoveStack.removeElement(undoMoveStack.peek());
+		redoMoveStack.push(undoMoveStack.pop());
+		
+		// navrat k puvodni notaci (k puvodni nactene hre)
+		if(undoMoveStack.empty()) 
+		{
+			lastMoveNumber = moves.size();
+			lastPlayersMove = null;
+		}
+		else
+		{
+			lastMoveNumber = undoMoveStack.peek().getMove().getMoveNumber();
+			lastPlayersMove = undoMoveStack.peek();
+		}
+	}
 	
+	/*
+	 * 
+	 */
+	public void redoLastPlayersMove() throws EmptyMoveStackException
+	{
+		if(redoMoveStack.empty())
+		{
+			throw new EmptyMoveStackException("RedoMoveStack je prazdny, nelze provest Undo.");
+		}
+	}
+	
+	/*
+	 * 
+	 */
 	public boolean isInvalidMove() {
 		return invalidMove;
 	}

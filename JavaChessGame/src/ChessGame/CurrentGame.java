@@ -134,12 +134,34 @@ public class CurrentGame {
 	/*
 	 * 
 	 */
-	public void undo() {}
+	public void undo() 
+	{
+		try 
+		{
+			if(gameRecord.getCurrentMoveNumber() == gameRecord.getLastMoveNumber())
+			{
+				stepBackward();
+			}
+			gameRecord.undoLastPlayersMove();
+		} 
+		catch (EmptyMoveStackException e) 
+		{
+			System.out.println(e.getMessage());
+		}
+	}
 	
 	/*
 	 * 
 	 */
-	public void redo() {}
+	public void redo() 
+	{
+		try {
+			gameRecord.redoLastPlayersMove();
+		} catch (EmptyMoveStackException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
 	
 	public void toEnd() {} // mozna
 	public void toStart() {} // mozna
