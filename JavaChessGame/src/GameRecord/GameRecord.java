@@ -48,25 +48,20 @@ public class GameRecord {
 	 */
 	public void addPlayersMove(MoveCommand newMove)
 	{
+		undoMoveStack.push(newMove);
+		nextMoveStack.push(newMove);
+		
+		lastPlayersMove = newMove;
+		
 		if(currentMoveNumber == lastMoveNumber)
 		{
-			undoMoveStack.push(newMove);
-			nextMoveStack.push(newMove);
-			
-			lastPlayersMove = newMove;
 			lastMoveNumber++; // pokud vkladame za posledni tah, tak se zvysuje posledni mozny.
 		}
-		else
+		else //set new last move player can replay game to.
 		{
-			// forking
 			/*
 			 * TODO v undo a redo asi bude potreba neco jako "Restore lastMoveNumber" atd.
 			 */
-			
-			undoMoveStack.push(newMove);
-			nextMoveStack.push(newMove);
-			
-			lastPlayersMove = newMove;
 			lastMoveNumber = newMove.getMove().getMoveNumber();
 		}
 		

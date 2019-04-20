@@ -128,19 +128,7 @@ public class CurrentGame {
 		MoveCommand newMove = new MoveCommand(moveData);
 		
 		gameRecord.addPlayersMove(newMove);
-		this.stepForward();
-		
-		try 
-		{
-			//nextMove();
-			//newMove.execute(board);
-		} 
-		catch (Exception e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		stepForward();
 	}
 	
 	/*
