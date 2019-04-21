@@ -24,7 +24,7 @@ public class GameManager {
 	}
 	
 	/*
-	 * Creates empty game and initializes it from notation file
+	 * Creates empty game and initializes it from given notation file
 	 */
 	public void loadGame(String notationFile)
 	{

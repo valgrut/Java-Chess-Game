@@ -107,6 +107,19 @@ public class MoveCommand implements IMoveCommand {
 		return true;
 	}
 	
+	/*
+	 * Funkce slouzi pro otestovani prave zahraneho tahu hracem - je-li tah mozny.
+	 */
+	public void tryToExecute(ChessBoard board) throws InvalidMoveException 
+	{
+		BoardTile sourceTile = board.getBoardField(this.move.getSourcePosition());
+		BoardTile destinationTile = board.getBoardField(this.move.getDestinationPosition());
+		
+		if(sourceTile.getFigure().canMoveTo(destinationTile) == false)
+		{
+			throw new InvalidMoveException("Takhle nelze hrat. Tah nebyl ulozen.");
+		}
+	}
 	
 	/* (non-Javadoc)
 	 * @see GameRecord.IMoveCommand#getMove()

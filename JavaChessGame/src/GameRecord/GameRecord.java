@@ -5,11 +5,10 @@ import java.util.Stack;
 
 import Exceptions.EmptyMoveStackException;
 import Exceptions.InvalidMoveException;
-import Figures.PieceColor;
 
 public class GameRecord {
 	private int currentMoveNumber = 0;
-	private int lastMoveNumber = 0; // Stack?
+	private int lastMoveNumber = 0;
 	
 	private boolean invalidMove = false;
 
@@ -23,7 +22,15 @@ public class GameRecord {
 	Stack<MoveCommand> previousMoveStack;
 
 	/*
+	 * TODO pozn.: short notation atd se stejne bude pouzivat jen u tahu nahranejch z notace.
+	 * To samo i pro saver
 	 * 
+	 * TODO: vyresit kontrolu ze hraje bily / cerny
+	 */
+	
+	/*
+	 * Initializes GameRecord manager, that holds all moves loaded from notation and played by player
+	 * Also It can be used for any type of game that has some kind of moves (chess, checker).
 	 */
 	public GameRecord()
 	{
@@ -56,20 +63,16 @@ public class GameRecord {
 		
 		if(currentMoveNumber == lastMoveNumber)
 		{
-			lastMoveNumber++; // pokud vkladame za posledni tah, tak se zvysuje posledni mozny.
+			lastMoveNumber++;
 		}
 		else //set new last move player can replay game to.
 		{
-			/*
-			 * TODO v undo a redo asi bude potreba neco jako "Restore lastMoveNumber" atd.
-			 */
 			lastMoveNumber = newMove.getMove().getMoveNumber();
 		}
-		
 	}
 	
 	/*
-	 * 
+	 * Returns  
 	 */
 	public MoveCommand getNextMove() throws Exception
 	{
@@ -157,23 +160,9 @@ public class GameRecord {
 		}
 		
 		undoMoveStack.push(redoMoveStack.pop());
-		// TODO: vvvv jak vratit tento move na sve spravne misto v next/prev stacku???
-		// TODO: co kdyz budu v casti vetve, ktera se pomoci redo smaze?
-		// insertTo(index) .. index podle move.getNumber(); ???
-		/* 
-		pozn: zasobnik nextStack vlastne obsahuje vsechny nedostupne tahy. Takze pri operaci redo...
-		... gotoMove(index_splitnuti). index_splitnuti = redo.top().moveNumber()
-		... p.push() 
-		*/
-		//previousMoveStack.push(undoMoveStack.peek());
 		nextMoveStack.push(undoMoveStack.peek());
-		// TODO: ^^^^
-		
-		//if(redoMoveStack.empty())
-		//{
-			lastPlayersMove = undoMoveStack.peek();
-			lastMoveNumber = lastPlayersMove.getMove().getMoveNumber();
-		//}
+		lastPlayersMove = undoMoveStack.peek();
+		lastMoveNumber = lastPlayersMove.getMove().getMoveNumber();
 	}
 	
 	/*

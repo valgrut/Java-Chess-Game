@@ -88,9 +88,9 @@ public class Main {
 		
 		/* Test moznosti pohybu figurek, dle jejich barvy */
 		/*
-		BoardTile knightTile = board.getBoardField("b8");
+		BoardTile knightTile = board.getBoardField("c4");
 		System.out.println(knightTile.getFigure().getNotation());
-		//knightTile.getFigure().setColor(PieceColor.BLACK);
+		knightTile.getFigure().setColor(PieceColor.WHITE);
 		
 		Vector<BoardTile> candidates = knightTile.getFigure().getPossibleMoves();
 		for (BoardTile tile : candidates)

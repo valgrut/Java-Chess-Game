@@ -30,8 +30,8 @@ public class TerminalUserInterface {
 		System.out.println("0. back to Main Menu");
 		System.out.println("1. nextMove");
 		System.out.println("2. prevMove");
-		//System.out.println("3. ToStart"); // to move x
-		//System.out.println("4. ToEnd"); // to move x
+		System.out.println("3. ToStart"); 
+		System.out.println("4. ToEnd"); 
 		System.out.println("5. goto tah X");
 		System.out.println("6. hraj ty: (normalne napis src pozici a dst pozici.)");
 		//System.out.println("7. ((autoplay))");
@@ -136,8 +136,11 @@ public class TerminalUserInterface {
 					case 6:
 						System.out.println("Enter source position: ");
 						String sourcePosition = reader.next();
+						// TODO tady by se mohlo pro zvolenou figurku vykrizkovat policka, na ktera muze jit.
+
 						System.out.println("Enter destination position: ");
 						String destinationPosition = reader.next();
+						
 						this.gameManager.getActiveGame().playersMove(sourcePosition, destinationPosition);
 						break;
 						
