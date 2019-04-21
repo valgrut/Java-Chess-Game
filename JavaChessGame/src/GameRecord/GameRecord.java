@@ -153,13 +153,40 @@ public class GameRecord {
 	{
 		if(redoMoveStack.empty())
 		{
-			throw new EmptyMoveStackException("RedoMoveStack je prazdny, nelze provest Undo.");
+			throw new EmptyMoveStackException("RedoMoveStack je prazdny, nelze provest Redo.");
 		}
+		
+		undoMoveStack.push(redoMoveStack.pop());
+		// TODO: vvvv jak vratit tento move na sve spravne misto v next/prev stacku???
+		// TODO: co kdyz budu v casti vetve, ktera se pomoci redo smaze?
+		// insertTo(index) .. index podle move.getNumber(); ???
+		/* 
+		pozn: zasobnik nextStack vlastne obsahuje vsechny nedostupne tahy. Takze pri operaci redo...
+		... gotoMove(index_splitnuti). index_splitnuti = redo.top().moveNumber()
+		... p.push() 
+		*/
+		//previousMoveStack.push(undoMoveStack.peek());
+		nextMoveStack.push(undoMoveStack.peek());
+		// TODO: ^^^^
+		
+		//if(redoMoveStack.empty())
+		//{
+			lastPlayersMove = undoMoveStack.peek();
+			lastMoveNumber = lastPlayersMove.getMove().getMoveNumber();
+		//}
 	}
 	
 	/*
 	 * 
 	 */
+	public int getLastRedoMoveNumber()
+	{
+		if(redoMoveStack.empty())
+			return 0;
+		
+		return redoMoveStack.peek().getMove().getMoveNumber();
+	}
+	
 	public boolean isInvalidMove() {
 		return invalidMove;
 	}

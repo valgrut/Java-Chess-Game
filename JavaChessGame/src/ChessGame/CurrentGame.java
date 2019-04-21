@@ -155,9 +155,13 @@ public class CurrentGame {
 	 */
 	public void redo() 
 	{
-		try {
+		try 
+		{
+			gotoMove(gameRecord.getLastRedoMoveNumber()-1);
 			gameRecord.redoLastPlayersMove();
-		} catch (EmptyMoveStackException e) {
+		}
+		catch (EmptyMoveStackException e)
+		{
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
