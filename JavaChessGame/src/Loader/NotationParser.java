@@ -14,11 +14,12 @@ public class NotationParser implements IParser
 	}
 	
 	@Override
-	public Pair parseLine(String line){
+	public Pair parseLine(String line)
+	{
 		if( ! notationValidator.validateLine(line))
 		{
 			System.out.println("Invalid notation found. Parsing terminated.");
-			return null;
+			//return null;
 			//TODO throw InvalidNotationException
 		}
 		
@@ -34,7 +35,15 @@ public class NotationParser implements IParser
 		blackMove.setChessColor(PieceColor.BLACK);
 		
 		this.parseSubMove(partials[1], whiteMove);
-		this.parseSubMove(partials[2], blackMove);
+		try 
+		{
+			this.parseSubMove(partials[2], blackMove);
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Nelze nacist tah cerneho, neexistuje.");
+			blackMove = null;
+		}
 		
 		Pair newMove = new Pair(whiteMove, blackMove);
 		return newMove;

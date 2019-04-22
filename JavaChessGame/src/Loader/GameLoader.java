@@ -5,6 +5,7 @@ import GameRecord.GameRecord;
 import GameRecord.MoveCommand;
 //import GameRecord.MoveData;
 import GameRecord.Pair;
+import GameSaver.NotationType;
 
 public class GameLoader {
 	public GameLoader(GameRecord gameRecord, String notationFile)
@@ -13,6 +14,11 @@ public class GameLoader {
 		IReader reader = new BufferedNotationReader("/root/git/JavaChessGame/JavaChessGame/Notation_1"); 
 		IParser parser = new NotationParser();
 		
+//		if(notation is long)
+			gameRecord.setNotationType(NotationType.LONG); //TODO - tohle se nastavi podle toho, jaka ta notace opravdu je.
+//		else
+//			gameRecord.setNotationType(NotationType.SHORT);
+		
 		String fullMoveLine;
 		while((fullMoveLine = reader.getNextLine()) != null)
 		{
@@ -20,10 +26,14 @@ public class GameLoader {
 			
 			Pair fullMove = parser.parseLine(fullMoveLine);
 			fullMove.getFirst().printThisMove();
-			fullMove.getSecond().printThisMove();
+			
 			
 			gameRecord.addMove(new MoveCommand(fullMove.getFirst())); //white
-			gameRecord.addMove(new MoveCommand(fullMove.getSecond())); //black // TODO zkontrolovat, ze partie obsahuje jako posledni tah cerny
+			if(fullMove.getSecond() != null)
+			{	
+				fullMove.getSecond().printThisMove();
+				gameRecord.addMove(new MoveCommand(fullMove.getSecond())); //black
+			}
 		}
 	}
 	

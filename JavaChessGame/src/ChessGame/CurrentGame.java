@@ -1,12 +1,18 @@
 package ChessGame;
 
+import java.io.IOException;
+
 import Exceptions.EmptyMoveStackException;
 import Exceptions.InvalidMoveException;
 import GameRecord.GameRecord;
 import GameRecord.MoveCommand;
 import GameRecord.MoveData;
+import GameSaver.GameSaver;
 import Loader.GameLoader;
 
+/*
+ * 
+ */
 public class CurrentGame {
 	private ChessBoard board;
 	private GameRecord gameRecord;
@@ -25,7 +31,20 @@ public class CurrentGame {
 	 */
 	public void saveGame() 
 	{
-		// take GameRecord object and save current game, using GameSaver class.
+		//TODO: bug: nelze po ulozeni prejit zpet do hry a normalne v ni pokracovat!
+		toStart();
+		GameSaver gameSaver = new GameSaver(gameRecord);
+		try 
+		{
+			gameSaver.saveGame("/root/git/JavaChessGame/JavaChessGame/moje_notace.out");
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("Nepovedlo se ulozit hru pomoci GameSaver.");
+			e.printStackTrace();
+		}
+		gameSaver = null;
+		toStart();
 	}
 	
 	/*
@@ -227,4 +246,5 @@ public class CurrentGame {
 			}
 		}
 	}
+
 }

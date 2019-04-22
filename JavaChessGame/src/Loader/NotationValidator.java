@@ -2,6 +2,11 @@ package Loader;
 
 import java.util.regex.Pattern;
 
+
+/*
+ * TODO: pridat regex pro nekompletni radek - kdyz ma jen bily tah ale ne cerny.
+ * 
+ */
 public class NotationValidator implements IValidator{
 	private Pattern linePattern;
 	private Pattern movePattern;

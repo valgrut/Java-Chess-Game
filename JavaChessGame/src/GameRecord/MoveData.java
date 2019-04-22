@@ -1,6 +1,5 @@
 package GameRecord;
 
-import Figures.AbstractPiece;
 import Figures.PieceColor;
 
 public class MoveData 
@@ -11,7 +10,7 @@ public class MoveData
 	private String takenFigure;
 	private String sourcePosition;
 	private String destinationPosition;
-	private String additional = "+#KDJVSp";
+	private MoveSituation situation = null;
 	
 	/*
 	 * TODO udelat enum tridu, ktera bude pouzivana k pristupu do nize zmineneho pole, ve kterem budou options.
@@ -73,5 +72,23 @@ public class MoveData
 	public void printThisMove()
 	{
 		System.out.println("Tah: " + this.moveNumber + ", hrac: " + this.color + ", " + this.figure + this.sourcePosition + this.destinationPosition);
+	}
+	public String getTakenEnemy() {
+		return this.takenFigure;
+	}
+	public void setTakenEnemy(String enemy) {
+		this.takenFigure = enemy;
+	}
+	/**
+	 * @return the situation
+	 */
+	public MoveSituation getSituation() {
+		return situation;
+	}
+	/**
+	 * @param situation the situation to set
+	 */
+	public void setSituation(MoveSituation situation) {
+		this.situation = situation;
 	}
 }

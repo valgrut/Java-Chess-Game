@@ -8,8 +8,8 @@ import Loader.FigureFactory;
 
 public class MoveCommand implements IMoveCommand {
 	private MoveData move;
-	AbstractPiece takenEnemy;
-	
+	private AbstractPiece takenEnemy;
+
 	public MoveCommand(MoveData move)
 	{
 		this.move = move;
@@ -32,17 +32,6 @@ public class MoveCommand implements IMoveCommand {
 		// TODO // zde asi budou nejake cachry v pripade kratke notace, a jen v pripade, ze to nezaridim uz pri inicializaci.
 		// cachry ve smyslu: najdi figurku, ktera muze na tohle pole (protoze nemam src tile)
 
-		/*
-		 * moje verze tady
-		BoardTile sourceTile = this.board.getBoardField(nextMove.getSourcePosition());
-		BoardTile destinationTile = this.board.getBoardField(nextMove.getDestinationPosition());
-		sourceTile.getFigure().move(destinationTile);
-		*/
-		
-		
-		//TODO tohle vsechno asi presunout do AbstractPiece.move();
-		//sourceTile.getFigure().move(destinationTile);
-
 		// nepritel je zde
 		AbstractPiece enemy = null;
 		AbstractPiece sourceFigure = sourceTile.getFigure();
@@ -50,6 +39,7 @@ public class MoveCommand implements IMoveCommand {
 		{
 			enemy = destinationTile.getFigure();
 			this.takenEnemy = enemy;
+			move.setTakenEnemy(enemy.getNotation());
 			
 			AbstractPiece nullFig = FigureFactory.createFigureByNotation('.');
 			nullFig.setPosition(sourceTile);
@@ -135,5 +125,13 @@ public class MoveCommand implements IMoveCommand {
 	@Override
 	public void setMove(MoveData move) {
 		this.move = move;
+	}
+	
+	public AbstractPiece getTakenEnemy() {
+		return takenEnemy;
+	}
+
+	public void setTakenEnemy(AbstractPiece takenEnemy) {
+		this.takenEnemy = takenEnemy;
 	}
 }

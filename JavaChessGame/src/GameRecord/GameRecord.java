@@ -5,13 +5,14 @@ import java.util.Stack;
 
 import Exceptions.EmptyMoveStackException;
 import Exceptions.InvalidMoveException;
+import GameSaver.NotationType;
 
 public class GameRecord {
+	private NotationType notationType;
 	private int currentMoveNumber = 0;
 	private int lastMoveNumber = 0;
 	
 	private boolean invalidMove = false;
-
 	MoveCommand lastPlayersMove = null;
 	
 	ArrayList<MoveCommand> moves;
@@ -22,10 +23,15 @@ public class GameRecord {
 	Stack<MoveCommand> previousMoveStack;
 
 	/*
+	 * POZN: pomoci ctrl+/   zakomentuji radek   !!!!!!!!!!!
+	 * 
+	 * 
 	 * TODO pozn.: short notation atd se stejne bude pouzivat jen u tahu nahranejch z notace.
 	 * To samo i pro saver
 	 * 
 	 * TODO: vyresit kontrolu ze hraje bily / cerny
+	 * TODO: zvolit si notaci a jeji tvar
+	 * TODO: .... pridat do MoveData, jestli byl ohrozen kral -> '+'
 	 */
 	
 	/*
@@ -195,5 +201,19 @@ public class GameRecord {
 
 	public void setLastMoveNumber(int lastMoveNumber) {
 		this.lastMoveNumber = lastMoveNumber;
+	}
+
+	/**
+	 * @return the notationType
+	 */
+	public NotationType getNotationType() {
+		return notationType;
+	}
+
+	/**
+	 * @param notationType the notationType to set
+	 */
+	public void setNotationType(NotationType notationType) {
+		this.notationType = notationType;
 	}
 }
