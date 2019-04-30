@@ -102,7 +102,7 @@ public class ChessBoard {
 	/*
 	 * Get Tile by coords , ex.: [1,1], [3,4], [7,2], ...
 	 */
-	private BoardTile getField(int col, int row) {
+	public BoardTile getField(int col, int row) {
 		// assert
 		if((col > 0 && col <= getSize()) && (row > 0 && row <= getSize()))
 		{

@@ -59,12 +59,21 @@ public class CurrentGame {
 	}
 	
 	/*
-	 * 
+	 * TODO: There should be parameter of object, that serves as source where to draw board??
+	 * OR board will be given as parameter to graphic entity, which will update based on board?
 	 */
 	public void printBoard() 
 	{
 		System.out.println("Aktualne provedeny tah: " + gameRecord.getCurrentMoveNumber() + "/" + gameRecord.getLastMoveNumber());
 		this.board.printBoard();
+	}
+	
+	/*
+	 * Returns instance of ChessBoard of current game
+	 */
+	public ChessBoard getBoard()
+	{
+		return this.board;
 	}
 	
 	/*
