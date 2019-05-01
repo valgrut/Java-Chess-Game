@@ -13,7 +13,9 @@ import GameRecord.PositionTranslator;
 import javafx.beans.binding.SetBinding;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Node;
 import javafx.scene.effect.*;
 import javafx.scene.image.*;
@@ -27,6 +29,9 @@ public class Board extends GridPane //TilePane
 	private Tile[][] boardTiles;
 	private ChessBoard board;
 	private Map<String, Image> chessFiguresImageMap;
+	
+	private String playersMove1 = "";
+	private String playersMove2 = "";
 	
 	public Board(ChessBoard board)
 	{
@@ -45,20 +50,50 @@ public class Board extends GridPane //TilePane
 		setHeight(400);
 		setMinSize(60*8, 60*8);
 		
-		setStyle("fx-border-color: brown; fx-border-width: 3px;");
+		//setStyle("fx-border-color: brown; fx-border-width: 3px;");
 		
-
-		// Define an event filter
+		// Define an event filter event handler
 		EventHandler<MouseEvent> filter = new EventHandler<MouseEvent>() 
 		{
 			public void handle(MouseEvent e) 
 			{ 
-				System.out.println("Event catched: " + e.getSource().toString());
+				String clickPosition = e.getSource().toString().substring(8, 10);
+				System.out.println("Event catched: " + clickPosition);
+				
+				if(playersMove1.isEmpty())
+				{
+					playersMove1 = clickPosition;
+					// TODO nastavit policka, kam figurka muze, na jinou barvu.
+				}
+				else
+				{
+					// hrac chce odkliknout zvolenou figurku
+					if(playersMove1 == clickPosition)
+					{
+						playersMove1 = "";
+						// TODO ODNASTAVIT policka, kam figurka muze, na puvodni barvu.
+					}
+					else
+					{
+						// Provedeni tahu
+						playersMove2 = clickPosition;
+						// TODO ODNASTAVIT policka, kam figurka muze, na puvodni barvu.
+						// ...
+						
+						// TODO provedeni tahu
+						PlayersMoveEvent playersMoveEvent = new PlayersMoveEvent(Event.ANY);
+						playersMoveEvent.setSrcMove(playersMove1);
+						playersMoveEvent.setDstMove(playersMove2);
+						fireEvent(playersMoveEvent);
+						
+						//deinicializace players moves
+						playersMove1 = "";
+						playersMove2 = "";
+					}
+					
+				}
 			};              
 		};
-
-		// Register the same filter for two different nodes
-		//addEventFilter(MouseEvent.MOUSE_PRESSED, filter);
 		
 		for (int row = 0; row < 8; row++) 
         {
@@ -66,9 +101,10 @@ public class Board extends GridPane //TilePane
             {
             	// col = {a..h}, row={1..8}
                 Tile square = new Tile(PositionTranslator.coordsToPosition(col+1, 7-row+1));
+                
+                // register filter for this new Tile.
                 square.addEventFilter(MouseEvent.MOUSE_PRESSED, filter);
-            	//Tile square = new Tile(col + row);
-            	//Tile square = new Tile((col+1) + " " + (7-row+1));
+ 
             	boardTiles[row][col] = square;
                 
                 String color;
@@ -187,6 +223,5 @@ public class Board extends GridPane //TilePane
 		boardTiles[col][row].setImage(null);
 	    boardTiles[col][row].setImage(piece); 
 	}
-	
 	
 }
