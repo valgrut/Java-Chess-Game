@@ -1,16 +1,12 @@
 package GUI;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import ChessGame.ChessBoard;
 import Figures.AbstractPiece;
 import GameRecord.PositionTranslator;
-import javafx.beans.binding.SetBinding;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -223,7 +219,6 @@ public class Board extends GridPane //TilePane
 	
 	private void setImageOn(int col, int row, Image piece)
 	{	
-		boardTiles[col][row].setImage(null);
 	    boardTiles[col][row].setImage(piece); 
 	}
 	

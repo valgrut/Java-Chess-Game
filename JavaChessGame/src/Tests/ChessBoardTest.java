@@ -21,8 +21,8 @@ class ChessBoardTest {
 		
 		assertEquals(PieceColor.BLACK, board.getBoardField(1, 8).getFigure().getColor(), "Empty line");
 		
-		assertEquals("K", board.getBoardField(4, 1).getFigure().getNotation(), "Empty line");
-		assertEquals("D", board.getBoardField(5, 1).getFigure().getNotation(), "Empty line");
+		assertEquals("D", board.getBoardField(4, 1).getFigure().getNotation(), "Empty line");
+		assertEquals("K", board.getBoardField(5, 1).getFigure().getNotation(), "Empty line");
 	}
 	
 	@Test

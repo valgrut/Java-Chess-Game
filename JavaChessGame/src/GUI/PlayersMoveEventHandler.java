@@ -2,7 +2,7 @@ package GUI;
 
 import javafx.event.EventHandler;
 
-public abstract class MyCustomEventHandler implements EventHandler<PlayersMoveEvent> {
+public abstract class PlayersMoveEventHandler implements EventHandler<PlayersMoveEvent> {
 
     public void onEvent1(String srcMove) 
     {

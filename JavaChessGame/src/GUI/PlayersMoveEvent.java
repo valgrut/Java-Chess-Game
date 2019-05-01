@@ -26,7 +26,7 @@ public class PlayersMoveEvent extends Event
 	public String getDstMove() {return this.dstMove;}
 	
 	
-	public void invokeHandler(MyCustomEventHandler handler) {
+	public void invokeHandler(PlayersMoveEventHandler handler) {
         handler.onEvent1(srcMove);
     }
     

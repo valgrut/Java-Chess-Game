@@ -2,6 +2,7 @@ package GameRecord;
 
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Vector;
 
 import Exceptions.EmptyMoveStackException;
 import Exceptions.InvalidMoveException;
@@ -45,6 +46,36 @@ public class GameRecord {
 		redoMoveStack = new Stack<MoveCommand>();
 		nextMoveStack = new Stack<MoveCommand>();
 		previousMoveStack = new Stack<MoveCommand>();
+	}
+	
+	public Vector<MoveData> getCurrentRecord()
+	{
+		Vector<MoveData> record = new Vector<MoveData>();
+		
+		System.out.println("PrevMoveStack");
+		for(MoveCommand command : previousMoveStack)
+		{
+			record.add(command.getMove());
+			command.getMove().printThisMove();
+			
+			if(command == lastPlayersMove) 
+				return record;
+		}
+		
+		System.out.println("NextMoveStack");
+		//for(MoveCommand command : nextMoveStack)
+		for(int commandindex = nextMoveStack.size()-1; commandindex >=0; commandindex--)
+		{
+			MoveCommand command = nextMoveStack.elementAt(commandindex);
+			
+			record.add(command.getMove());
+			command.getMove().printThisMove();
+			
+			if(command == lastPlayersMove) 
+				break;
+		}
+		
+		return record;
 	}
 	
 	/*

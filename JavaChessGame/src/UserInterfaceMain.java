@@ -1,22 +1,30 @@
 
+import java.util.Vector;
+
+import javax.swing.GroupLayout.Alignment;
+
 import ChessGame.GameManager;
 import GUI.Board;
 import GUI.MyButton;
 import GUI.PlayersMoveEvent;
-import GUI.MyCustomEventHandler;
+import GUI.PlayersMoveEventHandler;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.effect.Bloom;
@@ -36,7 +44,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-
 public class UserInterfaceMain extends Application 
 {
     GameManager gm = new GameManager();
@@ -46,16 +53,25 @@ public class UserInterfaceMain extends Application
     public void start(Stage primaryStage) 
     {
     	VBox layout = new VBox();
+    	HBox currentGameLayout = new HBox();
     	
 //    	gm.createNewGame();
     	gm.loadGame("notation");
     	Board guiBoard = new Board(gm.getActiveGame().getBoard());
     	
+    	
+    	ListView<Label> moveRecord = new ListView<Label>();
+    	ObservableList<Label> items = FXCollections.observableArrayList();
+    	moveRecord.setItems(items);
+    	
+    	updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+    	moveRecord.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()).setStyle("-fx-background-color: yellow;");
+    	
     	/*
     	 * Create custom event and catch it here, get SRC DST pozition through parameter
     	 * and then execute players_move() and update();
     	 */
-    	guiBoard.addEventFilter(PlayersMoveEvent.PLAYERS_MOVE, new MyCustomEventHandler() 
+    	guiBoard.addEventFilter(PlayersMoveEvent.PLAYERS_MOVE, new PlayersMoveEventHandler() 
 		{
 			public void handle(PlayersMoveEvent playersEvent) 
 			{ 
@@ -65,7 +81,8 @@ public class UserInterfaceMain extends Application
 				try 
 				{
 					guiBoard.update();
-				} 
+					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+					updateHighlightCurrentMove(moveRecord);				} 
 				catch (Exception e) 
 				{
 					// TODO Auto-generated catch block
@@ -99,6 +116,7 @@ public class UserInterfaceMain extends Application
 				try 
 				{
 					guiBoard.update();
+					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
 				{
@@ -124,6 +142,7 @@ public class UserInterfaceMain extends Application
 				try 
 				{
 					guiBoard.update();
+					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
 				{
@@ -149,6 +168,33 @@ public class UserInterfaceMain extends Application
 				try 
 				{
 					guiBoard.update();
+					updateHighlightCurrentMove(moveRecord);
+				} 
+				catch (Exception e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+    	);
+    	
+    	/*
+    	 * To End
+    	 */
+    	Button endButton = new Button();
+    	endButton.setText("To End");
+    	endButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+			@Override
+			public void handle(ActionEvent event) 
+			{
+				gm.getActiveGame().toEnd();
+				gm.printGameBoard();
+				try 
+				{
+					guiBoard.update();
+					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
 				{
@@ -174,6 +220,8 @@ public class UserInterfaceMain extends Application
 				try 
 				{
 					guiBoard.update();
+					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
 				{
@@ -199,6 +247,8 @@ public class UserInterfaceMain extends Application
 				try 
 				{
 					guiBoard.update();
+					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
 				{
@@ -259,20 +309,56 @@ public class UserInterfaceMain extends Application
         tabpane.getTabs().add(newGameTab);
         */
         
-        layout.getChildren().add(guiBoard);
+    	currentGameLayout.getChildren().add(guiBoard);
+    	//currentGameLayout.getChildren().add(new Separator());
+    	currentGameLayout.getChildren().add(moveRecord);
+        layout.getChildren().add(currentGameLayout);
         
+
         HBox menu = new HBox();
+        menu.setMinWidth(currentGameLayout.getWidth());
+        menu.setPrefWidth(currentGameLayout.getWidth());
+        menu.setFillHeight(true);
+        //menu.setStyle("-fx-background-color: yellow;");
         menu.getChildren().add(startButton);
         menu.getChildren().add(prevButton);
-        menu.getChildren().add(new Text(0, 4, "actTah / celkemTahu"));
+        menu.getChildren().add(new Text(gm.getActiveGame().getPlayersCurrentMoveNumber()
+        		+"/"+gm.getActiveGame().getPlayersLastMoveNumber()));
         menu.getChildren().add(nextButton);
+        menu.getChildren().add(endButton);
+        menu.getChildren().add(new Separator());
         menu.getChildren().add(undoButton);
         menu.getChildren().add(redoButton);
         
         layout.getChildren().add(menu);
-               
+        
         primaryStage.setScene(new Scene(layout, 800, 600));
+        primaryStage.setTitle("Chess game reviewer");
         primaryStage.show();
+    }
+    
+    public void updateRecordList(ListView<Label> destination, Vector<String> sourceRecord)
+    {
+    	int moveCount = 1;
+    	destination.getItems().clear();
+    	
+    	for(String move : sourceRecord)
+    	{
+    		Label moveRecordNotation = new Label(moveCount + ". " + move);
+    		destination.getItems().add(moveRecordNotation);
+    		
+    		moveCount++;
+    	}
+    }
+    
+    public void updateHighlightCurrentMove(ListView<Label> record)
+    {
+    	for(Label movelabel : record.getItems())
+    	{
+    		movelabel.setStyle("-fx-background-color: none;");
+    	}
+    	
+		record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).setStyle("-fx-background-color: yellow;");
     }
     
     public static void main(String[] args) 

@@ -1,6 +1,7 @@
 package ChessGame;
 
 import java.io.IOException;
+import java.util.Vector;
 
 import Exceptions.EmptyMoveStackException;
 import Exceptions.InvalidMoveException;
@@ -8,12 +9,15 @@ import GameRecord.GameRecord;
 import GameRecord.MoveCommand;
 import GameRecord.MoveData;
 import GameSaver.GameSaver;
+import GameSaver.INotationBuilder;
+import GameSaver.NotationBuilderFactory;
 import Loader.GameLoader;
 
 /*
  * 
  */
-public class CurrentGame {
+public class CurrentGame 
+{
 	private ChessBoard board;
 	private GameRecord gameRecord;
 	
@@ -108,7 +112,7 @@ public class CurrentGame {
 		} 
 		catch (InvalidMoveException e) {
 			System.out.println("Invalidni tah byl nacten z notace a nelze pokracovat!");
-			this.gameRecord.setInvalidMove(true);
+			//this.gameRecord.setInvalidMove(true);
 		}
 		catch (Exception e) {
 			System.out.println("General Exception Catched.");
@@ -207,7 +211,7 @@ public class CurrentGame {
 		catch (EmptyMoveStackException e)
 		{
 			System.out.println(e.getMessage());
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -254,6 +258,53 @@ public class CurrentGame {
 				stepBackward();
 			}
 		}
+	}
+	
+	public Vector<String> getCurrentGameRecord()
+	{
+		INotationBuilder builder = NotationBuilderFactory.createNotationBuilder(gameRecord.getNotationType());
+		
+		Vector<MoveData> moves = gameRecord.getCurrentRecord();
+		Vector<String> record = new Vector<String>();
+		
+		/*
+		int currentMoveTmp = gameRecord.getCurrentMoveNumber();
+		toStart();
+		while(gameRecord.getCurrentMoveNumber() != gameRecord.getLastMoveNumber())
+		{
+			MoveData currentMove = null;
+			try 
+			{
+				currentMove = gameRecord.getNextMove().getMove();
+			} 
+			catch (Exception e1) 
+			{
+				System.out.println("Nelze nacist dalsi tah. Konec partie.");
+				break;
+			}
+			
+			record.add(builder.createNotationFromMove(currentMove));
+		}
+		
+		gotoMove(currentMoveTmp);
+		*/
+		
+		for(MoveData move : moves)
+		{
+			record.add(builder.createNotationFromMove(move));
+		}
+		
+		return record;
+	}
+	
+	public int getPlayersLastMoveNumber()
+	{
+		return this.gameRecord.getLastMoveNumber();
+	} 
+	
+	public int getPlayersCurrentMoveNumber()
+	{
+		return this.gameRecord.getCurrentMoveNumber();
 	}
 
 }

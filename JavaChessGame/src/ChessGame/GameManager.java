@@ -50,6 +50,7 @@ public class GameManager {
 	public void closeGame()
 	{
 		this.openedGames.remove(this.getActiveGameIndex());
+		//TODO emplace za null?
 	}
 	
 	public void setActiveGame(int index)
