@@ -46,7 +46,6 @@ public class UserInterfaceMain extends Application
 //    	gm.createNewGame();
     	gm.loadGame("notation");
     	Board guiBoard = new Board(gm.getActiveGame().getBoard());
-    	//board.
     	
     	Button nextButton = new Button();
     	nextButton.setText("Next Step");

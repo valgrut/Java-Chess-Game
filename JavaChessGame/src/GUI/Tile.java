@@ -30,6 +30,18 @@ public class Tile extends StackPane
 		pieceShadow = new DropShadow();
 		view.setEffect(pieceShadow);
 		
+		/*
+		addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() 
+		{
+	            public void handle(MouseEvent e) 
+				{
+	        		// TODO Auto-generated method stub
+	    			System.out.println(getId() + " - clicked on x: " + e.getSceneX() + " y:" + e.getSceneY());
+				}
+		});
+		*/
+		
+		/*
 		setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
@@ -47,7 +59,7 @@ public class Tile extends StackPane
             	}
             }
         });
-		
+        */
 	}
 	
 	public void setImage(Image piece)

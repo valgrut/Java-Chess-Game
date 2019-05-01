@@ -12,12 +12,15 @@ import Figures.AbstractPiece;
 import GameRecord.PositionTranslator;
 import javafx.beans.binding.SetBinding;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.effect.*;
 import javafx.scene.image.*;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
 public class Board extends GridPane //TilePane
 {
@@ -44,12 +47,28 @@ public class Board extends GridPane //TilePane
 		
 		setStyle("fx-border-color: brown; fx-border-width: 3px;");
 		
+
+		// Define an event filter
+		EventHandler<MouseEvent> filter = new EventHandler<MouseEvent>() 
+		{
+			public void handle(MouseEvent e) 
+			{ 
+				System.out.println("Event catched: " + e.getSource().toString());
+			};              
+		};
+
+		// Register the same filter for two different nodes
+		//addEventFilter(MouseEvent.MOUSE_PRESSED, filter);
+		
 		for (int row = 0; row < 8; row++) 
         {
             for (int col = 0; col < 8; col++)
             {
-                //Tile square = new Tile(PositionTranslator.coordsToPosition(col, row));
-            	Tile square = new Tile("A X");
+            	// col = {a..h}, row={1..8}
+                Tile square = new Tile(PositionTranslator.coordsToPosition(col+1, 7-row+1));
+                square.addEventFilter(MouseEvent.MOUSE_PRESSED, filter);
+            	//Tile square = new Tile(col + row);
+            	//Tile square = new Tile((col+1) + " " + (7-row+1));
             	boardTiles[row][col] = square;
                 
                 String color;
@@ -75,6 +94,22 @@ public class Board extends GridPane //TilePane
 			System.out.println("Error while update(): " + e.getMessage());
 			e.printStackTrace();
 		}
+		
+		/*
+		 * TODO Zde asi bude potreba pridat nejaky filter nebo neco, a podle ID of Tile budu vedet, ktere bylo
+		 * zmacknuto a z toho vezmu z ChessBoard intance figurku a moznosti, kam muze, a ty vyznacim do
+		 * sachovnice.
+		 */
+		
+		// Register an event filter for a single node and a specific event type
+		/*
+		addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() 
+		{
+			public void handle(MouseEvent e) { 
+				System.out.println("Event catched: " + e.getSource());
+			};              
+		});
+		*/
 	}
 	
 	private void loadPieceImages()
