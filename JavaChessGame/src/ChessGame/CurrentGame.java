@@ -35,8 +35,6 @@ public class CurrentGame
 	 */
 	public void saveGame() 
 	{
-		//TODO: bug: nelze po ulozeni prejit zpet do hry a normalne v ni pokracovat!
-		toStart();
 		GameSaver gameSaver = new GameSaver(gameRecord);
 		try 
 		{
@@ -48,7 +46,6 @@ public class CurrentGame
 			e.printStackTrace();
 		}
 		gameSaver = null;
-		toStart();
 	}
 	
 	/*
@@ -273,28 +270,6 @@ public class CurrentGame
 		
 		Vector<MoveData> moves = gameRecord.getCurrentRecord();
 		Vector<String> record = new Vector<String>();
-		
-		/*
-		int currentMoveTmp = gameRecord.getCurrentMoveNumber();
-		toStart();
-		while(gameRecord.getCurrentMoveNumber() != gameRecord.getLastMoveNumber())
-		{
-			MoveData currentMove = null;
-			try 
-			{
-				currentMove = gameRecord.getNextMove().getMove();
-			} 
-			catch (Exception e1) 
-			{
-				System.out.println("Nelze nacist dalsi tah. Konec partie.");
-				break;
-			}
-			
-			record.add(builder.createNotationFromMove(currentMove));
-		}
-		
-		gotoMove(currentMoveTmp);
-		*/
 		
 		for(MoveData move : moves)
 		{

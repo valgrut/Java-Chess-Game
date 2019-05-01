@@ -81,7 +81,8 @@ public class UserInterfaceMain extends Application
 				{
 					guiBoard.update();
 					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
-					updateHighlightCurrentMove(moveRecord);				} 
+					updateHighlightCurrentMove(moveRecord);				
+				} 
 				catch (Exception e) 
 				{
 					// TODO Auto-generated catch block
@@ -99,6 +100,23 @@ public class UserInterfaceMain extends Application
 			};              
 		});
 		*/
+    	
+    	/*
+    	 * Step Forward
+    	 */
+    	Button saveGameButton = new Button();
+    	saveGameButton.setText("Save Game");
+    	saveGameButton.setOnAction(new EventHandler<ActionEvent>() 
+		{
+			@Override
+			public void handle(ActionEvent event) 
+			{
+				gm.getActiveGame().saveGame();
+				// TODO dialog s moznostmi volby nazvu cilove ulozene notace.
+				
+			}
+		}
+    	);
     	
     	/*
     	 * Step Forward
@@ -327,6 +345,8 @@ public class UserInterfaceMain extends Application
         menu.getChildren().add(new Separator());
         menu.getChildren().add(undoButton);
         menu.getChildren().add(redoButton);
+        menu.getChildren().add(new Separator());
+        menu.getChildren().add(saveGameButton);
         
         layout.getChildren().add(menu);
         
