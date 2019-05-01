@@ -65,7 +65,6 @@ public class UserInterfaceMain extends Application
     	moveRecord.setItems(items);
     	
     	updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
-    	moveRecord.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()).setStyle("-fx-background-color: yellow;");
     	
     	/*
     	 * Create custom event and catch it here, get SRC DST pozition through parameter
@@ -322,8 +321,7 @@ public class UserInterfaceMain extends Application
         //menu.setStyle("-fx-background-color: yellow;");
         menu.getChildren().add(startButton);
         menu.getChildren().add(prevButton);
-        menu.getChildren().add(new Text(gm.getActiveGame().getPlayersCurrentMoveNumber()
-        		+"/"+gm.getActiveGame().getPlayersLastMoveNumber()));
+        //menu.getChildren().add(new Text(gm.getActiveGame().getPlayersCurrentMoveNumber()+"/"+gm.getActiveGame().getPlayersLastMoveNumber()));
         menu.getChildren().add(nextButton);
         menu.getChildren().add(endButton);
         menu.getChildren().add(new Separator());
@@ -337,6 +335,9 @@ public class UserInterfaceMain extends Application
         primaryStage.show();
     }
     
+    /*
+     * 
+     */
     public void updateRecordList(ListView<Label> destination, Vector<String> sourceRecord)
     {
     	int moveCount = 1;
@@ -351,6 +352,9 @@ public class UserInterfaceMain extends Application
     	}
     }
     
+    /*
+     * 
+     */
     public void updateHighlightCurrentMove(ListView<Label> record)
     {
     	for(Label movelabel : record.getItems())
@@ -358,7 +362,14 @@ public class UserInterfaceMain extends Application
     		movelabel.setStyle("-fx-background-color: none;");
     	}
     	
-		record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).setStyle("-fx-background-color: yellow;");
+    	try
+    	{
+    		record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).setStyle("-fx-background-color: yellow;");
+    	}
+    	catch(java.lang.ArrayIndexOutOfBoundsException e)
+    	{
+    		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
+    	}
     }
     
     public static void main(String[] args) 

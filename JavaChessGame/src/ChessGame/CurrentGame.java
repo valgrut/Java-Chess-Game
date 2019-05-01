@@ -184,17 +184,21 @@ public class CurrentGame
 	 */
 	public void undo() 
 	{
-		try 
+		if(! gameRecord.isUndoStackEmpty())
 		{
-			if(gameRecord.getCurrentMoveNumber() == gameRecord.getLastMoveNumber())
+			try 
 			{
-				stepBackward();
+				if(gameRecord.getCurrentMoveNumber() == gameRecord.getLastMoveNumber())
+				{
+					stepBackward();
+				}
+				gameRecord.undoLastPlayersMove();
 			}
-			gameRecord.undoLastPlayersMove();
-		} 
-		catch (EmptyMoveStackException e) 
-		{
-			System.out.println(e.getMessage());
+			 
+			catch (EmptyMoveStackException e) 
+			{
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
@@ -203,15 +207,18 @@ public class CurrentGame
 	 */
 	public void redo() 
 	{
-		try 
+		if(! gameRecord.isRedoStackEmpty())
 		{
-			gotoMove(gameRecord.getLastRedoMoveNumber()-1);
-			gameRecord.redoLastPlayersMove();
-		}
-		catch (EmptyMoveStackException e)
-		{
-			System.out.println(e.getMessage());
-			//e.printStackTrace();
+			try 
+			{
+				gotoMove(gameRecord.getLastRedoMoveNumber()-1);
+				gameRecord.redoLastPlayersMove();
+			}
+			catch (EmptyMoveStackException e)
+			{
+				System.out.println(e.getMessage());
+				//e.printStackTrace();
+			}
 		}
 	}
 	

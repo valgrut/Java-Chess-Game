@@ -52,28 +52,30 @@ public class GameRecord {
 	{
 		Vector<MoveData> record = new Vector<MoveData>();
 		
-		System.out.println("PrevMoveStack");
+		//System.out.println("PrevMoveStack");
 		for(MoveCommand command : previousMoveStack)
 		{
 			record.add(command.getMove());
-			command.getMove().printThisMove();
+			//command.getMove().printThisMove();
 			
 			if(command == lastPlayersMove) 
 				return record;
 		}
 		
-		System.out.println("NextMoveStack");
-		//for(MoveCommand command : nextMoveStack)
+		//System.out.println("NextMoveStack");
 		for(int commandindex = nextMoveStack.size()-1; commandindex >=0; commandindex--)
 		{
 			MoveCommand command = nextMoveStack.elementAt(commandindex);
 			
 			record.add(command.getMove());
-			command.getMove().printThisMove();
+			//command.getMove().printThisMove();
 			
 			if(command == lastPlayersMove) 
 				break;
 		}
+		
+		//System.out.println("UndoMoveStack: " + undoMoveStack.size());
+		//System.out.println("RedoMoveStack: " + redoMoveStack.size());
 		
 		return record;
 	}
@@ -246,5 +248,15 @@ public class GameRecord {
 	 */
 	public void setNotationType(NotationType notationType) {
 		this.notationType = notationType;
+	}
+	
+	public boolean isUndoStackEmpty()
+	{
+		return this.undoMoveStack.empty();
+	}
+	
+	public boolean isRedoStackEmpty()
+	{
+		return this.redoMoveStack.empty();
 	}
 }
