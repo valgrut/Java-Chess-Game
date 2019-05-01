@@ -13,7 +13,16 @@ public class Tile extends StackPane
 	private boolean isHighlighted = false;
 	private DropShadow pieceShadow;
 	private ImageView view;
+	private String css;
 	
+	public String getCss() {
+		return css;
+	}
+
+	public void setCss(String css) {
+		this.css = css;
+	}
+
 	public Tile(String identifier)
 	{
 		super();
@@ -36,7 +45,7 @@ public class Tile extends StackPane
 	            public void handle(MouseEvent e) 
 				{
 	        		// TODO Auto-generated method stub
-	    			System.out.println(getId() + " - clicked on x: " + e.getSceneX() + " y:" + e.getSceneY());
+	    			//System.out.println(getId() + " - clicked on x: " + e.getSceneX() + " y:" + e.getSceneY());
 				}
 		});
 		*/
@@ -49,17 +58,20 @@ public class Tile extends StackPane
             {	
             	if(t.getButton() == MouseButton.PRIMARY) 
             	{
-            		setStyle("-fx-background-color: blue;");
+            		//setStyle("-fx-background-color: blue;");
+            		setHighlight();
             		return;
             	}
             	else
             	{
-            		setStyle("-fx-background-color: green;");
+            		//setStyle("-fx-background-color: green;");
+            		unsetHighlight();
             		return;
             	}
             }
         });
         */
+        
 	}
 	
 	public void setImage(Image piece)
@@ -72,12 +84,12 @@ public class Tile extends StackPane
 		if(isHighlighted == false)
 		{
 			isHighlighted = true;
-			//setEffect(glowEffect);
+			setHighlight();
 		}
 		else
 		{
 			isHighlighted = false;
-			setEffect(null);
+			unsetHighlight();
 		}
 	}
 	
@@ -85,11 +97,12 @@ public class Tile extends StackPane
 	{
 		isHighlighted = true;
 		//setEffect(glowEffect);
+		setStyle("-fx-background-color: green;");
 	}
 	
 	public void unsetHighlight()
 	{
 		isHighlighted = false;
-		setEffect(null);
+		setStyle(this.css);
 	}
 }

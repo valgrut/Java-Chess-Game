@@ -56,9 +56,9 @@ public class Board extends GridPane //TilePane
 		EventHandler<MouseEvent> filter = new EventHandler<MouseEvent>() 
 		{
 			public void handle(MouseEvent e) 
-			{ 
+			{
 				String clickPosition = e.getSource().toString().substring(8, 10);
-				System.out.println("Event catched: " + clickPosition);
+				//System.out.println("Event catched: " + clickPosition);
 				
 				if(playersMove1.isEmpty())
 				{
@@ -72,13 +72,15 @@ public class Board extends GridPane //TilePane
 					{
 						playersMove1 = "";
 						// TODO ODNASTAVIT policka, kam figurka muze, na puvodni barvu.
+						// policko musim ziskat prekladem z A3 na souradnice col, row a 
+						// pristoupit do this.board[][]. Stejne tak i dale.
 					}
 					else
 					{
 						// Provedeni tahu
 						playersMove2 = clickPosition;
 						// TODO ODNASTAVIT policka, kam figurka muze, na puvodni barvu.
-						// ...
+						
 						
 						// TODO provedeni tahu
 						PlayersMoveEvent playersMoveEvent = new PlayersMoveEvent(Event.ANY);
@@ -117,6 +119,7 @@ public class Board extends GridPane //TilePane
                     color = "gray";
                 }
                 square.setStyle("-fx-background-color: "+color+";");
+                square.setCss("-fx-background-color: "+color+";");
                 add(square, col, row);
             }
         }
