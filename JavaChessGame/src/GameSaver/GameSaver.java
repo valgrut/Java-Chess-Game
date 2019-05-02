@@ -66,35 +66,6 @@ public class GameSaver
     		writer.append(builder.createLineOfNotation(notationLineNumber, whiteMove, blackMove));
     	}
 	    
-	    /*
-		while(gameRecord.getCurrentMoveNumber() != gameRecord.getLastMoveNumber())
-		{
-			MoveData whiteMove = null;
-			try 
-			{
-				whiteMove = gameRecord.getNextMove().getMove();
-			} 
-			catch (Exception e1) 
-			{
-				System.out.println("GameSaver: Bily tah neexistuje, takze nebude zapsan.");
-				break;
-			}
-			
-			MoveData blackMove = null;
-			try 
-			{
-				blackMove = gameRecord.getNextMove().getMove();
-			}
-			catch(Exception e) 
-			{
-				System.out.println("GameSaver: cerny tah neexistuje, takze nebude zapsan.");
-			}
-			
-			writer.append(builder.createLineOfNotation(notationLineNumber, whiteMove, blackMove));
-			notationLineNumber++;
-		}
-		*/
-	    
 		writer.close();
 	}
 }

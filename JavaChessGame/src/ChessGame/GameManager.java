@@ -42,9 +42,9 @@ public class GameManager {
 		return this.openedGames.elementAt(this.getActiveGameIndex()); 
 	}
 	
-	public void saveGame()
+	public void saveGame(String filename)
 	{
-		this.getActiveGame().saveGame();
+		this.getActiveGame().saveGame(filename);
 	}
 	
 	public void closeGame()

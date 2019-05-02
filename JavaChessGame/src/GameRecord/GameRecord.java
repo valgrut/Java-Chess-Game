@@ -52,11 +52,9 @@ public class GameRecord {
 	{
 		Vector<MoveData> record = new Vector<MoveData>();
 		
-		//System.out.println("PrevMoveStack");
 		for(MoveCommand command : previousMoveStack)
 		{
 			record.add(command.getMove());
-			//command.getMove().printThisMove();
 			
 			if(command == lastPlayersMove) 
 				return record;
@@ -66,16 +64,11 @@ public class GameRecord {
 		for(int commandindex = nextMoveStack.size()-1; commandindex >=0; commandindex--)
 		{
 			MoveCommand command = nextMoveStack.elementAt(commandindex);
-			
 			record.add(command.getMove());
-			//command.getMove().printThisMove();
 			
 			if(command == lastPlayersMove) 
 				break;
 		}
-		
-		//System.out.println("UndoMoveStack: " + undoMoveStack.size());
-		//System.out.println("RedoMoveStack: " + redoMoveStack.size());
 		
 		return record;
 	}

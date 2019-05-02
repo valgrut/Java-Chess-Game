@@ -33,12 +33,13 @@ public class CurrentGame
 	/*
 	 * Takes the newest moves(moves player can step through) and saves notation to file.
 	 */
-	public void saveGame() 
+	public void saveGame(String filename) 
 	{
 		GameSaver gameSaver = new GameSaver(gameRecord);
 		try 
 		{
-			gameSaver.saveGame("/root/git/JavaChessGame/JavaChessGame/moje_notace.out");
+			//gameSaver.saveGame("/root/git/JavaChessGame/JavaChessGame/moje_notace.out");
+			gameSaver.saveGame(filename);
 		} 
 		catch (IOException e) 
 		{

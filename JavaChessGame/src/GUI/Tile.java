@@ -35,7 +35,6 @@ public class Tile extends StackPane
 		this.view = new ImageView();
 		getChildren().add(view);
 		
-		
 		pieceShadow = new DropShadow();
 		view.setEffect(pieceShadow);
 		
@@ -104,5 +103,13 @@ public class Tile extends StackPane
 	{
 		isHighlighted = false;
 		setStyle(this.css);
+	}
+	
+	public boolean isEmpty()
+	{
+		if(this.view.getImage() == null)
+			return true;
+		
+		return false;
 	}
 }

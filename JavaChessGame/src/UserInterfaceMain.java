@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.util.Vector;
 
 import javax.swing.GroupLayout.Alignment;
@@ -11,6 +12,7 @@ import GUI.PlayersMoveEventHandler;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javafx.application.Application;
@@ -55,6 +57,18 @@ public class UserInterfaceMain extends Application
     	VBox layout = new VBox();
     	HBox currentGameLayout = new HBox();
     	
+    	
+//        final FileChooser fileChooser = new FileChooser();
+//		File filename = fileChooser.showOpenDialog(primaryStage);
+//        if (filename != null) 
+//        {
+//            //openFile(file);
+//            gm.getActiveGame().saveGame(filename.getAbsolutePath());
+//        }
+//        else
+//        {
+//        	System.out.println("Nebyl vybran nazev souboru takze hra nebyla ulozena.");
+//        }
 //    	gm.createNewGame();
     	gm.loadGame("notation");
     	Board guiBoard = new Board(gm.getActiveGame().getBoard());
@@ -102,8 +116,9 @@ public class UserInterfaceMain extends Application
 		*/
     	
     	/*
-    	 * Step Forward
+    	 * Save newest game
     	 */
+        final FileChooser fileChooser = new FileChooser();
     	Button saveGameButton = new Button();
     	saveGameButton.setText("Save Game");
     	saveGameButton.setOnAction(new EventHandler<ActionEvent>() 
@@ -111,9 +126,15 @@ public class UserInterfaceMain extends Application
 			@Override
 			public void handle(ActionEvent event) 
 			{
-				gm.getActiveGame().saveGame();
-				// TODO dialog s moznostmi volby nazvu cilove ulozene notace.
-				
+				File filename = fileChooser.showOpenDialog(primaryStage);
+                if (filename != null) 
+                {
+                    gm.getActiveGame().saveGame(filename.getAbsolutePath());
+                }
+                else
+                {
+                	System.out.println("Nebyl vybran nazev souboru takze hra nebyla ulozena.");
+                }
 			}
 		}
     	);
@@ -339,6 +360,7 @@ public class UserInterfaceMain extends Application
         //menu.setStyle("-fx-background-color: yellow;");
         menu.getChildren().add(startButton);
         menu.getChildren().add(prevButton);
+        menu.getChildren().add(new Separator());
         //menu.getChildren().add(new Text(gm.getActiveGame().getPlayersCurrentMoveNumber()+"/"+gm.getActiveGame().getPlayersLastMoveNumber()));
         menu.getChildren().add(nextButton);
         menu.getChildren().add(endButton);

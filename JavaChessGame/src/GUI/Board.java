@@ -6,6 +6,7 @@ import java.util.Map;
 
 import ChessGame.ChessBoard;
 import Figures.AbstractPiece;
+import GameRecord.PairInt;
 import GameRecord.PositionTranslator;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,8 +59,18 @@ public class Board extends GridPane //TilePane
 				
 				if(playersMove1.isEmpty())
 				{
-					playersMove1 = clickPosition;
-					// TODO nastavit policka, kam figurka muze, na jinou barvu.
+					//PairInt coords = PositionTranslator.positionToCoords(clickPosition);
+					//if( ! boardTiles[coords.getSecond()-1][coords.getFirst()-1].isEmpty())
+					//{
+						playersMove1 = clickPosition;
+						// TODO nastavit policka, kam figurka muze, na jinou barvu.
+						
+						//System.out.println(">>> Nelze presunout prazdne policko!!!!");
+					//}
+					//else
+					//{
+					//	System.out.println(">>> Nelze presunout prazdne policko!!!!");
+					//}
 				}
 				else
 				{

@@ -82,11 +82,15 @@ public class TerminalUserInterface {
 						break;
 						
 					case 5:
-						this.gameManager.saveGame();
+						System.out.println("Enter filename: ");
+						String filename = reader.next();
+						this.gameManager.saveGame("/root/git/JavaChessGame/JavaChessGame/" + filename + ".txt");
 						break;
 						
 					case 6:
-						this.gameManager.saveGame();
+						System.out.println("Enter filename: ");
+						String notationname = reader.next();
+						this.gameManager.saveGame("/root/git/JavaChessGame/JavaChessGame/" + notationname + ".txt");
 						this.gameManager.closeGame();
 						break;
 						
