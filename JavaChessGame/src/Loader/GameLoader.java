@@ -10,8 +10,8 @@ import GameSaver.NotationType;
 public class GameLoader {
 	public GameLoader(GameRecord gameRecord, String notationFile)
 	{
-		//IReader reader = new BufferedNotationReader(notationFile);
-		IReader reader = new BufferedNotationReader("/root/git/JavaChessGame/JavaChessGame/Notation_1"); 
+		IReader reader = new BufferedNotationReader(notationFile);
+		//IReader reader = new BufferedNotationReader("/root/git/JavaChessGame/JavaChessGame/Notation_1"); 
 		IParser parser = new NotationParser();
 		
 //		if(notation is long)

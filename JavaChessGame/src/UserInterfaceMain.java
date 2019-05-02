@@ -57,24 +57,64 @@ public class UserInterfaceMain extends Application
     	VBox layout = new VBox();
     	HBox currentGameLayout = new HBox();
     	
+    	/*
+    	 * Loading the game from notation
+    	 */
+        final FileChooser fileChooserLoad = new FileChooser();
+		File filename = fileChooserLoad.showOpenDialog(primaryStage);
+        if (filename != null) 
+        {
+            //gm.getActiveGame().saveGame(filename.getAbsolutePath());
+        	try 
+        	{
+        		gm.loadGame(filename.getAbsolutePath());
+        	}
+        	catch(SecurityException e)
+        	{
+            	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+        		gm.createNewGame();
+        	}
+        }
+        else
+        {
+        	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+        	gm.createNewGame();
+        }
     	
-//        final FileChooser fileChooser = new FileChooser();
-//		File filename = fileChooser.showOpenDialog(primaryStage);
-//        if (filename != null) 
-//        {
-//            //openFile(file);
-//            gm.getActiveGame().saveGame(filename.getAbsolutePath());
-//        }
-//        else
-//        {
-//        	System.out.println("Nebyl vybran nazev souboru takze hra nebyla ulozena.");
-//        }
-//    	gm.createNewGame();
-    	gm.loadGame("notation");
+    	//gm.loadGame(filename.getAbsolutePath());
+    	//gm.createNewGame();
+    	
     	Board guiBoard = new Board(gm.getActiveGame().getBoard());
     	
-    	
+    	/*
+    	 * List View initialisation - record of game in notation
+    	 */
     	ListView<Label> moveRecord = new ListView<Label>();
+    	moveRecord.setPrefWidth(200);
+    	moveRecord.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() 
+		{
+            public void handle(MouseEvent e) 
+			{
+            	int numberOfMove = moveRecord.getSelectionModel().getSelectedIndex() + 1;
+            	
+            	//System.out.println(moveRecord.getSelectionModel().getSelectedItem().toString());
+            	//System.out.println(moveRecord.getSelectionModel().getSelectedIndex());
+            	
+            	gm.getActiveGame().gotoMove(numberOfMove);
+        
+            	gm.printGameBoard();
+				try 
+				{
+					guiBoard.update();
+					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+					updateHighlightCurrentMove(moveRecord);				
+				} 
+				catch (Exception e1) 
+				{
+					e1.printStackTrace();
+				}
+			}
+		});
     	ObservableList<Label> items = FXCollections.observableArrayList();
     	moveRecord.setItems(items);
     	
@@ -116,7 +156,7 @@ public class UserInterfaceMain extends Application
 		*/
     	
     	/*
-    	 * Save newest game
+    	 * Save game
     	 */
         final FileChooser fileChooser = new FileChooser();
     	Button saveGameButton = new Button();
