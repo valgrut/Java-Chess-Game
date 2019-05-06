@@ -123,7 +123,7 @@ public class Board extends GridPane //TilePane
                 } 
                 else 
                 {
-                    color = "gray";
+                    color = "yellowgreen"; //gray
                 }
                 square.setStyle("-fx-background-color: "+color+";");
                 square.setCss("-fx-background-color: "+color+";");

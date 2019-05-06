@@ -50,7 +50,7 @@ import javafx.stage.Stage;
 
 /*
  * TODO check that opened games are saved, otherwise ask for save or throw when clicked on x.
- * 
+ * TODO pridat k Board cislovani radku a sloupcu a pismenka 1-8 A-H
  */
 
 public class UserInterfaceMain extends Application 
@@ -72,7 +72,7 @@ public class UserInterfaceMain extends Application
         if (filename != null) 
         {
             //gm.getActiveGame().saveGame(filename.getAbsolutePath());
-        	try 
+        	try
         	{
         		gm.loadGame(filename.getAbsolutePath());
         	}

@@ -29,6 +29,20 @@ public class LongNotationBuilder implements INotationBuilder
 		
 		notationMove += move.getDestinationPosition();
 		
+		// TODO v pripade Pawn, appendnout ho nebo pridat && not Pawn then
+		if(move.getTakenEnemy() != null)
+		{
+			notationMove += move.getTakenEnemy();
+		}
+		
+		/*
+		 * TODO add check of king as '+' to the end according to MoveSituation.
+		if(move.isKingChecked() == true)
+		{
+			notationMove += "+";
+		}
+		 */
+		
 		return notationMove;
 	}
 
