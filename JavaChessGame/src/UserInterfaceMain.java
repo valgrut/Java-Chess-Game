@@ -34,6 +34,9 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -45,6 +48,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/*
+ * TODO check that opened games are saved, otherwise ask for save or throw when clicked on x.
+ * 
+ */
 
 public class UserInterfaceMain extends Application 
 {
@@ -119,6 +126,7 @@ public class UserInterfaceMain extends Application
     	moveRecord.setItems(items);
     	
     	updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+    	moveRecord.setFocusTraversable(false);
     	
     	/*
     	 * Create custom event and catch it here, get SRC DST pozition through parameter
@@ -161,6 +169,7 @@ public class UserInterfaceMain extends Application
         final FileChooser fileChooser = new FileChooser();
     	Button saveGameButton = new Button();
     	saveGameButton.setText("Save Game");
+    	Runnable saveGameRunnable = ()-> saveGameButton.fire();
     	saveGameButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -184,6 +193,7 @@ public class UserInterfaceMain extends Application
     	 */
     	Button nextButton = new Button();
     	nextButton.setText("Next Step");
+    	Runnable nextRunnable = ()-> nextButton.fire();
     	nextButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -210,6 +220,7 @@ public class UserInterfaceMain extends Application
     	 */
     	Button prevButton = new Button();
     	prevButton.setText("Step Back");
+    	Runnable prevRunnable = ()-> prevButton.fire();
     	prevButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -236,6 +247,7 @@ public class UserInterfaceMain extends Application
     	 */
     	Button startButton = new Button();
     	startButton.setText("To Start");
+    	Runnable startRunnable = ()-> startButton.fire();
     	startButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -262,6 +274,7 @@ public class UserInterfaceMain extends Application
     	 */
     	Button endButton = new Button();
     	endButton.setText("To End");
+    	Runnable endRunnable = ()-> endButton.fire();
     	endButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -288,6 +301,7 @@ public class UserInterfaceMain extends Application
     	 */
     	Button undoButton = new Button();
     	undoButton.setText("Undo");
+    	Runnable undoRunnable = ()-> undoButton.fire();
     	undoButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -315,6 +329,7 @@ public class UserInterfaceMain extends Application
     	 */
     	Button redoButton = new Button();
     	redoButton.setText("Redo");
+    	Runnable redoRunnable = ()-> redoButton.fire();
     	redoButton.setOnAction(new EventHandler<ActionEvent>() 
 		{
 			@Override
@@ -411,8 +426,16 @@ public class UserInterfaceMain extends Application
         menu.getChildren().add(saveGameButton);
         
         layout.getChildren().add(menu);
-        
-        primaryStage.setScene(new Scene(layout, 800, 600));
+        Scene mainScene = new Scene(layout, 800,600);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN), saveGameRunnable);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.UP), endRunnable);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.DOWN), startRunnable);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.LEFT), prevRunnable);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.RIGHT), nextRunnable);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN), redoRunnable);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN), undoRunnable);
+
+        primaryStage.setScene(mainScene);
         primaryStage.setTitle("Chess game reviewer");
         primaryStage.show();
     }
