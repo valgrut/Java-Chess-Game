@@ -47,6 +47,7 @@ public class Board extends GridPane //TilePane
 		setHeight(400);
 		setMinSize(60*8, 60*8);
 		
+		setStyle("-fx-padding: 15 15 15 15");
 		//setStyle("fx-border-color: brown; fx-border-width: 3px;");
 		
 		// Define an event filter event handler
