@@ -9,7 +9,7 @@ User can load notation file, where is game record in following format:
 
 User can create new game and export played game as new notation file in the format above.
 
-Controlls
+<b>Controlls</b>
 1. Terminal interface
   Program fully supports terminal interface so user can interact with program just like from GUI. 
 
