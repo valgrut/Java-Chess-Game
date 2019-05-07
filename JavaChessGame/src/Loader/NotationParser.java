@@ -90,6 +90,7 @@ public class NotationParser implements IParser
 				index++;
 			}
 			
+ 			
 			dstPosition = Character.toString(move.charAt(index+2));
 			dstPosition += move.charAt(index+3);
 			
