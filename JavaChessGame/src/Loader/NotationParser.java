@@ -4,6 +4,10 @@ import Figures.PieceColor;
 import GameRecord.MoveData;
 import GameRecord.Pair;
 
+/*
+ * Long notation parser
+ * 
+ */
 public class NotationParser implements IParser 
 {
 	private IValidator notationValidator;
@@ -79,8 +83,17 @@ public class NotationParser implements IParser
 			// urceni pozice src a dst - TODO: tohle je zatim natvrdo.
 			srcPosition = Character.toString(move.charAt(index));
 			srcPosition += move.charAt(index+1);
+			
+			// kontrola pokud v tahu byl nekdo vzat - Jd3xc5  (to pismeno 'x')
+ 			if(move.charAt(index+2) == 'x')
+			{
+				index++;
+			}
+			
 			dstPosition = Character.toString(move.charAt(index+2));
 			dstPosition += move.charAt(index+3);
+			
+			// TODO zde teoreticky jeste pismenko figurky, ktera byla vzata
 		//}
 		
 		moveObj.setFigure(figure);
