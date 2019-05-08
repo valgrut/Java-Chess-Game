@@ -4,15 +4,16 @@ import ChessGame.BoardTile;
 import ChessGame.ChessBoard;
 import Exceptions.InvalidMoveException;
 import Figures.AbstractPiece;
+import Figures.PieceColor;
 import Loader.FigureFactory;
 
 public class MoveCommand implements IMoveCommand {
-	private MoveData move;
+	private MoveData moveData;
 	private AbstractPiece takenEnemy;
 
 	public MoveCommand(MoveData move)
 	{
-		this.move = move;
+		this.moveData = move;
 		takenEnemy = null;
 	}
 		
@@ -22,8 +23,8 @@ public class MoveCommand implements IMoveCommand {
 	@Override
 	public boolean execute(ChessBoard board) throws Exception 
 	{
-		BoardTile sourceTile = board.getBoardField(this.move.getSourcePosition());
-		BoardTile destinationTile = board.getBoardField(this.move.getDestinationPosition());
+		BoardTile sourceTile = board.getBoardField(this.moveData.getSourcePosition());
+		BoardTile destinationTile = board.getBoardField(this.moveData.getDestinationPosition());
 		
 		if(sourceTile.getFigure().canMoveTo(destinationTile) == false)
 		{
@@ -39,7 +40,7 @@ public class MoveCommand implements IMoveCommand {
 		{
 			enemy = destinationTile.getFigure();
 			this.takenEnemy = enemy;
-			move.setTakenEnemy(enemy.getNotation());
+			moveData.setTakenEnemy(enemy.getNotation());
 			
 			AbstractPiece nullFig = FigureFactory.createFigureByNotation('.');
 			nullFig.setPosition(sourceTile);
@@ -60,6 +61,9 @@ public class MoveCommand implements IMoveCommand {
 			tmpNullFigure.setPosition(sourceTile);
 		}
 		
+		//// kontrola, jestli po provedeni tahu nebude nepratelsky kral v sachu/ sachmat
+		// ano-> nastavit v moveData polozku CHECK nebo CHECKMATE
+		
 		return true;
 	}
 	
@@ -69,8 +73,8 @@ public class MoveCommand implements IMoveCommand {
 	@Override
 	public boolean revert(ChessBoard board)
 	{	
-		BoardTile destinationTile = board.getBoardField(this.move.getSourcePosition());
-		BoardTile sourceTile = board.getBoardField(this.move.getDestinationPosition());
+		BoardTile destinationTile = board.getBoardField(this.moveData.getSourcePosition());
+		BoardTile sourceTile = board.getBoardField(this.moveData.getDestinationPosition());
 
 		AbstractPiece sourceFigure = sourceTile.getFigure();
 		
@@ -102,12 +106,53 @@ public class MoveCommand implements IMoveCommand {
 	 */
 	public void tryToExecute(ChessBoard board) throws InvalidMoveException 
 	{
-		BoardTile sourceTile = board.getBoardField(this.move.getSourcePosition());
-		BoardTile destinationTile = board.getBoardField(this.move.getDestinationPosition());
+		BoardTile sourceTile = board.getBoardField(this.moveData.getSourcePosition());
+		BoardTile destinationTile = board.getBoardField(this.moveData.getDestinationPosition());
 		
 		if(sourceTile.getFigure().canMoveTo(destinationTile) == false)
 		{
 			throw new InvalidMoveException("Takhle nelze hrat. Tah nebyl ulozen.");
+		}
+				
+		// kontrola, jestli po provedeni tahu by nebyl kral teto barvy v ohrozeni.
+		// pokud ANO - > throw InvalidMoveException("Kral by byl v sachu.").
+		PieceColor currentMovePieceColor = this.moveData.getChessColor();
+		// TODOj najit krale, zjistit, jestli nejaka nepratelska figurka jej neohrozuje
+		AbstractPiece king = null;
+		for(AbstractPiece piece : board.getAllFigures())
+		{
+			if(piece.getColor() == currentMovePieceColor && piece.getNotation() == "K")
+			{
+				king = piece;
+			}
+		}
+		
+		// execute move
+		try 
+		{
+			execute(board);
+		} 
+		catch (Exception e) {}
+		
+		// check, that king is safe after friend piece move
+		BoardTile kingTile = board.getBoardField(king.getPosition().toString());
+		for(AbstractPiece piece : board.getAllFigures())
+		{
+			if(piece.getColor() != currentMovePieceColor && ! piece.isCaptured())
+			{
+				BoardTile sourceEnemyTile = board.getBoardField(piece.getPosition().toString());
+				
+				if(sourceEnemyTile.getFigure().canMoveTo(kingTile))
+				{
+					// revert move
+					try 
+					{
+						revert(board);
+					} 
+					catch (Exception e) {}
+					throw new InvalidMoveException("Takhle nelze hrat, Kral by byl ohrozen.");
+				}
+			}
 		}
 	}
 	
@@ -115,16 +160,16 @@ public class MoveCommand implements IMoveCommand {
 	 * @see GameRecord.IMoveCommand#getMove()
 	 */
 	@Override
-	public MoveData getMove() {
-		return move;
+	public MoveData getMoveData() {
+		return moveData;
 	}
 
 	/* (non-Javadoc)
 	 * @see GameRecord.IMoveCommand#setMove(GameRecord.Move)
 	 */
 	@Override
-	public void setMove(MoveData move) {
-		this.move = move;
+	public void setMoveData(MoveData move) {
+		this.moveData = move;
 	}
 	
 	public AbstractPiece getTakenEnemy() {

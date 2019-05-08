@@ -102,7 +102,8 @@ public class ChessBoard {
 	/*
 	 * Get Tile by coords , ex.: [1,1], [3,4], [7,2], ...
 	 */
-	public BoardTile getField(int col, int row) {
+	public BoardTile getField(int col, int row) 
+	{
 		// assert
 		if((col > 0 && col <= getSize()) && (row > 0 && row <= getSize()))
 		{
@@ -162,9 +163,15 @@ public class ChessBoard {
 		System.out.print('\n');
 	}
 
-	public int getSize() {
+	public int getSize() 
+	{
 		return this.width;
 	}
-
+	
+	
+	public Vector<AbstractPiece> getAllFigures() 
+	{
+		return allFigures;
+	}
 
 }

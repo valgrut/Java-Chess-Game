@@ -236,7 +236,6 @@ public class UserInterfaceMain extends Application
         
         tabpane.getTabs().add(newGameTab);
     	
-    	
     	/*
     	 * Players Move
     	 * 
@@ -467,7 +466,6 @@ public class UserInterfaceMain extends Application
         layout.getChildren().add(tabpane);
         
     	currentGameLayout.getChildren().add(guiBoard);
-    	//currentGameLayout.getChildren().add(new Separator());
     	currentGameLayout.getChildren().add(moveRecord);
         layout.getChildren().add(currentGameLayout);
         

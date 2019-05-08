@@ -54,7 +54,7 @@ public class GameRecord {
 		
 		for(MoveCommand command : previousMoveStack)
 		{
-			record.add(command.getMove());
+			record.add(command.getMoveData());
 			
 			if(command == lastPlayersMove) 
 				return record;
@@ -64,7 +64,7 @@ public class GameRecord {
 		for(int commandindex = nextMoveStack.size()-1; commandindex >=0; commandindex--)
 		{
 			MoveCommand command = nextMoveStack.elementAt(commandindex);
-			record.add(command.getMove());
+			record.add(command.getMoveData());
 			
 			if(command == lastPlayersMove) 
 				break;
@@ -99,7 +99,7 @@ public class GameRecord {
 		}
 		else //set new last move player can replay game to.
 		{
-			lastMoveNumber = newMove.getMove().getMoveNumber();
+			lastMoveNumber = newMove.getMoveData().getMoveNumber();
 		}
 	}
 	
@@ -176,7 +176,7 @@ public class GameRecord {
 		}
 		else
 		{
-			lastMoveNumber = undoMoveStack.peek().getMove().getMoveNumber();
+			lastMoveNumber = undoMoveStack.peek().getMoveData().getMoveNumber();
 			lastPlayersMove = undoMoveStack.peek();
 		}
 	}
@@ -194,7 +194,7 @@ public class GameRecord {
 		undoMoveStack.push(redoMoveStack.pop());
 		nextMoveStack.push(undoMoveStack.peek());
 		lastPlayersMove = undoMoveStack.peek();
-		lastMoveNumber = lastPlayersMove.getMove().getMoveNumber();
+		lastMoveNumber = lastPlayersMove.getMoveData().getMoveNumber();
 	}
 	
 	/*
@@ -205,7 +205,7 @@ public class GameRecord {
 		if(redoMoveStack.empty())
 			return 0;
 		
-		return redoMoveStack.peek().getMove().getMoveNumber();
+		return redoMoveStack.peek().getMoveData().getMoveNumber();
 	}
 	
 	public boolean isInvalidMove() {

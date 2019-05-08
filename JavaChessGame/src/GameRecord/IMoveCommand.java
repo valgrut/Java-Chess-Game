@@ -6,9 +6,9 @@ public interface IMoveCommand {
 
 	boolean execute(ChessBoard board) throws Exception;
 
-	MoveData getMove();
+	MoveData getMoveData();
 
-	void setMove(MoveData move);
+	void setMoveData(MoveData move);
 
 	boolean revert(ChessBoard board);
 }

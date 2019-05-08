@@ -13,11 +13,6 @@ public class MoveData
 	private MoveSituation situation = null;
 	
 	/*
-	 * TODO udelat enum tridu, ktera bude pouzivana k pristupu do nize zmineneho pole, ve kterem budou options.
-	 * TODO tohle bude trida ktera bude obsahovat "check, checkmate, casting, promotion, change".
-	 */
-	
-	/*
 	 * pridat sem atribut kterej bude drzet vzatou figurku, pokud v tomto tahu doslo k vzati figurky.
 	 */
 	

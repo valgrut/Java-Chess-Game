@@ -33,9 +33,6 @@ public class Board extends GridPane //TilePane
 	public Board()
 	{
 		super();
-	
-		//assert(board != null);
-		//this.board = board;
 		
 		boardTiles = new Tile[8][8];
 		chessFiguresImageMap = new HashMap<String, Image>();
@@ -124,7 +121,7 @@ public class Board extends GridPane //TilePane
                 } 
                 else 
                 {
-                    color = "yellowgreen"; //gray
+                    color = "yellowgreen";
                 }
                 square.setStyle("-fx-background-color: "+color+";");
                 square.setCss("-fx-background-color: "+color+";");
@@ -137,7 +134,7 @@ public class Board extends GridPane //TilePane
 		{
 			update(board);
 		} 
-		catch (Exception e) 
+		catch (Exception e)
 		{
 			System.out.println("Error while update(): " + e.getMessage());
 			e.printStackTrace();
