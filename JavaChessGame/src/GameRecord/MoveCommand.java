@@ -117,7 +117,8 @@ public class MoveCommand implements IMoveCommand {
 		// kontrola, jestli po provedeni tahu by nebyl kral teto barvy v ohrozeni.
 		// pokud ANO - > throw InvalidMoveException("Kral by byl v sachu.").
 		PieceColor currentMovePieceColor = this.moveData.getChessColor();
-		// TODOj najit krale, zjistit, jestli nejaka nepratelska figurka jej neohrozuje
+
+		// find this color king
 		AbstractPiece king = null;
 		for(AbstractPiece piece : board.getAllFigures())
 		{
@@ -134,7 +135,7 @@ public class MoveCommand implements IMoveCommand {
 		} 
 		catch (Exception e) {}
 		
-		// check, that king is safe after friend piece move
+		// check, that king is safe after same color piece move
 		BoardTile kingTile = board.getBoardField(king.getPosition().toString());
 		for(AbstractPiece piece : board.getAllFigures())
 		{
@@ -144,16 +145,49 @@ public class MoveCommand implements IMoveCommand {
 				
 				if(sourceEnemyTile.getFigure().canMoveTo(kingTile))
 				{
-					// revert move
-					try 
-					{
-						revert(board);
-					} 
-					catch (Exception e) {}
-					throw new InvalidMoveException("Takhle nelze hrat, Kral by byl ohrozen.");
+					revert(board);	
+					throw new InvalidMoveException("Nelze! Tvuj Kral by byl ohrozen.");
 				}
 			}
 		}
+		
+		// --- check whether enemys king is in check or checkmate ---
+		// find other color king
+		AbstractPiece enemyKing = null;
+		for(AbstractPiece piece : board.getAllFigures())
+		{
+			if(piece.getColor() != currentMovePieceColor && piece.getNotation() == "K")
+			{
+				enemyKing = piece;
+			}
+		}
+		
+		// check whether he is on check or checkmate and set it in moveData
+		BoardTile enemyKingTile = board.getBoardField(enemyKing.getPosition().toString());
+		for(AbstractPiece piece : board.getAllFigures())
+		{
+			if(piece.getColor() != currentMovePieceColor && ! piece.isCaptured())
+			{
+				BoardTile sourceEnemyTile = board.getBoardField(piece.getPosition().toString());
+				
+				if(sourceEnemyTile.getFigure().canMoveTo(enemyKingTile))
+				{
+					
+					
+				}
+			}
+		}
+		
+		// zkontrolovat, jestli to neni dokonce checkMATE
+		// pri kazdy mozny tah krale zjistit, jestli tam nebude v ohrozeni
+		// king.getPossibleMoves()   
+		// for (possible_move : enemyking.getPossibleMoves())
+		// {
+		// 		zjistit, jestli na possible_move jako dst se muze pohnout nejaka z figurek opacne barvy nez enemy kral
+		//		jestli na zadne z nich, kral je v bezpeci a je pouze v sachu
+		//		jestli na vsechny z nich muze nepritel, tak je kral v sachmat.
+		//		jestli je move.getSituation nastavene CHECKMATE, tak canMove vrati vyjimku a nelze se pohnout.
+		// }
 	}
 	
 	/* (non-Javadoc)
