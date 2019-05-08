@@ -12,8 +12,8 @@ public class NotationBuilderFactory
 		case LONG:
 			return new LongNotationBuilder();
 		
-		default:
-			return null;
+		default: //return null;
+			return new LongNotationBuilder();
 		}
 	}
 }

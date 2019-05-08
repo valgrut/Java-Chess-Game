@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import javax.swing.GroupLayout.Alignment;
 
+import ChessGame.ChessBoard;
 import ChessGame.GameManager;
 import GUI.Board;
 import GUI.MyButton;
@@ -74,6 +75,7 @@ public class UserInterfaceMain extends Application
     	/*
     	 * Loading the game from notation
     	 */
+    	/*
         final FileChooser fileChooserLoad = new FileChooser();
 		File filename = fileChooserLoad.showOpenDialog(primaryStage);
         if (filename != null) 
@@ -94,11 +96,12 @@ public class UserInterfaceMain extends Application
         	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
         	gm.createNewGame();
         }
+        */
     	
     	//gm.loadGame(filename.getAbsolutePath());
-    	//gm.createNewGame();
+    	//gm.createNewGame();   	
     	
-    	Board guiBoard = new Board(gm.getActiveGame().getBoard());
+    	Board guiBoard = new Board();
     	
     	/*
     	 * List View initialisation - record of game in notation
@@ -114,28 +117,129 @@ public class UserInterfaceMain extends Application
             	//System.out.println(moveRecord.getSelectionModel().getSelectedItem().toString());
             	//System.out.println(moveRecord.getSelectionModel().getSelectedIndex());
             	
-            	gm.getActiveGame().gotoMove(numberOfMove);
-        
-            	gm.printGameBoard();
-				try 
-				{
-					guiBoard.update();
-					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
-					updateHighlightCurrentMove(moveRecord);				
-				} 
-				catch (Exception e1) 
-				{
-					e1.printStackTrace();
-				}
+            	if(gm.getOpenedGameCount() != 0)
+            	{
+	            	gm.getActiveGame().gotoMove(numberOfMove);
+	        
+	            	gm.printGameBoard();
+					try 
+					{
+						guiBoard.update(getActiveGameBoard());
+						updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+						updateHighlightCurrentMove(moveRecord);				
+					} 
+					catch (Exception e1)
+					{
+						e1.printStackTrace();
+					}
+            	}
 			}
 		});
     	ObservableList<Label> items = FXCollections.observableArrayList();
     	moveRecord.setItems(items);
     	
-    	updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
-    	moveRecord.setFocusTraversable(false);
+    	if(gm.getOpenedGameCount() != 0)
+    	{
+	    	updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+	    	moveRecord.setFocusTraversable(false);
+    	}
     	
     	/*
+    	 * Creating of Tabs
+    	 */
+    	TabPane tabpane = new TabPane();
+	        
+        Tab newGameTab = new Tab("+");
+        newGameTab.setContent(new Label("This is Tab: +"));
+        newGameTab.setOnSelectionChanged(new EventHandler<Event>()
+        { 
+            public void handle(Event e)
+            {
+            	// if clicked on '+' tab
+                if (newGameTab.isSelected())
+                { 
+                	// choose notation file
+                    final FileChooser fileChooserLoad = new FileChooser();
+            		File filename = fileChooserLoad.showOpenDialog(primaryStage);
+                    if (filename != null) 
+                    {
+                        //gm.getActiveGame().saveGame(filename.getAbsolutePath());
+                    	try
+                    	{
+                    		gm.loadGame(filename.getAbsolutePath());
+                    	}
+                    	catch(SecurityException ex)
+                    	{
+                        	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+                    		gm.createNewGame();
+                    	}
+                    }
+                    else
+                    {
+                    	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+                    	gm.createNewGame();
+                    }
+                    
+                	
+                    // create Tab 
+                    Tab newTab = new Tab("Hra_" + (int)(tabCounter + 1)); 
+      
+                    // create a label       
+                    newTab.setContent(new Label("This is Tab: " + (int)(tabCounter + 1)));
+                    newTab.setId(String.valueOf(tabCounter + 1));
+
+                    tabCounter++; 
+            
+                    // add tab 
+                    tabpane.getTabs().add(tabpane.getTabs().size() - 1, newTab); 
+      
+                    // select the last tab 
+                    tabpane.getSelectionModel().select(tabpane.getTabs().size() - 2); 
+                    
+                    try 
+                	{
+						guiBoard.update(getActiveGameBoard());
+						updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+						updateHighlightCurrentMove(moveRecord);
+					} 
+                	catch (Exception e1) {}
+                    
+                    newTab.setOnSelectionChanged(new EventHandler<Event>()
+                    { 
+                        public void handle(Event e)
+                        {
+                        	// if clicked on '+' tab
+                            if (newTab.isSelected())  
+                            {
+			                	System.out.println("Number of opened tabs: " + tabCounter + ", selected: " + newTab.getId());
+			                	
+			                	gm.setActiveGame(Integer.parseInt(newTab.getId())-1);
+			                	
+			                	try 
+			                	{
+									guiBoard.update(getActiveGameBoard());
+									updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+									updateHighlightCurrentMove(moveRecord);
+								} 
+			                	catch (Exception e1) {}
+								
+                            }
+                        } 
+                    });
+                    //newTab.setOnClosed(value);
+                    //		tabCounter++; // + kontrola ze by nemel jit zavrit jestli je posledni.
+                    					  // zeptat se jestli chce uzivatel hru ulozit pred zavrenim.
+
+                }
+            } 
+        }); 
+        
+        tabpane.getTabs().add(newGameTab);
+    	
+    	
+    	/*
+    	 * Players Move
+    	 * 
     	 * Create custom event and catch it here, get SRC DST pozition through parameter
     	 * and then execute players_move() and update();
     	 */
@@ -148,7 +252,7 @@ public class UserInterfaceMain extends Application
 				gm.printGameBoard();
 				try 
 				{
-					guiBoard.update();
+					guiBoard.update(getActiveGameBoard());
 					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 					updateHighlightCurrentMove(moveRecord);				
 				} 
@@ -210,7 +314,7 @@ public class UserInterfaceMain extends Application
 				gm.printGameBoard();
 				try 
 				{
-					guiBoard.update();
+					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
@@ -237,7 +341,7 @@ public class UserInterfaceMain extends Application
 				gm.printGameBoard();
 				try 
 				{
-					guiBoard.update();
+					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
@@ -264,7 +368,7 @@ public class UserInterfaceMain extends Application
 				gm.printGameBoard();
 				try 
 				{
-					guiBoard.update();
+					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
@@ -291,7 +395,7 @@ public class UserInterfaceMain extends Application
 				gm.printGameBoard();
 				try 
 				{
-					guiBoard.update();
+					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
 				} 
 				catch (Exception e) 
@@ -318,7 +422,7 @@ public class UserInterfaceMain extends Application
 				gm.printGameBoard();
 				try 
 				{
-					guiBoard.update();
+					guiBoard.update(getActiveGameBoard());
 					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 					updateHighlightCurrentMove(moveRecord);
 				} 
@@ -346,7 +450,7 @@ public class UserInterfaceMain extends Application
 				gm.printGameBoard();
 				try 
 				{
-					guiBoard.update();
+					guiBoard.update(getActiveGameBoard());
 					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 					updateHighlightCurrentMove(moveRecord);
 				} 
@@ -359,55 +463,8 @@ public class UserInterfaceMain extends Application
 		}
     	);
     	
-    	/*
-    	HBox newGameMenu = new HBox();
-    	Button newGameButton = new Button("Vytvořit novou hru.");
-    	Button loadGameButton = new Button("Načíst hru z notace.");
-    	newGameMenu.getChildren().add(newGameButton);
-    	newGameMenu.getChildren().add(loadGameButton);
-    	
-    	StackPane stackedBoards = new StackPane();
-    	stackedBoards.getChildren().add(newGameMenu);
-    	stackedBoards.getChildren().get(0).setVisible(true);
-    	
-    	VBox layout = new VBox();
-    	
-        TabPane tabpane = new TabPane();
-        
-        Tab newGameTab = new Tab("+");
-        Label newGameLabel = new Label("This is Tab: +"); 
-        newGameTab.setContent(newGameLabel);
-        
-        // action event 
-        EventHandler<Event> event =  
-        new EventHandler<Event>()
-        { 
-            public void handle(Event e)
-            { 
-                if (newGameTab.isSelected())  
-                { 
-                    // create Tab 
-                    Tab tab = new Tab("Hra_" + (int)(tabCounter + 1)); 
-      
-                    // create a label 
-                    Label label = new Label("This is Tab: " + (int)(tabCounter + 1)); 
-      
-                    tabCounter++; 
-      
-                    // add label to the tab 
-                    tab.setContent(label); 
-      
-                    // add tab 
-                    tabpane.getTabs().add(tabpane.getTabs().size() - 1, tab); 
-      
-                    // select the last tab 
-                    tabpane.getSelectionModel().select(tabpane.getTabs().size() - 2); 
-                } 
-            } 
-        }; 
-        newGameTab.setOnSelectionChanged(event);
-        tabpane.getTabs().add(newGameTab);
-        */
+        // add tabPane to main layout
+        layout.getChildren().add(tabpane);
         
     	currentGameLayout.getChildren().add(guiBoard);
     	//currentGameLayout.getChildren().add(new Separator());
@@ -434,6 +491,7 @@ public class UserInterfaceMain extends Application
         
         layout.getChildren().add(menu);
         Scene mainScene = new Scene(layout, 800,600);
+        // keyboard shortcuts
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN), saveGameRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.UP), endRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.DOWN), startRunnable);
@@ -441,7 +499,8 @@ public class UserInterfaceMain extends Application
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.RIGHT), nextRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN), redoRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN), undoRunnable);
-
+        //mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.TAB), nextTabRunnable);
+        
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Chess game reviewer");
         primaryStage.show();
@@ -482,6 +541,11 @@ public class UserInterfaceMain extends Application
     	{
     		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
     	}
+    }
+    
+    public ChessBoard getActiveGameBoard()
+    {
+    	return this.gm.getActiveGame().getBoard();
     }
     
     public static void main(String[] args) 

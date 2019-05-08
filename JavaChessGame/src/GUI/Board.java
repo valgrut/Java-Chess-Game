@@ -30,12 +30,12 @@ public class Board extends GridPane //TilePane
 	private String playersMove1 = "";
 	private String playersMove2 = "";
 	
-	public Board(ChessBoard board)
+	public Board()
 	{
 		super();
 	
-		assert(board != null);
-		this.board = board;
+		//assert(board != null);
+		//this.board = board;
 		
 		boardTiles = new Tile[8][8];
 		chessFiguresImageMap = new HashMap<String, Image>();
@@ -132,15 +132,17 @@ public class Board extends GridPane //TilePane
             }
         }
 		
+		/*
 		try 
 		{
-			update();
+			update(board);
 		} 
 		catch (Exception e) 
 		{
 			System.out.println("Error while update(): " + e.getMessage());
 			e.printStackTrace();
 		}
+		*/
 		
 		/*
 		 * TODO Zde asi bude potreba pridat nejaky filter nebo neco, a podle ID of Tile budu vedet, ktere bylo
@@ -191,18 +193,18 @@ public class Board extends GridPane //TilePane
 	 * Nacte a aplikuje zmeny v zavislosti na stavu this.board
 	 * @throws Exception 
 	 */
-	public void update() throws Exception 
+	public void update(ChessBoard board) throws Exception 
 	{
-		if(this.board == null)
+		if(board == null)
 		{
 			throw new Exception("Board neni inicializovan (null).");
 		}
 		
-		for(int row = 1; row <= this.board.getSize(); row++)
+		for(int row = 1; row <= board.getSize(); row++)
 		{
-			for(int col = 1; col <= this.board.getSize(); col++)
+			for(int col = 1; col <= board.getSize(); col++)
 			{
-				AbstractPiece figure = this.board.getField(col, row).getFigure();
+				AbstractPiece figure = board.getField(col, row).getFigure();
 				if(figure.getNotation() != ".")
 				{
 					try 
