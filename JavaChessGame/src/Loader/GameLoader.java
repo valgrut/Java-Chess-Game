@@ -12,7 +12,7 @@ public class GameLoader {
 	{
 		IReader reader = new BufferedNotationReader(notationFile);
 		//IReader reader = new BufferedNotationReader("/root/git/JavaChessGame/JavaChessGame/Notation_1"); 
-		IParser parser = new NotationParser();
+		IParser parser = new LongNotationParser();
 		
 //		if(notation is long)
 			gameRecord.setNotationType(NotationType.LONG); //TODO - tohle se nastavi podle toho, jaka ta notace opravdu je.

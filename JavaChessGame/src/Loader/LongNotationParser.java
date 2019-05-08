@@ -2,17 +2,18 @@ package Loader;
 
 import Figures.PieceColor;
 import GameRecord.MoveData;
+import GameRecord.MoveSituation;
 import GameRecord.Pair;
 
 /*
  * Long notation parser
  * 
  */
-public class NotationParser implements IParser 
+public class LongNotationParser implements IParser 
 {
 	private IValidator notationValidator;
 	
-	public NotationParser()
+	public LongNotationParser()
 	{
 		notationValidator = new NotationValidator();
 	}
@@ -80,20 +81,31 @@ public class NotationParser implements IParser
 				figure = "p";
 			}
 			
-			// urceni pozice src a dst - TODO: tohle je zatim natvrdo.
 			srcPosition = Character.toString(move.charAt(index));
 			srcPosition += move.charAt(index+1);
 			
 			// kontrola pokud v tahu byl nekdo vzat - Jd3xc5  (to pismeno 'x')
  			if(move.charAt(index+2) == 'x')
 			{
+ 				moveObj.setTakenEnemy(""+ move.charAt(index+5));
 				index++;
 			}			
  			
 			dstPosition = Character.toString(move.charAt(index+2));
 			dstPosition += move.charAt(index+3);
 			
-			// TODO zde teoreticky jeste pismenko figurky, ktera byla vzata
+			try 
+			{
+				if(move.charAt(index+4) == '+' || move.charAt(index+5) == '+' || move.charAt(index+6) == '+')
+				{
+					moveObj.setSituation(MoveSituation.CHECK);
+				}
+				else if(move.charAt(index+4) == '#' || move.charAt(index+5) == '#' || move.charAt(index+6) == '#')
+				{
+					moveObj.setSituation(MoveSituation.CHECKMATE);
+				}
+			} catch(Exception e) {}
+			
 		//}
 		
 		moveObj.setFigure(figure);

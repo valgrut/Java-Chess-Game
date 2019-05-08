@@ -182,7 +182,9 @@ public class UserInterfaceMain extends Application
                     
                 	
                     // create Tab 
-                    Tab newTab = new Tab("Hra_" + (int)(tabCounter + 1)); 
+                    //Tab newTab = new Tab("Hra_" + (int)(tabCounter + 1)); 
+                    Tab newTab = new Tab(filename.getName()); 
+
       
                     // create a label       
                     newTab.setContent(new Label("This is Tab: " + (int)(tabCounter + 1)));
@@ -226,9 +228,9 @@ public class UserInterfaceMain extends Application
                             }
                         } 
                     });
-                    //newTab.setOnClosed(value);
-                    //		tabCounter++; // + kontrola ze by nemel jit zavrit jestli je posledni.
-                    					  // zeptat se jestli chce uzivatel hru ulozit pred zavrenim.
+//                    newTab.setOnClosed(value);
+//                    		//tabCounter++; // + kontrola ze by nemel jit zavrit jestli je posledni.
+//                    		//			   zeptat se jestli chce uzivatel hru ulozit pred zavrenim.
 
                 }
             } 

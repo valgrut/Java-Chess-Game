@@ -166,18 +166,21 @@ public class MoveCommand implements IMoveCommand {
 		BoardTile enemyKingTile = board.getBoardField(enemyKing.getPosition().toString());
 		for(AbstractPiece piece : board.getAllFigures())
 		{
-			if(piece.getColor() != currentMovePieceColor && ! piece.isCaptured())
+			if(piece.getColor() == currentMovePieceColor && ! piece.isCaptured())
 			{
 				BoardTile sourceEnemyTile = board.getBoardField(piece.getPosition().toString());
 				
 				if(sourceEnemyTile.getFigure().canMoveTo(enemyKingTile))
 				{
-					
-					
+					//System.out.println("SACH od " + piece.getColor().toString() + " " + piece.getNotation());
+					moveData.setSituation(MoveSituation.CHECK);
+					break;
 				}
+				//System.out.println("neni SACH od " + piece.getColor().toString() + " " + piece.getNotation());
 			}
 		}
 		
+		// TODO CHECKMATE
 		// zkontrolovat, jestli to neni dokonce checkMATE
 		// pri kazdy mozny tah krale zjistit, jestli tam nebude v ohrozeni
 		// king.getPossibleMoves()   

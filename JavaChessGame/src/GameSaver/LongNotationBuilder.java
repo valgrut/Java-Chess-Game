@@ -1,6 +1,7 @@
 package GameSaver;
 
 import GameRecord.MoveData;
+import GameRecord.MoveSituation;
 
 public class LongNotationBuilder implements INotationBuilder 
 {
@@ -35,13 +36,18 @@ public class LongNotationBuilder implements INotationBuilder
 			notationMove += move.getTakenEnemy();
 		}
 		
-		/*
-		 * TODO add check of king as '+' to the end according to MoveSituation.
-		if(move.isKingChecked() == true)
+		if(move.getSituation() == MoveSituation.CHECK)
 		{
 			notationMove += "+";
 		}
-		 */
+		else if(move.getSituation() == MoveSituation.CHECKMATE)
+		{
+			notationMove += "#";
+		}
+		else
+		{
+			// ...
+		}
 		
 		return notationMove;
 	}
