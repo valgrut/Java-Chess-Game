@@ -1,5 +1,7 @@
 package GameRecord;
 
+import java.util.Vector;
+
 import ChessGame.BoardTile;
 import ChessGame.ChessBoard;
 import Exceptions.InvalidMoveException;
@@ -22,7 +24,7 @@ public class MoveCommand implements IMoveCommand {
 	 */
 	@Override
 	public boolean execute(ChessBoard board) throws Exception 
-	{
+	{	
 		BoardTile sourceTile = board.getBoardField(this.moveData.getSourcePosition());
 		BoardTile destinationTile = board.getBoardField(this.moveData.getDestinationPosition());
 		
@@ -63,7 +65,7 @@ public class MoveCommand implements IMoveCommand {
 		
 		//// kontrola, jestli po provedeni tahu nebude nepratelsky kral v sachu/ sachmat
 		// ano-> nastavit v moveData polozku CHECK nebo CHECKMATE
-		
+
 		return true;
 	}
 	
@@ -97,7 +99,7 @@ public class MoveCommand implements IMoveCommand {
 			sourceTile.setFigure(tmpNullFigure);
 			tmpNullFigure.setPosition(sourceTile);
 		}
-		
+
 		return true;
 	}
 	
@@ -172,11 +174,9 @@ public class MoveCommand implements IMoveCommand {
 				
 				if(sourceEnemyTile.getFigure().canMoveTo(enemyKingTile))
 				{
-					//System.out.println("SACH od " + piece.getColor().toString() + " " + piece.getNotation());
 					moveData.setSituation(MoveSituation.CHECK);
 					break;
 				}
-				//System.out.println("neni SACH od " + piece.getColor().toString() + " " + piece.getNotation());
 			}
 		}
 		
@@ -191,7 +191,96 @@ public class MoveCommand implements IMoveCommand {
 		//		jestli na vsechny z nich muze nepritel, tak je kral v sachmat.
 		//		jestli je move.getSituation nastavene CHECKMATE, tak canMove vrati vyjimku a nelze se pohnout.
 		// }
+		
+		if(moveData.getSituation() == MoveSituation.CHECK)
+		{
+			Vector<BoardTile> possibleMovesTiles = enemyKing.getPossibleMoves();
+			int possibleMoveCount = possibleMovesTiles.size();
+			
+			/*
+			for(BoardTile possibleMoveTile : possibleMovesTiles)
+			{
+				// TODO Poznamka: zde by sel aplikovat navrhovy vzor Filter !!! pro vyber specificke podmoziny dle podminky.
+				for(AbstractPiece piece : board.getAllFigures())
+				{
+					if(piece.getColor() == currentMovePieceColor && ! piece.isCaptured())
+					{
+						System.out.println("Piece: " + piece.getColor().toString() + " " + piece.getNotation());
+						BoardTile sourceEnemyTile = board.getBoardField(piece.getPosition().toString());
+						
+						if(sourceEnemyTile.getFigure().canMoveTo(possibleMoveTile))
+						{
+							System.out.println("possible Move --");
+							--possibleMoveCount;
+							break;
+						}
+					}
+				}
+			}
+			if(possibleMoveCount == 0)
+			{
+				moveData.setSituation(MoveSituation.CHECKMATE);
+				return;
+			}
+			*/
+			
+			/// verze 2
+			
+			// create my move where dst is one of king.getPossibleMoves()
+			MoveData kingPossibleMove = new MoveData();
+			kingPossibleMove.setFigure(enemyKing.getNotation());
+			kingPossibleMove.setChessColor(enemyKing.getColor());
+			
+			// budu muset pohnout s kralem na ta policka z getPossibleMoves();
+			for(BoardTile possibleMoveTile : possibleMovesTiles)
+			{
+				// save Main move
+				MoveData tmpMoveData = this.moveData;
+				AbstractPiece tmpTakenEnemy = this.takenEnemy;
+				
+				kingPossibleMove.setDestinationPosition(possibleMoveTile.toString());
+				kingPossibleMove.setSourcePosition(enemyKing.getPosition().toString());
+				this.moveData = kingPossibleMove;
+				this.takenEnemy = null;
+
+				// execute this move
+				try 
+				{
+					execute(board);
+				} 
+				catch (Exception e) {}
+				
+				// check if attacked in this current tmp Tile
+				// TODO Poznamka: zde by sel aplikovat navrhovy vzor Filter !!! pro vyber specificke podmoziny dle podminky.
+				for(AbstractPiece piece : board.getAllFigures())
+				{
+					if(piece.getColor() == currentMovePieceColor && ! piece.isCaptured())
+					{
+						BoardTile sourceEnemyTile = board.getBoardField(piece.getPosition().toString());
+						
+						if(sourceEnemyTile.getFigure().canMoveTo(possibleMoveTile))
+						{
+							--possibleMoveCount;
+							break;
+						}
+					}
+				}
+				
+				// revert move
+				revert(board);
+				
+				// restore Main move
+				this.moveData = tmpMoveData;
+				this.takenEnemy = tmpTakenEnemy;
+			}
+			if(possibleMoveCount == 0)
+			{
+				moveData.setSituation(MoveSituation.CHECKMATE);
+				return;
+			}
+		}
 	}
+	
 	
 	/* (non-Javadoc)
 	 * @see GameRecord.IMoveCommand#getMove()
