@@ -10,12 +10,15 @@ import GUI.Board;
 import GUI.MyButton;
 import GUI.PlayersMoveEvent;
 import GUI.PlayersMoveEventHandler;
+import javafx.animation.Animation.Status;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import javafx.util.Duration;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -30,6 +33,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
@@ -39,6 +43,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -46,6 +52,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -328,6 +335,42 @@ public class UserInterfaceMain extends Application
     	);
     	
     	/*
+    	 * Auto Play forward
+    	 */
+    	TextField speedAnimationField = new TextField();
+    	speedAnimationField.setPrefWidth(10);
+    	speedAnimationField.setAccessibleText("0.5");
+		
+    	// TODO Pozn.: pokud to nevymyslim pres TextBox, tak tam pridat dve tlacitka, jedno +, jedno -, ktere budou 
+    	// modifikovat rychlost animace.
+    	
+    	double playSpeed = Double.valueOf(speedAnimationField.getAccessibleText());
+    	Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(playSpeed), e -> {
+    				nextButton.fire();
+    		    })
+    	);
+    	timeline.setCycleCount(Timeline.INDEFINITE);
+    	timeline.setAutoReverse(true);
+
+    	Button playAutomaticGameButton = new Button("Play");
+		playAutomaticGameButton.setBackground(new Background(new BackgroundFill(Color.ORANGERED, null, null)));
+		Runnable autoPlayRunnable = ()-> playAutomaticGameButton.fire();
+		playAutomaticGameButton.setOnAction(e -> {
+			if(timeline.getStatus() == Status.RUNNING)
+			{
+				timeline.stop();
+				playAutomaticGameButton.setText("Play");
+				return;
+			}
+			else if(timeline.getStatus() == Status.STOPPED)
+			{
+				timeline.play();
+				playAutomaticGameButton.setText("Stop");
+				return;
+			}
+		});
+    	
+    	/*
     	 * Step Backward
     	 */
     	Button prevButton = new Button();
@@ -480,6 +523,9 @@ public class UserInterfaceMain extends Application
         menu.getChildren().add(startButton);
         menu.getChildren().add(prevButton);
         menu.getChildren().add(new Separator());
+        menu.getChildren().add(playAutomaticGameButton);
+        menu.getChildren().add(speedAnimationField);
+        menu.getChildren().add(new Separator());
         //menu.getChildren().add(new Text(gm.getActiveGame().getPlayersCurrentMoveNumber()+"/"+gm.getActiveGame().getPlayersLastMoveNumber()));
         menu.getChildren().add(nextButton);
         menu.getChildren().add(endButton);
@@ -497,6 +543,7 @@ public class UserInterfaceMain extends Application
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.DOWN), startRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.LEFT), prevRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.RIGHT), nextRunnable);
+        mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.P), autoPlayRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN), redoRunnable);
         mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN), undoRunnable);
         //mainScene.getAccelerators().put(new KeyCodeCombination(KeyCode.TAB), nextTabRunnable);

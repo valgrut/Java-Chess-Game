@@ -62,9 +62,6 @@ public class MoveCommand implements IMoveCommand {
 			sourceTile.setFigure(tmpNullFigure);
 			tmpNullFigure.setPosition(sourceTile);
 		}
-		
-		//// kontrola, jestli po provedeni tahu nebude nepratelsky kral v sachu/ sachmat
-		// ano-> nastavit v moveData polozku CHECK nebo CHECKMATE
 
 		return true;
 	}
@@ -115,9 +112,7 @@ public class MoveCommand implements IMoveCommand {
 		{
 			throw new InvalidMoveException("Takhle nelze hrat. Tah nebyl ulozen.");
 		}
-				
-		// kontrola, jestli po provedeni tahu by nebyl kral teto barvy v ohrozeni.
-		// pokud ANO - > throw InvalidMoveException("Kral by byl v sachu.").
+
 		PieceColor currentMovePieceColor = this.moveData.getChessColor();
 
 		// find this color king
@@ -164,7 +159,7 @@ public class MoveCommand implements IMoveCommand {
 			}
 		}
 		
-		// check whether he is on check or checkmate and set it in moveData
+		// CHECK
 		BoardTile enemyKingTile = board.getBoardField(enemyKing.getPosition().toString());
 		for(AbstractPiece piece : board.getAllFigures())
 		{
@@ -180,51 +175,11 @@ public class MoveCommand implements IMoveCommand {
 			}
 		}
 		
-		// TODO CHECKMATE
-		// zkontrolovat, jestli to neni dokonce checkMATE
-		// pri kazdy mozny tah krale zjistit, jestli tam nebude v ohrozeni
-		// king.getPossibleMoves()   
-		// for (possible_move : enemyking.getPossibleMoves())
-		// {
-		// 		zjistit, jestli na possible_move jako dst se muze pohnout nejaka z figurek opacne barvy nez enemy kral
-		//		jestli na zadne z nich, kral je v bezpeci a je pouze v sachu
-		//		jestli na vsechny z nich muze nepritel, tak je kral v sachmat.
-		//		jestli je move.getSituation nastavene CHECKMATE, tak canMove vrati vyjimku a nelze se pohnout.
-		// }
-		
+		// CHECKMATE
 		if(moveData.getSituation() == MoveSituation.CHECK)
 		{
 			Vector<BoardTile> possibleMovesTiles = enemyKing.getPossibleMoves();
 			int possibleMoveCount = possibleMovesTiles.size();
-			
-			/*
-			for(BoardTile possibleMoveTile : possibleMovesTiles)
-			{
-				// TODO Poznamka: zde by sel aplikovat navrhovy vzor Filter !!! pro vyber specificke podmoziny dle podminky.
-				for(AbstractPiece piece : board.getAllFigures())
-				{
-					if(piece.getColor() == currentMovePieceColor && ! piece.isCaptured())
-					{
-						System.out.println("Piece: " + piece.getColor().toString() + " " + piece.getNotation());
-						BoardTile sourceEnemyTile = board.getBoardField(piece.getPosition().toString());
-						
-						if(sourceEnemyTile.getFigure().canMoveTo(possibleMoveTile))
-						{
-							System.out.println("possible Move --");
-							--possibleMoveCount;
-							break;
-						}
-					}
-				}
-			}
-			if(possibleMoveCount == 0)
-			{
-				moveData.setSituation(MoveSituation.CHECKMATE);
-				return;
-			}
-			*/
-			
-			/// verze 2
 			
 			// create my move where dst is one of king.getPossibleMoves()
 			MoveData kingPossibleMove = new MoveData();
