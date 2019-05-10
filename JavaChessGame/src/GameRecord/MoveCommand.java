@@ -9,18 +9,25 @@ import Figures.AbstractPiece;
 import Figures.PieceColor;
 import Loader.FigureFactory;
 
+/**
+ * @author xpeska05
+ *
+ */
 public class MoveCommand implements IMoveCommand {
 	private MoveData moveData;
 	private AbstractPiece takenEnemy;
 
+	/**
+	 * @param move
+	 */
 	public MoveCommand(MoveData move)
 	{
 		this.moveData = move;
 		takenEnemy = null;
 	}
 		
-	/* (non-Javadoc)
-	 * @see GameRecord.IMoveCommand#execute()
+	/**
+	 * @see GameRecord.IMoveCommand#execute(ChessGame.ChessBoard)
 	 */
 	@Override
 	public boolean execute(ChessBoard board) throws Exception 
@@ -66,8 +73,8 @@ public class MoveCommand implements IMoveCommand {
 		return true;
 	}
 	
-	/* (non-Javadoc)
-	 * @see GameRecord.IMoveCommand#revert()
+	/**
+	 * @see GameRecord.IMoveCommand#revert(ChessGame.ChessBoard)
 	 */
 	@Override
 	public boolean revert(ChessBoard board)
@@ -102,6 +109,10 @@ public class MoveCommand implements IMoveCommand {
 	
 	/*
 	 * Funkce slouzi pro otestovani prave zahraneho tahu hracem - je-li tah mozny.
+	 */
+	/**
+	 * @param board
+	 * @throws InvalidMoveException
 	 */
 	public void tryToExecute(ChessBoard board) throws InvalidMoveException 
 	{
@@ -236,27 +247,32 @@ public class MoveCommand implements IMoveCommand {
 		}
 	}
 	
-	
-	/* (non-Javadoc)
-	 * @see GameRecord.IMoveCommand#getMove()
+	/**
+	 * @see GameRecord.IMoveCommand#getMoveData()
 	 */
 	@Override
 	public MoveData getMoveData() {
 		return moveData;
 	}
 
-	/* (non-Javadoc)
-	 * @see GameRecord.IMoveCommand#setMove(GameRecord.Move)
+	/**
+	 * @see GameRecord.IMoveCommand#setMoveData(GameRecord.MoveData)
 	 */
 	@Override
 	public void setMoveData(MoveData move) {
 		this.moveData = move;
 	}
 	
+	/**
+	 * @return
+	 */
 	public AbstractPiece getTakenEnemy() {
 		return takenEnemy;
 	}
 
+	/**
+	 * @param takenEnemy
+	 */
 	public void setTakenEnemy(AbstractPiece takenEnemy) {
 		this.takenEnemy = takenEnemy;
 	}

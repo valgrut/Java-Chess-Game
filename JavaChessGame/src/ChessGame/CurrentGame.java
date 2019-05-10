@@ -13,15 +13,17 @@ import GameSaver.INotationBuilder;
 import GameSaver.NotationBuilderFactory;
 import Loader.GameLoader;
 
-/*
- * 
+
+/**
+ * @author xpeska05
+ *
  */
 public class CurrentGame 
 {
 	private ChessBoard board;
 	private GameRecord gameRecord;
 	
-	/*
+	/**
 	 * Constructor for concrete game that is being played.
 	 */
 	public CurrentGame()
@@ -30,8 +32,9 @@ public class CurrentGame
 		gameRecord = new GameRecord();
 	}
 	
-	/*
+	/**
 	 * Takes the newest moves(moves player can step through) and saves notation to file.
+	 * @param filename
 	 */
 	public void saveGame(String filename) 
 	{
@@ -49,8 +52,8 @@ public class CurrentGame
 		gameSaver = null;
 	}
 	
-	/*
-	 * 
+	/**
+	 * @param notationFile
 	 */
 	public void loadGame(String notationFile) 
 	{
@@ -60,7 +63,7 @@ public class CurrentGame
 		System.out.println("Hra byla nactena.");
 	}
 	
-	/*
+	/**
 	 * TODO: There should be parameter of object, that serves as source where to draw board??
 	 * OR board will be given as parameter to graphic entity, which will update based on board?
 	 */
@@ -70,15 +73,16 @@ public class CurrentGame
 		this.board.printBoard();
 	}
 	
-	/*
+	/**
 	 * Returns instance of ChessBoard of current game
+	 * @return
 	 */
 	public ChessBoard getBoard()
 	{
 		return this.board;
 	}
 	
-	/*
+	/**
 	 * Step one move forward in currently played game.
 	 */
 	public void stepForward()
@@ -119,7 +123,7 @@ public class CurrentGame
 		}
 	}
 	
-	/*
+	/**
 	 * Step one move backward in currently played game.
 	 */
 	public void stepBackward() 
@@ -145,9 +149,11 @@ public class CurrentGame
 		}
 	}
 	
-	/*
+	/**
 	 * Player can play own move by providing source and destination position.
 	 * New Move is created and added to gameResource manager.
+	 * @param sourcePosition
+	 * @param destinationPosition
 	 */
 	public void playersMove(String sourcePosition, String destinationPosition)
 	{
@@ -177,7 +183,7 @@ public class CurrentGame
 		stepForward();
 	}
 	
-	/*
+	/**
 	 * Undo last players move. If current move is move, that will be undone, step backward is performed.
 	 */
 	public void undo() 
@@ -200,7 +206,7 @@ public class CurrentGame
 		}
 	}
 	
-	/*
+	/**
 	 * Restores last undone players move
 	 */
 	public void redo() 
@@ -219,8 +225,8 @@ public class CurrentGame
 			}
 		}
 	}
-	
-	/*
+
+	/**
 	 * Rewind game to the end
 	 */
 	public void toEnd() 
@@ -228,7 +234,7 @@ public class CurrentGame
 		gotoMove(gameRecord.getLastMoveNumber());
 	} 
 	
-	/*
+	/**
 	 * Rewind game to start
 	 */
 	public void toStart() 
@@ -236,8 +242,9 @@ public class CurrentGame
 		gotoMove(0);
 	}
 	
-	/*
+	/**
 	 * Rewind game to the stage given by number of move
+	 * @param numberOfMove
 	 */
 	public void gotoMove(int numberOfMove)
 	{
@@ -265,6 +272,9 @@ public class CurrentGame
 		}
 	}
 	
+	/**
+	 * @return
+	 */
 	public Vector<String> getCurrentGameRecord()
 	{
 		INotationBuilder builder = NotationBuilderFactory.createNotationBuilder(gameRecord.getNotationType());
@@ -280,11 +290,17 @@ public class CurrentGame
 		return record;
 	}
 	
+	/**
+	 * @return
+	 */
 	public int getPlayersLastMoveNumber()
 	{
 		return this.gameRecord.getLastMoveNumber();
 	} 
 	
+	/**
+	 * @return
+	 */
 	public int getPlayersCurrentMoveNumber()
 	{
 		return this.gameRecord.getCurrentMoveNumber();

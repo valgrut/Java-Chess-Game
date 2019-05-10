@@ -1,7 +1,15 @@
 package GameRecord;
 
+/**
+ * @author xpeska05
+ *
+ */
 public class PositionTranslator {
 	
+	/**
+	 * @param position
+	 * @return
+	 */
 	public static PairInt positionToCoords(String position)
 	{
 		char charcol = position.charAt(0);
@@ -11,6 +19,11 @@ public class PositionTranslator {
 	}
 
 	
+	/**
+	 * @param col
+	 * @param row
+	 * @return
+	 */
 	public static String coordsToPosition(int col, int row)
 	{
 		assert(col > 0 && col <= 8);
@@ -19,11 +32,13 @@ public class PositionTranslator {
 		return columnToChar(col) + Integer.toString(row);
 	}
 	
-	/*
+	/**
 	 * Transforms number column to Character column
 	 * Input: integer in range from 1 to 8
 	 * Output: character representing column
 	 * Example: 8 -> H,   1 -> A,   3 -> C
+	 * @param col
+	 * @return
 	 */
 	public static char columnToChar(int col)
 	{
@@ -41,6 +56,10 @@ public class PositionTranslator {
 		return src1.charAt(0);
 	}
 	
+	/**
+	 * @param charcol
+	 * @return
+	 */
 	public static int charToColumn(char charcol)
 	{
 		String src1 = Character.toString(charcol);

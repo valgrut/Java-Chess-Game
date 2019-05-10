@@ -3,12 +3,22 @@ package GameSaver;
 import GameRecord.MoveData;
 import GameRecord.MoveSituation;
 
+/**
+ * @author root
+ *
+ */
 public class LongNotationBuilder implements INotationBuilder 
 {
+	/**
+	 * 
+	 */
 	public LongNotationBuilder() 
 	{
 	}
 
+	/**
+	 * @see GameSaver.INotationBuilder#createNotationFromMove(GameRecord.MoveData)
+	 */
 	@Override
 	public String createNotationFromMove(MoveData move) 
 	{
@@ -52,8 +62,12 @@ public class LongNotationBuilder implements INotationBuilder
 		return notationMove;
 	}
 
+	/**
+	 * @see GameSaver.INotationBuilder#createLineOfNotation(int, GameRecord.MoveData, GameRecord.MoveData)
+	 */
 	@Override
-	public String createLineOfNotation(int line, MoveData whiteMove, MoveData blackMove) {
+	public String createLineOfNotation(int line, MoveData whiteMove, MoveData blackMove) 
+	{
 		String fullLine = "";
 		
 		fullLine += line;
@@ -64,5 +78,4 @@ public class LongNotationBuilder implements INotationBuilder
 		fullLine += '\n';
 		return fullLine;
 	}
-
 }

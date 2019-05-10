@@ -59,20 +59,21 @@ import javafx.stage.Stage;
 /*
  * TODO check that opened games are saved, otherwise ask for save or throw when clicked on x.
  * TODO pridat k Board cislovani radku a sloupcu a pismenka 1-8 A-H
- * TODO King Check, CheckMate, and add to notation
- *          - after any figure move - get kings position. for each figure: figure.canMove(kingPositon);
- *             -> not empty -> check 
- *          - checkmate: getPossibleMoves(of king); if none of them is safe -> checkmate
- * TODO Auto Play (after autoplayButton click-> every x seconds nextMoveButton.fire())
- * TODO tabs - redirecting etc whrough activeGame, change active game by changing index of active game.
  * TODO zvyrazneni posledniho tahu, moznych tahu vybrane figurky a zvyrazneni vybrane figurky.
  */
 
+/**
+ * @author root
+ *
+ */
 public class UserInterfaceMain extends Application 
 {
     GameManager gm = new GameManager();
     int tabCounter = 0;
 	
+    /* (non-Javadoc)
+     * @see javafx.application.Application#start(javafx.stage.Stage)
+     */
     @Override
     public void start(Stage primaryStage) 
     {
@@ -347,6 +348,7 @@ public class UserInterfaceMain extends Application
     	double playSpeed = Double.valueOf(speedAnimationField.getAccessibleText());
     	Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(playSpeed), e -> {
     				nextButton.fire();
+    				//guiBoard.setRotate(guiBoard.getRotate() + 10);
     		    })
     	);
     	timeline.setCycleCount(Timeline.INDEFINITE);
@@ -553,8 +555,9 @@ public class UserInterfaceMain extends Application
         primaryStage.show();
     }
     
-    /*
-     * 
+    /**
+     * @param destination
+     * @param sourceRecord
      */
     public void updateRecordList(ListView<Label> destination, Vector<String> sourceRecord)
     {
@@ -570,8 +573,8 @@ public class UserInterfaceMain extends Application
     	}
     }
     
-    /*
-     * 
+    /**
+     * @param record
      */
     public void updateHighlightCurrentMove(ListView<Label> record)
     {
@@ -590,11 +593,17 @@ public class UserInterfaceMain extends Application
     	}
     }
     
+    /**
+     * @return
+     */
     public ChessBoard getActiveGameBoard()
     {
     	return this.gm.getActiveGame().getBoard();
     }
     
+    /**
+     * @param args
+     */
     public static void main(String[] args) 
     {
         launch(args);

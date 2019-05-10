@@ -8,6 +8,10 @@ import Exceptions.EmptyMoveStackException;
 import Exceptions.InvalidMoveException;
 import GameSaver.NotationType;
 
+/**
+ * @author xpeska05
+ *
+ */
 public class GameRecord {
 	private NotationType notationType;
 	private int currentMoveNumber = 0;
@@ -23,19 +27,7 @@ public class GameRecord {
 	Stack<MoveCommand> nextMoveStack;
 	Stack<MoveCommand> previousMoveStack;
 
-	/*
-	 * POZN: pomoci ctrl+/   zakomentuji radek   !!!!!!!!!!!
-	 * 
-	 * 
-	 * TODO pozn.: short notation atd se stejne bude pouzivat jen u tahu nahranejch z notace.
-	 * To samo i pro saver
-	 * 
-	 * TODO: vyresit kontrolu ze hraje bily / cerny
-	 * TODO: zvolit si notaci a jeji tvar
-	 * TODO: .... pridat do MoveData, jestli byl ohrozen kral -> '+'
-	 */
-	
-	/*
+	/**
 	 * Initializes GameRecord manager, that holds all moves loaded from notation and played by player
 	 * Also It can be used for any type of game that has some kind of moves (chess, checker).
 	 */
@@ -48,6 +40,9 @@ public class GameRecord {
 		previousMoveStack = new Stack<MoveCommand>();
 	}
 	
+	/**
+	 * @return Returns vector of MoveData retrieved from stacks in right order.
+	 */
 	public Vector<MoveData> getCurrentRecord()
 	{
 		Vector<MoveData> record = new Vector<MoveData>();
@@ -60,7 +55,6 @@ public class GameRecord {
 				return record;
 		}
 		
-		//System.out.println("NextMoveStack");
 		for(int commandindex = nextMoveStack.size()-1; commandindex >=0; commandindex--)
 		{
 			MoveCommand command = nextMoveStack.elementAt(commandindex);
@@ -72,9 +66,10 @@ public class GameRecord {
 		
 		return record;
 	}
-	
-	/*
-	 * Initializes basic game loaded from notation and prepares stack for game stepping. 
+
+	/**
+	 * Initializes basic game loaded from notation and prepares stack for game stepping.
+	 * @param newMove
 	 */
 	public void addMove(MoveCommand newMove)
 	{
@@ -83,8 +78,9 @@ public class GameRecord {
 		lastMoveNumber++;
 	}
 	
-	/*
+	/**
 	 * Add players move
+	 * @param newMove
 	 */
 	public void addPlayersMove(MoveCommand newMove)
 	{
@@ -103,8 +99,9 @@ public class GameRecord {
 		}
 	}
 	
-	/*
-	 * Returns  
+	/**
+	 * @return
+	 * @throws Exception
 	 */
 	public MoveCommand getNextMove() throws Exception
 	{
@@ -133,8 +130,9 @@ public class GameRecord {
 		return topMove;
 	}
 	
-	/*
-	 * 
+	/**
+	 * @return
+	 * @throws Exception
 	 */
 	public MoveCommand getPrevMove() throws Exception
 	{
@@ -155,8 +153,8 @@ public class GameRecord {
 		return topMove;
 	}
 
-	/*
-	 * 
+	/**
+	 * @throws EmptyMoveStackException
 	 */
 	public void undoLastPlayersMove() throws EmptyMoveStackException
 	{
@@ -180,9 +178,9 @@ public class GameRecord {
 			lastPlayersMove = undoMoveStack.peek();
 		}
 	}
-	
-	/*
-	 * 
+
+	/**
+	 * @throws EmptyMoveStackException
 	 */
 	public void redoLastPlayersMove() throws EmptyMoveStackException
 	{
@@ -197,8 +195,8 @@ public class GameRecord {
 		lastMoveNumber = lastPlayersMove.getMoveData().getMoveNumber();
 	}
 	
-	/*
-	 * 
+	/**
+	 * @return Move Number of lastly pushed move to redoMovetack
 	 */
 	public int getLastRedoMoveNumber()
 	{
@@ -208,23 +206,42 @@ public class GameRecord {
 		return redoMoveStack.peek().getMoveData().getMoveNumber();
 	}
 	
+	/**
+	 * @return True if move is invalid
+	 */
 	public boolean isInvalidMove() {
 		return invalidMove;
 	}
 
+	/**
+	 * @param invalidMove
+	 */
 	public void setInvalidMove(boolean invalidMove) {
 		this.invalidMove = invalidMove;
 	}
+	
+	/**
+	 * @param currentMove
+	 */
 	public void setCurrentMove(int currentMove) {
 		this.currentMoveNumber = currentMove;
 	}
+	/**
+	 * @return
+	 */
 	public int getCurrentMoveNumber() {
 		return this.currentMoveNumber;
 	}
+	/**
+	 * @return
+	 */
 	public int getLastMoveNumber() {
 		return lastMoveNumber;
 	}
 
+	/**
+	 * @param lastMoveNumber
+	 */
 	public void setLastMoveNumber(int lastMoveNumber) {
 		this.lastMoveNumber = lastMoveNumber;
 	}
@@ -243,11 +260,17 @@ public class GameRecord {
 		this.notationType = notationType;
 	}
 	
+	/**
+	 * @return True if undoStack is empty
+	 */
 	public boolean isUndoStackEmpty()
 	{
 		return this.undoMoveStack.empty();
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean isRedoStackEmpty()
 	{
 		return this.redoMoveStack.empty();

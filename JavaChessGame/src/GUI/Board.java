@@ -21,7 +21,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-public class Board extends GridPane //TilePane
+/**
+ * @author xpeska05
+ *
+ */
+public class Board extends GridPane
 {
 	private Tile[][] boardTiles;
 	private ChessBoard board;
@@ -30,6 +34,9 @@ public class Board extends GridPane //TilePane
 	private String playersMove1 = "";
 	private String playersMove2 = "";
 	
+	/**
+	 * 
+	 */
 	public Board()
 	{
 		super();
@@ -158,6 +165,9 @@ public class Board extends GridPane //TilePane
 		*/
 	}
 	
+	/**
+	 * 
+	 */
 	private void loadPieceImages()
 	{
 		String path = "/img/";
@@ -181,6 +191,9 @@ public class Board extends GridPane //TilePane
 		chessFiguresImageMap.put("WHITEp", new Image(path + "Chess_plt60.png"));
 	}
 
+	/**
+	 * @param board
+	 */
 	public void setBoard(ChessBoard board)
 	{
 		this.board = board;
@@ -188,7 +201,8 @@ public class Board extends GridPane //TilePane
 	
 	/**
 	 * Nacte a aplikuje zmeny v zavislosti na stavu this.board
-	 * @throws Exception 
+	 * @param board
+	 * @throws Exception
 	 */
 	public void update(ChessBoard board) throws Exception 
 	{
@@ -228,6 +242,11 @@ public class Board extends GridPane //TilePane
 		}
 	}
 	
+	/**
+	 * @param col
+	 * @param row
+	 * @param piece
+	 */
 	private void setImageOn(int col, int row, Image piece)
 	{	
 	    boardTiles[col][row].setImage(piece); 

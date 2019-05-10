@@ -2,14 +2,24 @@ package ChessGame;
 
 import java.util.Scanner;
 
+/**
+ * @author xpeska05
+ *
+ */
 public class TerminalUserInterface {
 	private GameManager gameManager;
 	
+	/**
+	 * 
+	 */
 	public TerminalUserInterface()
 	{
 		this.gameManager = new GameManager();
 	}
 	
+	/**
+	 * 
+	 */
 	public void printMainMenu()
 	{
 		System.out.println("----MENU----");
@@ -24,6 +34,9 @@ public class TerminalUserInterface {
 		System.out.println("8. Ukoncit aplikaci");
 	}
 	
+	/**
+	 * 
+	 */
 	public void printGameMenu()
 	{
 		System.out.println("----Game MENU----");
@@ -39,6 +52,9 @@ public class TerminalUserInterface {
 		System.out.println("9. Redo");
 	}
 	
+	/**
+	 * 
+	 */
 	public void GameLoop()
 	{
 		int userInput = 0;
@@ -149,7 +165,7 @@ public class TerminalUserInterface {
 						break;
 						
 					case 7:
-						System.out.println("Autoplay <NotImplemented>");
+						System.out.println("Autoplay <NotImplemented in text mode>");
 						break;
 						
 					case 8:

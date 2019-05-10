@@ -7,6 +7,10 @@ import GameRecord.PairInt;
 import GameRecord.PositionTranslator;
 import Loader.FigureFactory;
 
+/**
+ * @author xpeska05
+ *
+ */
 public class ChessBoard {
 	private BoardTile[][] board;
 	private int width = 8;
@@ -25,7 +29,7 @@ public class ChessBoard {
 			{'V', 'J', 'S', 'D', 'K', 'S', 'J', 'V'}
 	};
 	
-	/*
+	/**
 	 * initializes board tiles, sets pieces to corresponding tiles and creates vector of pieces.
 	 */
 	public ChessBoard()
@@ -70,9 +74,12 @@ public class ChessBoard {
 			}
 		}
 	}
-	
-	/*
+
+	/**
 	 * returns BoardTile located on col and row, counted from bottom left
+	 * @param col
+	 * @param row
+	 * @return
 	 */
 	public BoardTile getBoardField(int col, int row) {
 		// assert
@@ -82,9 +89,11 @@ public class ChessBoard {
 		}
 		return null;
 	}
-	
-	/*
+
+	/**
 	 * Get Tile by notation position, ex.: c3, a8, g4, ...
+	 * @param tile
+	 * @return
 	 */
 	public BoardTile getBoardField(String tile) {
 		PairInt coords = PositionTranslator.positionToCoords(tile);
@@ -99,8 +108,11 @@ public class ChessBoard {
 		return null;
 	}
 	
-	/*
+	/**
 	 * Get Tile by coords , ex.: [1,1], [3,4], [7,2], ...
+	 * @param col
+	 * @param row
+	 * @return
 	 */
 	public BoardTile getField(int col, int row) 
 	{
@@ -112,8 +124,9 @@ public class ChessBoard {
 		return null;
 	}
 	
-	/*
+	/**
 	 * Method used during initialization of Board Tiles
+	 * @param activeField
 	 */
 	private void setSurroundingOfField(BoardTile activeField) 
 	{	
@@ -130,6 +143,9 @@ public class ChessBoard {
 		activeField.addNextField(BoardTile.Direction.RD, getField(col+1, row+1)); 
 	}
 	
+	/**
+	 * 
+	 */
 	public void printBoard()
 	{	
 		/*
@@ -163,12 +179,18 @@ public class ChessBoard {
 		System.out.print('\n');
 	}
 
+	/**
+	 * @return
+	 */
 	public int getSize() 
 	{
 		return this.width;
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	public Vector<AbstractPiece> getAllFigures() 
 	{
 		return allFigures;

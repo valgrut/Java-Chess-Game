@@ -8,23 +8,31 @@ import java.util.Vector;
 import GameRecord.GameRecord;
 import GameRecord.MoveData;
 
-/*
- * 
+
+/**
+ * @author xpeska05
+ *
  */
 public class GameSaver 
 {
+	/**
+	 * 
+	 */
 	private GameRecord gameRecord;
 	
-	/*
-	 * 
+
+	/**
+	 * @param gameRecord
 	 */
 	public GameSaver(GameRecord gameRecord)
 	{
 		this.gameRecord = gameRecord;
 	}
 	
-	/*
-	 * 
+
+	/**
+	 * @param fileName
+	 * @throws IOException
 	 */
 	public void saveGame(String fileName) throws IOException
 	{
