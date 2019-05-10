@@ -5,21 +5,36 @@ import java.util.Vector;
 import ChessGame.BoardTile;
 import ChessGame.BoardTile.Direction;
 
-public class King extends AbstractPiece implements IMovable {
+/**
+ * @author xpeska05
+ *
+ */
+public class King extends AbstractPiece implements IMovable 
+{
+	/**
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return this.getNotation();
 	}
 	
+	/**
+	 * 
+	 */
 	public King() {
 		this.setNotation("K");
 	}
 
+	/**
+	 * @see Figures.AbstractPiece#getPossibleMoves()
+	 */
 	@Override
 	public Vector<BoardTile> getPossibleMoves() {
 		BoardTile currentPosition = getPosition();
 		
 		Vector<BoardTile> candidates = new Vector<BoardTile>();
-		try {
+		try 
+		{
 			candidates.add(currentPosition.nextField(Direction.U));
 			candidates.add(currentPosition.nextField(Direction.LU));
 			candidates.add(currentPosition.nextField(Direction.L));
@@ -52,6 +67,9 @@ public class King extends AbstractPiece implements IMovable {
 		return possibleMoves;
 	}
 
+	/**
+	 * @see Figures.IMovable#isMovable()
+	 */
 	@Override
 	public boolean isMovable() {
 		// TODO Auto-generated method stub

@@ -4,7 +4,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class BufferedNotationReader implements IReader {
+/**
+ * @author xpeska05
+ *
+ */
+public class BufferedNotationReader implements IReader 
+{
 	private BufferedReader reader;
 	private String inputFilePath;
 
@@ -13,6 +18,9 @@ public class BufferedNotationReader implements IReader {
 	 * @param input file path
 	 * @see Constructor, creates instance of BufferedReader
 	 */
+	/**
+	 * @param input
+	 */
 	public BufferedNotationReader(String input)
 	{
 		this.setInput(input);
@@ -20,6 +28,9 @@ public class BufferedNotationReader implements IReader {
 		this.openReader();
 	}
 	
+	/**
+	 * @see Loader.IReader#getNextLine()
+	 */
 	@Override
 	public String getNextLine() {
 		try 
@@ -35,16 +46,25 @@ public class BufferedNotationReader implements IReader {
 		return null;
 	}
 
+	/**
+	 * @see Loader.IReader#setInput(java.lang.String)
+	 */
 	@Override
 	public void setInput(String inputFile) {
 		this.inputFilePath = inputFile;
 	}
 	
+	/**
+	 * @return
+	 */
 	public String getInput()
 	{
 		return this.inputFilePath;
 	}
 
+	/**
+	 * @see Loader.IReader#openReader()
+	 */
 	public void openReader()
 	{
 		if(this.reader == null)
@@ -60,6 +80,9 @@ public class BufferedNotationReader implements IReader {
 		}
 	}
 	
+	/**
+	 * @see Loader.IReader#closeReader()
+	 */
 	public void closeReader()
 	{
 		if(this.reader != null)
@@ -72,6 +95,9 @@ public class BufferedNotationReader implements IReader {
 		}
 	}
 
+	/**
+	 * @see Loader.IReader#printAll()
+	 */
 	@Override
 	public void printAll() {
 		try 
@@ -91,5 +117,4 @@ public class BufferedNotationReader implements IReader {
 		}
 		
 	}
-
 }

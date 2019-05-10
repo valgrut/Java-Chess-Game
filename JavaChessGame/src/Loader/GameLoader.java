@@ -1,19 +1,26 @@
 package Loader;
 
-//import GameRecord.BasicGameRecord;
 import GameRecord.GameRecord;
 import GameRecord.MoveCommand;
-//import GameRecord.MoveData;
 import GameRecord.Pair;
 import GameSaver.NotationType;
 
-public class GameLoader {
+/**
+ * @author xpeska05
+ *
+ */
+public class GameLoader 
+{
+	/**
+	 * @param gameRecord
+	 * @param notationFile
+	 */
 	public GameLoader(GameRecord gameRecord, String notationFile)
 	{
 		IReader reader = new BufferedNotationReader(notationFile);
-		//IReader reader = new BufferedNotationReader("/root/git/JavaChessGame/JavaChessGame/Notation_1"); 
 		IParser parser = new LongNotationParser();
 		
+		//TODO
 //		if(notation is long)
 			gameRecord.setNotationType(NotationType.LONG); //TODO - tohle se nastavi podle toho, jaka ta notace opravdu je.
 //		else

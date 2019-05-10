@@ -2,8 +2,6 @@
 import java.io.File;
 import java.util.Vector;
 
-import javax.swing.GroupLayout.Alignment;
-
 import ChessGame.ChessBoard;
 import ChessGame.GameManager;
 import GUI.Board;
@@ -19,34 +17,26 @@ import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
@@ -63,15 +53,19 @@ import javafx.stage.Stage;
  */
 
 /**
- * @author root
- *
+ * Class represents Graphical User Interface and is used as an entry point of application.
+ * This class implements all control mechanisms for interacting with the chess game.
+ * 
+ * @author xpeska05
  */
 public class UserInterfaceMain extends Application 
 {
     GameManager gm = new GameManager();
     int tabCounter = 0;
 	
-    /* (non-Javadoc)
+    /**
+     * Method contains full layout of GUI, all buttons, event handling,
+     * tabs, new game creation etc.
      * @see javafx.application.Application#start(javafx.stage.Stage)
      */
     @Override
@@ -556,8 +550,10 @@ public class UserInterfaceMain extends Application
     }
     
     /**
-     * @param destination
-     * @param sourceRecord
+     * Method clears ListView representing current game record and initializes ListView 
+     * with records of moves from vector of strings given as the second parameter.
+     * @param destination ListView that is being initialized.
+     * @param sourceRecord Vector of strings from which destination is initialized.
      */
     public void updateRecordList(ListView<Label> destination, Vector<String> sourceRecord)
     {
@@ -574,7 +570,10 @@ public class UserInterfaceMain extends Application
     }
     
     /**
-     * @param record
+     * This method sets css style (background) for each record in the ListView
+     * to none and sets yellow background only for current move record.
+     * 
+     * @param record ListView containing records, where currentMove background will be set to yellow.
      */
     public void updateHighlightCurrentMove(ListView<Label> record)
     {
@@ -594,7 +593,8 @@ public class UserInterfaceMain extends Application
     }
     
     /**
-     * @return
+     * Returns This method returns ChessBoard instance of currently active game in game manager.
+     * @return ChessBoard Instance of ChessBoard of currently Active game.
      */
     public ChessBoard getActiveGameBoard()
     {
@@ -602,7 +602,8 @@ public class UserInterfaceMain extends Application
     }
     
     /**
-     * @param args
+     * Main method.
+     * @param args Arguments from terminal.
      */
     public static void main(String[] args) 
     {

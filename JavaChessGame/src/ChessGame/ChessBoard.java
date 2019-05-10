@@ -11,13 +11,31 @@ import Loader.FigureFactory;
  * @author xpeska05
  *
  */
-public class ChessBoard {
+public class ChessBoard 
+{
+	/**
+	 * 2D array of BoardTiles used for Tile access using coordinates x and y or column and row.
+	 */
 	private BoardTile[][] board;
+	
+	/**
+	 * Width of board.
+	 */
 	private int width = 8;
+	
+	/**
+	 * Height of board.
+	 */
 	private int height = 8;
 	
+	/**
+	 * Vector of all chess figure objects.
+	 */
 	private Vector<AbstractPiece> allFigures;
 	
+	/**
+	 * 2D array of characters. Represents initial setup of chessboard pieces. It is used for setting the pieces to their original positions during initialization.
+	 */
 	private final Character initialSetup[][] = {
 			{'V', 'J', 'S', 'D', 'K', 'S', 'J', 'V'},
 			{'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
@@ -76,10 +94,10 @@ public class ChessBoard {
 	}
 
 	/**
-	 * returns BoardTile located on col and row, counted from bottom left
-	 * @param col
-	 * @param row
-	 * @return
+	 * Get Tile by coords , ex.: [1,1], [3,4], [7,2], numbered like in Chess from down left.
+	 * @param col Index of column to array. Index has to be from range {1, 2, ..., 8}
+	 * @param row Index of row to array. Index has to be from range {1, 2, ..., 8}
+	 * @return BoardTile Tile located by col, row coordinates. Numbered from BOTTOM left!
 	 */
 	public BoardTile getBoardField(int col, int row) {
 		// assert
@@ -91,9 +109,10 @@ public class ChessBoard {
 	}
 
 	/**
-	 * Get Tile by notation position, ex.: c3, a8, g4, ...
-	 * @param tile
-	 * @return
+	 * Get Tile according to chess position, ex.: c3, a8, g4, etc.
+	 * Numbered from left down tile.
+	 * @param tile String representation of position according to chess positioning (ex.: c3, b8, ...).
+	 * @return BoardTile Tile at position given by parameter.
 	 */
 	public BoardTile getBoardField(String tile) {
 		PairInt coords = PositionTranslator.positionToCoords(tile);
@@ -109,10 +128,10 @@ public class ChessBoard {
 	}
 	
 	/**
-	 * Get Tile by coords , ex.: [1,1], [3,4], [7,2], ...
-	 * @param col
-	 * @param row
-	 * @return
+	 * Get Tile by coords , ex.: [1,1], [3,4], [7,2].
+	 * @param col Index of column to array. Index has to be from range {1, 2, ..., 8}
+	 * @param row Index of row to array. Index has to be from range {1, 2, ..., 8}
+	 * @return BoardTile Tile located by col, row coordinates. Numbered from top left!
 	 */
 	public BoardTile getField(int col, int row) 
 	{
@@ -125,8 +144,8 @@ public class ChessBoard {
 	}
 	
 	/**
-	 * Method used during initialization of Board Tiles
-	 * @param activeField
+	 * Method is used during initialization of Board Tiles. For internal use only.
+	 * @param activeField Tile of which surrounding is initialized.
 	 */
 	private void setSurroundingOfField(BoardTile activeField) 
 	{	
@@ -144,7 +163,7 @@ public class ChessBoard {
 	}
 	
 	/**
-	 * 
+	 * Method used for printing the board layout with currently placed figures to stdout.
 	 */
 	public void printBoard()
 	{	
@@ -180,7 +199,8 @@ public class ChessBoard {
 	}
 
 	/**
-	 * @return
+	 * This method returns size of board.
+	 * @return int Size of Board.
 	 */
 	public int getSize() 
 	{
@@ -189,7 +209,8 @@ public class ChessBoard {
 	
 	
 	/**
-	 * @return
+	 * Returns vector of all figures of chess (from pawns to kings, both colors).
+	 * @return Vector<AbstractPiece> Vector of figures.
 	 */
 	public Vector<AbstractPiece> getAllFigures() 
 	{

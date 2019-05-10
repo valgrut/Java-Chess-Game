@@ -1,7 +1,7 @@
 <project name="project" default="compile" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
     <description>
         Schema application
-        Jirka Peška - xpeska02
+        Jiří Peška - xpeska02
         Kryštof Halmo - xhalmo00
     </description>
 

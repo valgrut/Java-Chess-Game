@@ -5,18 +5,33 @@ import java.util.Vector;
 import ChessGame.BoardTile;
 import ChessGame.BoardTile.Direction;
 
+/**
+ * @author root
+ *
+ */
 public class Knight extends AbstractPiece implements IMovable {
 
+	/**
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return this.getNotation();
 	}
 	
-	public Knight() {
+	/**
+	 * 
+	 */
+	public Knight() 
+	{
 		this.setNotation("J");
 	}
 
+	/**
+	 * @see Figures.AbstractPiece#getPossibleMoves()
+	 */
 	@Override
-	public Vector<BoardTile> getPossibleMoves() {
+	public Vector<BoardTile> getPossibleMoves() 
+	{
 		BoardTile currentPosition = getPosition();
 		
 		Vector<BoardTile> candidates = new Vector<BoardTile>();
@@ -48,12 +63,10 @@ public class Knight extends AbstractPiece implements IMovable {
 		return possibleMoves;
 	}
 	
+	/**
+	 * @see Figures.IMovable#isMovable()
+	 */
 	public boolean isMovable() {
 		return isMovable;
 	}
-
-	// nastavit zde null nebo EmptyPlace ???? TODO
-	// nemely by mit move pretizeni s moznosti argumentu String ?? (c5, ...)
-	
-
 }

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import ChessGame.ChessBoard;
 import Figures.AbstractPiece;
-import GameRecord.PairInt;
 import GameRecord.PositionTranslator;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,20 +21,39 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 /**
+ * This class represents part of the GUI, the ChessBoard.
+ * Class is used for drawing pieces according to given board instance 
+ * located in (retrieved from) backend.  
  * @author xpeska05
- *
  */
 public class Board extends GridPane
 {
+	/**
+	 * 2D array representing chess board.
+	 */
 	private Tile[][] boardTiles;
-	private ChessBoard board;
+	
+	/**
+	 * Map structure that holds 
+	 * pairs of string,image, where key is string (ex.: BLACKV) 
+	 * and value is png image path name.
+	 */
 	private Map<String, Image> chessFiguresImageMap;
 	
+	/**
+	 * Attribute holds first (source) position of move.
+	 */
 	private String playersMove1 = "";
+	
+	/**
+	 * Attribute holds second (destination) position of move.
+	 */
 	private String playersMove2 = "";
 	
 	/**
-	 * 
+	 * Constructor of Board. Initializes 2D array of BoardTiles, sets background color
+	 * of tiles according to chess board and sets event handling for
+	 * catch mouse events.
 	 */
 	public Board()
 	{
@@ -166,7 +184,8 @@ public class Board extends GridPane
 	}
 	
 	/**
-	 * 
+	 * Initializes Map structure that maps keys to values, where 
+	 * key is String and value is corresponding '.png' image name.
 	 */
 	private void loadPieceImages()
 	{
@@ -190,19 +209,11 @@ public class Board extends GridPane
 		chessFiguresImageMap.put("BLACKp", new Image(path + "Chess_pdt60.png"));
 		chessFiguresImageMap.put("WHITEp", new Image(path + "Chess_plt60.png"));
 	}
-
-	/**
-	 * @param board
-	 */
-	public void setBoard(ChessBoard board)
-	{
-		this.board = board;
-	}
 	
 	/**
 	 * Nacte a aplikuje zmeny v zavislosti na stavu this.board
-	 * @param board
-	 * @throws Exception
+	 * @param board ChessBoard instance from backend used as model for placing figures.
+	 * @throws Exception Thrown when error occurs during update.
 	 */
 	public void update(ChessBoard board) throws Exception 
 	{
@@ -243,9 +254,10 @@ public class Board extends GridPane
 	}
 	
 	/**
-	 * @param col
-	 * @param row
-	 * @param piece
+	 * Method used for setting the correct image of piece inside Tile located on given col and row.
+	 * @param col Column of Tile in 2D array of BoardTiles.
+	 * @param row Row of Tile in 2D array of BoardTiles.
+	 * @param piece Image of piece that will be placed to given position.
 	 */
 	private void setImageOn(int col, int row, Image piece)
 	{	

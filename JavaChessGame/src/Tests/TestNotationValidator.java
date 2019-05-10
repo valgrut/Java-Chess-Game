@@ -5,7 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import Loader.NotationValidator;
 
-class TestNotationValidator {
+/**
+ * @author xpeska05
+ *
+ */
+class TestNotationValidator 
+{
 	private NotationValidator tester = new NotationValidator();
 	
 	@Test

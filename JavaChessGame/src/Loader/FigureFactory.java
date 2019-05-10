@@ -12,7 +12,12 @@ import Figures.Rook;
  * @author Jiri Peska
  *
  */
-public class FigureFactory {
+public class FigureFactory 
+{
+	/**
+	 * @param figureNotation
+	 * @return
+	 */
 	public static AbstractPiece createFigureByNotation(Character figureNotation) //, Color color, ChessPosition position)
 	{
 		switch(figureNotation)

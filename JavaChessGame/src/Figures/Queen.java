@@ -6,27 +6,43 @@ import java.util.Vector;
 import ChessGame.BoardTile;
 import ChessGame.BoardTile.Direction;
 
-public class Queen extends AbstractPiece implements IMovable {
+/**
+ * @author root
+ *
+ */
+public class Queen extends AbstractPiece implements IMovable 
+{
 	
 	private static Vector<Direction> directions = new Vector<Direction>(Arrays.asList(Direction.RU, Direction.RD, Direction.LU, Direction.LD, Direction.U, Direction.R, Direction.D, Direction.L));
 	
+	/**
+	 * 
+	 */
 	public Queen()
 	{
 		// TODO vlozit pozici figurky, vytvorit atribut
 		this.setNotation("D");
 	}
+	/**
+	 * @param position
+	 */
 	public Queen(String position)
 	{
 		// TODO vlozit pozici figurky, vytvorit atribut
 	}
 	
+	/**
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return this.getNotation();
 	}
 
+	/**
+	 * @see Figures.AbstractPiece#getPossibleMoves()
+	 */
 	@Override
-	public
-	Vector<BoardTile> getPossibleMoves() {
+	public Vector<BoardTile> getPossibleMoves() {
 		BoardTile currentPosition = getPosition();
 		
 		Vector<BoardTile> candidates = new Vector<BoardTile>();
@@ -70,6 +86,9 @@ public class Queen extends AbstractPiece implements IMovable {
 		return candidates;
 	}
 	
+	/**
+	 * @see Figures.IMovable#isMovable()
+	 */
 	public boolean isMovable() {
 		// TODO Auto-generated method stub
 		return isMovable;

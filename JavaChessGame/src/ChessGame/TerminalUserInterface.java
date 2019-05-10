@@ -3,14 +3,19 @@ package ChessGame;
 import java.util.Scanner;
 
 /**
+ * Class representing Terminal user interface. User can create and play loaded or new games through this interface.
+ * 
  * @author xpeska05
  *
  */
 public class TerminalUserInterface {
+	/**
+	 * Instance of GameManager class used for managing opened games.
+	 */
 	private GameManager gameManager;
 	
 	/**
-	 * 
+	 * Constructor of TerminalUserInterface. Instantiates game manager.
 	 */
 	public TerminalUserInterface()
 	{
@@ -18,7 +23,7 @@ public class TerminalUserInterface {
 	}
 	
 	/**
-	 * 
+	 * Prints main menu to stdout.
 	 */
 	public void printMainMenu()
 	{
@@ -35,7 +40,7 @@ public class TerminalUserInterface {
 	}
 	
 	/**
-	 * 
+	 * Prints game menu to stdout.
 	 */
 	public void printGameMenu()
 	{
@@ -53,7 +58,8 @@ public class TerminalUserInterface {
 	}
 	
 	/**
-	 * 
+	 * Method representing Game loop, where user can play the game. Menus are printed and according the chosen 
+	 * item, the state is changed. There is Main menu and menu where user can play game and interact with moves.
 	 */
 	public void GameLoop()
 	{
@@ -117,7 +123,9 @@ public class TerminalUserInterface {
 					case 8:
 						//this.gameManager.closeGame();
 						this.gameManager = null;
-						break;
+						reader.close();
+						return;
+						//break;
 				}
 			}
 			else
@@ -184,5 +192,6 @@ public class TerminalUserInterface {
 		
 		System.out.println("Aplikace bude ukoncena (8).");
 		reader.close();
+		return;
 	}
 }

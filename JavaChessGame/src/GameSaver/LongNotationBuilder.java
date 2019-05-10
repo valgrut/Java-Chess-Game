@@ -4,7 +4,7 @@ import GameRecord.MoveData;
 import GameRecord.MoveSituation;
 
 /**
- * @author root
+ * @author xpeska05
  *
  */
 public class LongNotationBuilder implements INotationBuilder 

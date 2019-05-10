@@ -9,15 +9,25 @@ import GameRecord.Pair;
  * Long notation parser
  * 
  */
+/**
+ * @author xpeska05
+ *
+ */
 public class LongNotationParser implements IParser 
 {
 	private IValidator notationValidator;
 	
+	/**
+	 * 
+	 */
 	public LongNotationParser()
 	{
 		notationValidator = new NotationValidator();
 	}
 	
+	/**
+	 * @see Loader.IParser#parseLine(java.lang.String)
+	 */
 	@Override
 	public Pair parseLine(String line)
 	{
@@ -107,6 +117,10 @@ public class LongNotationParser implements IParser
 		moveObj.setSourcePosition(srcPosition);
 	}
 	
+	/**
+	 * @param line
+	 * @return
+	 */
 	private String[] splitString(String line)
 	{
 		if(line.isEmpty())
@@ -119,6 +133,10 @@ public class LongNotationParser implements IParser
 		}
 	}
 	
+	/**
+	 * @param dotNumber
+	 * @return
+	 */
 	private Integer parseMoveNumber(String dotNumber)
 	{
 		String moveOrder = dotNumber.substring(0, dotNumber.length() - 1);

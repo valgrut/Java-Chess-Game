@@ -2,6 +2,15 @@ package Loader;
 
 import GameRecord.Pair;
 
-public interface IParser {
+/**
+ * @author xpeska05
+ *
+ */
+public interface IParser 
+{
+	/**
+	 * @param line
+	 * @return
+	 */
 	Pair parseLine(String line);
 }

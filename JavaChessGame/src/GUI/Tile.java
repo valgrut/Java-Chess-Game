@@ -8,6 +8,10 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+/**
+ * @author root
+ *
+ */
 public class Tile extends StackPane 
 {
 	private boolean isHighlighted = false;
@@ -15,14 +19,23 @@ public class Tile extends StackPane
 	private ImageView view;
 	private String css;
 	
+	/**
+	 * @return
+	 */
 	public String getCss() {
 		return css;
 	}
 
+	/**
+	 * @param css
+	 */
 	public void setCss(String css) {
 		this.css = css;
 	}
 
+	/**
+	 * @param identifier
+	 */
 	public Tile(String identifier)
 	{
 		super();
@@ -73,11 +86,17 @@ public class Tile extends StackPane
         
 	}
 	
+	/**
+	 * @param piece
+	 */
 	public void setImage(Image piece)
 	{
 		view.setImage(piece);
 	}
 	
+	/**
+	 * 
+	 */
 	public void switchHighlight()
 	{
 		if(isHighlighted == false)
@@ -92,6 +111,9 @@ public class Tile extends StackPane
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void setHighlight()
 	{
 		isHighlighted = true;
@@ -99,12 +121,18 @@ public class Tile extends StackPane
 		setStyle("-fx-background-color: green;");
 	}
 	
+	/**
+	 * 
+	 */
 	public void unsetHighlight()
 	{
 		isHighlighted = false;
 		setStyle(this.css);
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean isEmpty()
 	{
 		if(this.view.getImage() == null)

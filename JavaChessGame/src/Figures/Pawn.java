@@ -5,15 +5,31 @@ import java.util.Vector;
 import ChessGame.BoardTile;
 import ChessGame.BoardTile.Direction;
 
-public class Pawn extends AbstractPiece implements IMovable {
-	public String toString() {
+/**
+ * @author root
+ *
+ */
+public class Pawn extends AbstractPiece implements IMovable 
+{
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() 
+	{
 		return this.getNotation();
 	}
 	
-	public Pawn() {
+	/**
+	 * 
+	 */
+	public Pawn() 
+	{
 		this.setNotation("p");
 	}
 
+	/**
+	 * @see Figures.AbstractPiece#getPossibleMoves()
+	 */
 	@Override
 	public Vector<BoardTile> getPossibleMoves() 
 	{
@@ -101,8 +117,11 @@ public class Pawn extends AbstractPiece implements IMovable {
 		return candidates;
 	}
 	
-	public boolean isMovable() {
-		// TODO Auto-generated method stub
+	/**
+	 * @see Figures.IMovable#isMovable()
+	 */
+	public boolean isMovable() 
+	{
 		return isMovable;
 	}
 

@@ -15,16 +15,24 @@ import Loader.GameLoader;
 
 
 /**
+ * This class represents currently played game. Class holds instance of board and instance of game record and 
+ * contains all operations for interacting with currently played game.
  * @author xpeska05
- *
  */
 public class CurrentGame 
 {
+	/**
+	 * Instance of ChessBoard class representing chess board.
+	 */
 	private ChessBoard board;
+	
+	/**
+	 * Instance of GameRecord class that holds all played moves and is used for managing and traversing through played game.
+	 */
 	private GameRecord gameRecord;
 	
 	/**
-	 * Constructor for concrete game that is being played.
+	 * Constructor for concrete game that is being played. Creates instance of GameRecord and of ChessBoard.
 	 */
 	public CurrentGame()
 	{
@@ -34,7 +42,7 @@ public class CurrentGame
 	
 	/**
 	 * Takes the newest moves(moves player can step through) and saves notation to file.
-	 * @param filename
+	 * @param filename Name of file where game record will be saved.
 	 */
 	public void saveGame(String filename) 
 	{
@@ -53,7 +61,8 @@ public class CurrentGame
 	}
 	
 	/**
-	 * @param notationFile
+	 * Loads and initializes gameRecord with notation loaded from given notation file.
+	 * @param notationFile Name of file where is located notation.
 	 */
 	public void loadGame(String notationFile) 
 	{
@@ -64,8 +73,7 @@ public class CurrentGame
 	}
 	
 	/**
-	 * TODO: There should be parameter of object, that serves as source where to draw board??
-	 * OR board will be given as parameter to graphic entity, which will update based on board?
+	 * Prints board setup of this game.
 	 */
 	public void printBoard() 
 	{
@@ -75,7 +83,7 @@ public class CurrentGame
 	
 	/**
 	 * Returns instance of ChessBoard of current game
-	 * @return
+	 * @return Instance of board of current game.
 	 */
 	public ChessBoard getBoard()
 	{
@@ -152,6 +160,7 @@ public class CurrentGame
 	/**
 	 * Player can play own move by providing source and destination position.
 	 * New Move is created and added to gameResource manager.
+	 * If the move is illegal, it will not be saved to game manager.
 	 * @param sourcePosition
 	 * @param destinationPosition
 	 */
@@ -184,7 +193,7 @@ public class CurrentGame
 	}
 	
 	/**
-	 * Undo last players move. If current move is move, that will be undone, step backward is performed.
+	 * Undo last players move. If current move is move that will be undone, step backward is performed.
 	 */
 	public void undo() 
 	{
@@ -207,7 +216,7 @@ public class CurrentGame
 	}
 	
 	/**
-	 * Restores last undone players move
+	 * Restores last undone players move.
 	 */
 	public void redo() 
 	{
@@ -227,7 +236,7 @@ public class CurrentGame
 	}
 
 	/**
-	 * Rewind game to the end
+	 * Rewind game to the end.
 	 */
 	public void toEnd() 
 	{
@@ -235,7 +244,7 @@ public class CurrentGame
 	} 
 	
 	/**
-	 * Rewind game to start
+	 * Rewind game to start (to initial setup).
 	 */
 	public void toStart() 
 	{
@@ -243,8 +252,8 @@ public class CurrentGame
 	}
 	
 	/**
-	 * Rewind game to the stage given by number of move
-	 * @param numberOfMove
+	 * Rewind current game to the stage given by number of move.
+	 * @param numberOfMove Number of move to which game will be executed.
 	 */
 	public void gotoMove(int numberOfMove)
 	{
@@ -273,7 +282,9 @@ public class CurrentGame
 	}
 	
 	/**
-	 * @return
+	 * This method returns vector of strings that represents currently newest moves (player can traverse them with next, prev operations).
+	 * Notation string moves are constructed by notationBuilder from MoveData objects.
+	 * @return Vector<String> Vector of string representations of moves of currently played game.
 	 */
 	public Vector<String> getCurrentGameRecord()
 	{
@@ -291,7 +302,8 @@ public class CurrentGame
 	}
 	
 	/**
-	 * @return
+	 * Method returns players last move number.
+	 * @return int Number of lastly played move.
 	 */
 	public int getPlayersLastMoveNumber()
 	{
@@ -299,7 +311,8 @@ public class CurrentGame
 	} 
 	
 	/**
-	 * @return
+	 * Method returns current move number.
+	 * @return int Number of current move.
 	 */
 	public int getPlayersCurrentMoveNumber()
 	{
