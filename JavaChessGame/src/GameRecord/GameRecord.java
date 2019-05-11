@@ -105,7 +105,7 @@ public class GameRecord
 		{
 			record.add(command.getMoveData());
 			
-			if(command == lastPlayersMove) 
+			if(command == lastPlayersMove)
 				return record;
 		}
 		

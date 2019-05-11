@@ -10,6 +10,11 @@ import GUI.Board;
 import GUI.MyButton;
 import GUI.PlayersMoveEvent;
 import GUI.PlayersMoveEventHandler;
+import GameRecord.MoveData;
+import GameRecord.PairInt;
+import GameRecord.PositionTranslator;
+import Loader.IParser;
+import Loader.LongNotationParser;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -63,6 +68,7 @@ import javafx.stage.Stage;
 public class UserInterfaceMain extends Application 
 {
     GameManager gm = new GameManager();
+    LongNotationParser parser = new LongNotationParser();
     int tabCounter = 0;
 	
     /**
@@ -101,7 +107,8 @@ public class UserInterfaceMain extends Application
 					{
 						guiBoard.update(getActiveGameBoard());
 						updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
-						updateHighlightCurrentMove(moveRecord);				
+						updateHighlightCurrentMove(moveRecord);
+						updateHighlightOfLastMove(moveRecord, guiBoard);
 					} 
 					catch (Exception e1)
 					{
@@ -147,15 +154,14 @@ public class UserInterfaceMain extends Application
                     	}
                     	catch(SecurityException ex)
                     	{
-                        	System.out.println("SecException: Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+                        	System.out.println("Nebyl vybran soubor takze bude vytvorena prazdna hra.");
                     		gm.createNewGame();
                     	}
                     }
                     else
                     {
-                    	System.out.println("-----> filename == null: Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+                    	System.out.println("Nebyl vybran soubor takze bude vytvorena prazdna hra.");
                     	gm.createNewGame();
-                    	System.out.println("-------> Active game index: " + gm.getActiveGameIndex() + " | opened game count: " + gm.getOpenedGameCount());
                     }
                     
                     // create Tab 
@@ -188,11 +194,9 @@ public class UserInterfaceMain extends Application
 						guiBoard.update(getActiveGameBoard());
 						updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 						updateHighlightCurrentMove(moveRecord);
+						updateHighlightOfLastMove(moveRecord, guiBoard);
 					} 
-                	catch (Exception e1) 
-                    {
-                		System.out.println("-------> Exception when update after tab create.");
-                    }
+                	catch (Exception e1) {}
                     
                     newTab.setOnSelectionChanged(new EventHandler<Event>()
                     { 
@@ -200,9 +204,7 @@ public class UserInterfaceMain extends Application
                         {
                         	// if clicked on '+' tab
                             if (newTab.isSelected())  
-                            {
-			                	System.out.println("Number of opened tabs: " + tabCounter + ", selected: " + newTab.getId());
-			                	
+                            {			                	
 			                	gm.setActiveGame(Integer.parseInt(newTab.getId())-1);
 			                	
 			                	try 
@@ -210,7 +212,8 @@ public class UserInterfaceMain extends Application
 									guiBoard.update(getActiveGameBoard());
 									updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 									updateHighlightCurrentMove(moveRecord);
-								} 
+									updateHighlightOfLastMove(moveRecord, guiBoard);
+								}
 			                	catch (Exception e1) {}
 								
                             }
@@ -236,16 +239,15 @@ public class UserInterfaceMain extends Application
 		{
 			public void handle(PlayersMoveEvent playersEvent) 
 			{ 
-				System.out.println("Players Move Complete: " + playersEvent.getSrcMove() + " " + playersEvent.getDstMove());
+				System.out.println("GUI: Players Move Complete: " + playersEvent.getSrcMove() + " " + playersEvent.getDstMove());
 				gm.getActiveGame().playersMove(playersEvent.getSrcMove(), playersEvent.getDstMove());
 				gm.printGameBoard();
 				try 
 				{
 					guiBoard.update(getActiveGameBoard());
-					Vector<String> currentGameRecordVector = gm.getActiveGame().getCurrentGameRecord();
-					if( ! currentGameRecordVector.isEmpty())
-						updateRecordList(moveRecord, currentGameRecordVector);
-					updateHighlightCurrentMove(moveRecord);				
+					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+					updateHighlightCurrentMove(moveRecord);	
+					updateHighlightOfLastMove(moveRecord, guiBoard);
 				} 
 				catch (Exception e) 
 				{
@@ -307,6 +309,7 @@ public class UserInterfaceMain extends Application
 				{
 					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
+					updateHighlightOfLastMove(moveRecord, guiBoard);
 				} 
 				catch (Exception e) 
 				{
@@ -371,6 +374,7 @@ public class UserInterfaceMain extends Application
 				{
 					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
+					updateHighlightOfLastMove(moveRecord, guiBoard);
 				} 
 				catch (Exception e) 
 				{
@@ -398,6 +402,7 @@ public class UserInterfaceMain extends Application
 				{
 					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
+					updateHighlightOfLastMove(moveRecord, guiBoard);
 				} 
 				catch (Exception e) 
 				{
@@ -425,6 +430,7 @@ public class UserInterfaceMain extends Application
 				{
 					guiBoard.update(getActiveGameBoard());
 					updateHighlightCurrentMove(moveRecord);
+					updateHighlightOfLastMove(moveRecord, guiBoard);
 				} 
 				catch (Exception e) 
 				{
@@ -453,6 +459,7 @@ public class UserInterfaceMain extends Application
 					guiBoard.update(getActiveGameBoard());
 					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 					updateHighlightCurrentMove(moveRecord);
+					updateHighlightOfLastMove(moveRecord, guiBoard);
 				} 
 				catch (Exception e) 
 				{
@@ -481,6 +488,7 @@ public class UserInterfaceMain extends Application
 					guiBoard.update(getActiveGameBoard());
 					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 					updateHighlightCurrentMove(moveRecord);
+					updateHighlightOfLastMove(moveRecord, guiBoard);
 				} 
 				catch (Exception e) 
 				{
@@ -573,6 +581,10 @@ public class UserInterfaceMain extends Application
     	try
     	{
     		record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).setStyle("-fx-background-color: yellow;");
+        	
+    		//String lastMoveNotation = record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).getText();
+    		//MoveData lastMoveData = new MoveData();
+    		//parser.parseSubMove(parser.splitString(lastMoveNotation)[1], lastMoveData);
     	}
     	catch(java.lang.ArrayIndexOutOfBoundsException e)
     	{
@@ -581,7 +593,33 @@ public class UserInterfaceMain extends Application
     	catch(java.lang.IndexOutOfBoundsException e)
     	{
     		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
+    	}    	
+    }
+    
+    /**
+     * This method sets css style (background) for each record in the ListView
+     * to none and sets yellow background only for current move record.
+     * 
+     * @param record ListView containing records, where currentMove background will be set to yellow.
+     */
+    public void updateHighlightOfLastMove(ListView<Label> record, Board guiboard)
+    {
+    	try
+    	{        	
+    		String lastMoveNotation = record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).getText();
+    		MoveData lastMoveData = new MoveData();
+    		parser.parseSubMove(parser.splitString(lastMoveNotation)[1], lastMoveData);
+    		PairInt coords = PositionTranslator.positionToCoords(lastMoveData.getDestinationPosition());
+    		guiboard.getTileOn(coords.getFirst(), coords.getSecond()).setHighlight();
     	}
+    	catch(java.lang.ArrayIndexOutOfBoundsException e)
+    	{
+    		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
+    	}
+    	catch(java.lang.IndexOutOfBoundsException e)
+    	{
+    		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
+    	}    	
     }
     
     /**

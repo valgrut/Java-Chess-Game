@@ -65,7 +65,7 @@ public class LongNotationParser implements IParser
 	 * @param move White's or black's notation move.
 	 * @param moveObj MoveData object that will be initialized with values parsed from given string move notation.
 	 */
-	private void parseSubMove(String move, MoveData moveObj)
+	public void parseSubMove(String move, MoveData moveObj)
 	{
 		String figure = null;
 		String dstPosition = null;
@@ -119,7 +119,7 @@ public class LongNotationParser implements IParser
 	 * @param line Line of notation that will be split by spaces.
 	 * @return Array of 3 strings, where first is move number, second is white's move and third is black's move.
 	 */
-	private String[] splitString(String line)
+	public String[] splitString(String line)
 	{
 		if(line.isEmpty())
 		{

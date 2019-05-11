@@ -249,6 +249,9 @@ public class Board extends GridPane
 				{
 					setImageOn(col-1, row-1, null);
 				}
+				
+				// unset background highlight
+				getTileOn(col, row).unsetHighlight();
 			}	
 		}
 	}
@@ -264,4 +267,14 @@ public class Board extends GridPane
 	    boardTiles[col][row].setImage(piece); 
 	}
 	
+	/**
+	 * Method returns Tile on position given by parameters.
+	 * @param col Column of tile.
+	 * @param row Row of tile.
+	 * @return Instance of Tile by given coordinates.
+	 */
+	public Tile getTileOn(int col, int row)
+	{
+		return this.boardTiles[9-row-1][col-1];
+	}
 }
