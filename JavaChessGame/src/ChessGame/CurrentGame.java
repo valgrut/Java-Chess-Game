@@ -13,10 +13,10 @@ import GameSaver.INotationBuilder;
 import GameSaver.NotationBuilderFactory;
 import Loader.GameLoader;
 
-
 /**
  * This class represents currently played game. Class holds instance of board and instance of game record and 
  * contains all operations for interacting with currently played game.
+ * 
  * @author xpeska05
  */
 public class CurrentGame 
@@ -49,7 +49,6 @@ public class CurrentGame
 		GameSaver gameSaver = new GameSaver(gameRecord);
 		try 
 		{
-			//gameSaver.saveGame("/root/git/JavaChessGame/JavaChessGame/moje_notace.out");
 			gameSaver.saveGame(filename);
 		} 
 		catch (IOException e) 

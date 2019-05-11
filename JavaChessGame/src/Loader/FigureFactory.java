@@ -9,14 +9,16 @@ import Figures.Queen;
 import Figures.Rook;
 
 /**
+ * Factory class that is used for creating the Piece instances by given figureNotation character.
  * @author Jiri Peska
  *
  */
 public class FigureFactory 
 {
 	/**
-	 * @param figureNotation
-	 * @return
+	 * Factory method that is used for creating the Piece instances by given figureNotation character.
+	 * @param figureNotation Character representing figure in notation.
+	 * @return New instance of figure according to given notation. Returns EmptyPlace on default.
 	 */
 	public static AbstractPiece createFigureByNotation(Character figureNotation) //, Color color, ChessPosition position)
 	{

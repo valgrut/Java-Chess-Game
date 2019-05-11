@@ -9,22 +9,72 @@ import Exceptions.InvalidMoveException;
 import GameSaver.NotationType;
 
 /**
+ * Class GameRecord holds all moves loaded from notation and created by user. It uses stacks for traversing operations like next move, previous move and for undo and redo operations.
+ * This class can be used by various types of games to manage moves. Class provides mechanisms for traversing through the game backward and forward and for undoing and redoing players operations.
+ * <p>
+ * This mechanisms enables the creating multiple side-branches of played game and returning back to the older ones or reconstruct newly created branches of the game again.
+ * 
+ * <pre>
+ * n - n - n - n - n - n - n
+ *       \ 
+ *         p - p - p - p - p - p
+ *                   \ 
+ *                     p - p - p - p - p
+ * </pre>
+ * 
  * @author xpeska05
  *
  */
-public class GameRecord {
+public class GameRecord 
+{
+	/**
+	 * Type of notation from which the game was loaded (LONG or SHORT).
+	 */
 	private NotationType notationType;
+	
+	/**
+	 * Number of move that indicates current state of chess game (position in record).
+	 */
 	private int currentMoveNumber = 0;
+	
+	/**
+	 * Number of lastly played move.
+	 */
 	private int lastMoveNumber = 0;
 	
+	/**
+	 * Attribute indicating whether there was detected invalid notation record and game was stopped.
+	 */
 	private boolean invalidMove = false;
+	
+	/**
+	 * Attribute that holds currently last move performed by player.
+	 */
 	MoveCommand lastPlayersMove = null;
 	
+	/**
+	 * Array list of MoveCommands that were loaded from notation file.
+	 */
 	ArrayList<MoveCommand> moves;
+	
+	/**
+	 * Stack that holds moves for undo operation.
+	 */
 	Stack<MoveCommand> undoMoveStack;
+	
+	/**
+	 * Stack that holds moves for redo operation.
+	 */
 	Stack<MoveCommand> redoMoveStack;
 	
+	/**
+	 * Stack that holds moves for nextStep operation.
+	 */
 	Stack<MoveCommand> nextMoveStack;
+	
+	/**
+	 * Stack that holds moves for previousStep operation.
+	 */
 	Stack<MoveCommand> previousMoveStack;
 
 	/**
@@ -41,7 +91,8 @@ public class GameRecord {
 	}
 	
 	/**
-	 * @return Returns vector of MoveData retrieved from stacks in right order.
+	 * Returns vector of MoveData retrieved from stack structures in right order of moves from first to last move.
+	 * @return Returns vector of MoveData.
 	 */
 	public Vector<MoveData> getCurrentRecord()
 	{
@@ -55,7 +106,7 @@ public class GameRecord {
 				return record;
 		}
 		
-		for(int commandindex = nextMoveStack.size()-1; commandindex >=0; commandindex--)
+		for(int commandindex = nextMoveStack.size()-1; commandindex >= 0; commandindex--)
 		{
 			MoveCommand command = nextMoveStack.elementAt(commandindex);
 			record.add(command.getMoveData());
@@ -68,8 +119,8 @@ public class GameRecord {
 	}
 
 	/**
-	 * Initializes basic game loaded from notation and prepares stack for game stepping.
-	 * @param newMove
+	 * Initializes basic game loaded from notation and prepares stack for game traversing.
+	 * @param newMove Move objects that contains necessary data about move.
 	 */
 	public void addMove(MoveCommand newMove)
 	{
@@ -79,8 +130,8 @@ public class GameRecord {
 	}
 	
 	/**
-	 * Add players move
-	 * @param newMove
+	 * Add players move to the stacks.
+	 * @param newMove Players move object.
 	 */
 	public void addPlayersMove(MoveCommand newMove)
 	{
@@ -100,8 +151,9 @@ public class GameRecord {
 	}
 	
 	/**
-	 * @return
-	 * @throws Exception
+	 * This method returns move located on the top of the NextMoveStack if this stack is not empty.
+	 * @return Move object located on the top of the NextMoveStack if this stack is not empty.
+	 * @throws Exception EmptyMoveStackException thrown when NextMoveStack is empty.
 	 */
 	public MoveCommand getNextMove() throws Exception
 	{
@@ -131,8 +183,9 @@ public class GameRecord {
 	}
 	
 	/**
-	 * @return
-	 * @throws Exception
+	 * This method returns move located on the top of the previousMoveStack if this stack is not empty.
+	 * @return Move object located on the top of the previousMoveStack if this stack is not empty.
+	 * @throws Exception EmptyMoveStackException thrown when previousStack is empty.
 	 */
 	public MoveCommand getPrevMove() throws Exception
 	{
@@ -154,7 +207,8 @@ public class GameRecord {
 	}
 
 	/**
-	 * @throws EmptyMoveStackException
+	 * Method that modifies stacks so that last played players move will be undone.
+	 * @throws EmptyMoveStackException Exception thrown when undoStack is empty.
 	 */
 	public void undoLastPlayersMove() throws EmptyMoveStackException
 	{
@@ -180,7 +234,8 @@ public class GameRecord {
 	}
 
 	/**
-	 * @throws EmptyMoveStackException
+	 * Method that modifies stacks so that lastly undone move will be redoed.
+	 * @throws EmptyMoveStackException Exception thrown when redoStack is empty.
 	 */
 	public void redoLastPlayersMove() throws EmptyMoveStackException
 	{
@@ -196,7 +251,9 @@ public class GameRecord {
 	}
 	
 	/**
-	 * @return Move Number of lastly pushed move to redoMovetack
+	 * Method returns number of lastly pushed move to redoMoveStack. Method is used when redo operation is performed and move that is 
+	 * being redoed is further than current move number. In this case game has to be rewinded to the state before this move.
+	 * @return Move Number of lastly pushed move to redoMoveStack.
 	 */
 	public int getLastRedoMoveNumber()
 	{
@@ -207,61 +264,68 @@ public class GameRecord {
 	}
 	
 	/**
-	 * @return True if move is invalid
+	 * @return True if move is invalid.
 	 */
 	public boolean isInvalidMove() {
 		return invalidMove;
 	}
 
 	/**
-	 * @param invalidMove
+	 * Setter.
+	 * @param invalidMove Value indicating whether invalid move was detected.
 	 */
 	public void setInvalidMove(boolean invalidMove) {
 		this.invalidMove = invalidMove;
 	}
 	
 	/**
-	 * @param currentMove
+	 * Setter.
+	 * @param currentMove Number of current move.
 	 */
 	public void setCurrentMove(int currentMove) {
 		this.currentMoveNumber = currentMove;
 	}
 	/**
-	 * @return
+	 * Getter.
+	 * @return Current move number.
 	 */
 	public int getCurrentMoveNumber() {
 		return this.currentMoveNumber;
 	}
 	/**
-	 * @return
+	 * Getter.
+	 * @return Last move number.
 	 */
 	public int getLastMoveNumber() {
 		return lastMoveNumber;
 	}
 
 	/**
-	 * @param lastMoveNumber
+	 * Setter.
+	 * @param lastMoveNumber Number of last move.
 	 */
 	public void setLastMoveNumber(int lastMoveNumber) {
 		this.lastMoveNumber = lastMoveNumber;
 	}
 
 	/**
-	 * @return the notationType
+	 * Getter.
+	 * @return The notationType.
 	 */
 	public NotationType getNotationType() {
 		return notationType;
 	}
 
 	/**
-	 * @param notationType the notationType to set
+	 * Setter.
+	 * @param notationType NotationType to be set.
 	 */
 	public void setNotationType(NotationType notationType) {
 		this.notationType = notationType;
 	}
 	
 	/**
-	 * @return True if undoStack is empty
+	 * @return True if undoMoveStack is empty.
 	 */
 	public boolean isUndoStackEmpty()
 	{
@@ -269,7 +333,7 @@ public class GameRecord {
 	}
 	
 	/**
-	 * @return
+	 * @return True if redoMoveStack is empty.
 	 */
 	public boolean isRedoStackEmpty()
 	{

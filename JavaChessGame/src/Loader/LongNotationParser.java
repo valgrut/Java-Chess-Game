@@ -5,11 +5,8 @@ import GameRecord.MoveData;
 import GameRecord.MoveSituation;
 import GameRecord.Pair;
 
-/*
- * Long notation parser
- * 
- */
 /**
+ * Class implementing IParser is used for parsing Long Notation files.
  * @author xpeska05
  *
  */
@@ -18,7 +15,7 @@ public class LongNotationParser implements IParser
 	private IValidator notationValidator;
 	
 	/**
-	 * 
+	 * Constructor. Creates NotationValidator instance used for validating the long notation line.
 	 */
 	public LongNotationParser()
 	{
@@ -65,8 +62,8 @@ public class LongNotationParser implements IParser
 
 	/**
 	 * Parsing of one sub-move ("[J]h5[x]g7[D][+|#]") and assigning of values to moveObj parameter.
-	 * @param move
-	 * @param moveObj - modified
+	 * @param move White's or black's notation move.
+	 * @param moveObj MoveData object that will be initialized with values parsed from given string move notation.
 	 */
 	private void parseSubMove(String move, MoveData moveObj)
 	{
@@ -118,8 +115,9 @@ public class LongNotationParser implements IParser
 	}
 	
 	/**
-	 * @param line
-	 * @return
+	 * Method takes line of notation and split it by spaces.
+	 * @param line Line of notation that will be split by spaces.
+	 * @return Array of 3 strings, where first is move number, second is white's move and third is black's move.
 	 */
 	private String[] splitString(String line)
 	{
@@ -134,8 +132,9 @@ public class LongNotationParser implements IParser
 	}
 	
 	/**
-	 * @param dotNumber
-	 * @return
+	 * Method reads move number from given notation record.
+	 * @param dotNumber String with move number information.
+	 * @return Parsed number of move.
 	 */
 	private Integer parseMoveNumber(String dotNumber)
 	{

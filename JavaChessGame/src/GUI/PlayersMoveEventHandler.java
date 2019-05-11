@@ -3,13 +3,13 @@ package GUI;
 import javafx.event.EventHandler;
 
 /**
- * @author root
- *
+ * Class represents custom event handler.
+ * @author xpeska05
  */
 public abstract class PlayersMoveEventHandler implements EventHandler<PlayersMoveEvent> {
 
     /**
-     * @param srcMove
+     * @param srcMove Source position of move.
      */
     public void onEvent1(String srcMove) 
     {
@@ -17,7 +17,7 @@ public abstract class PlayersMoveEventHandler implements EventHandler<PlayersMov
     }
 
     /**
-     * @param dstMove
+     * @param dstMove Destination position of move.
      */
     public void onEvent2(String dstMove)
     {

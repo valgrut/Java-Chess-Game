@@ -9,32 +9,52 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 /**
- * @author root
- *
+ * Class represents one particular tile located in GUI chess board.
+ * This class holds piece located in this tile and manages graphical view of this tile.
+ * 
+ * @author xpeska05
  */
 public class Tile extends StackPane 
 {
+	/**
+	 * Indication whether this tile is highlighted or not.
+	 */
 	private boolean isHighlighted = false;
+	
+	/**
+	 * Instance of shadow effect.
+	 */
 	private DropShadow pieceShadow;
+	
+	/**
+	 * Instance of view that holds figure image that is placed to this tile.
+	 */
 	private ImageView view;
+	
+	/**
+	 * Css style of this tile.
+	 */
 	private String css;
 	
 	/**
-	 * @return
+	 * Getter of css style of this tile.
+	 * @return String representing css style of this tile.
 	 */
 	public String getCss() {
 		return css;
 	}
 
 	/**
-	 * @param css
+	 * Sets css styles of this tile.
+	 * @param css Css styles.
 	 */
 	public void setCss(String css) {
 		this.css = css;
 	}
 
 	/**
-	 * @param identifier
+	 * Constructor of this tile. Sets size of tile, image view, shadow and effects.
+	 * @param identifier Id of this tile.
 	 */
 	public Tile(String identifier)
 	{
@@ -87,6 +107,7 @@ public class Tile extends StackPane
 	}
 	
 	/**
+	 * Sets image of piece to this tile. This results in drawing of given image inside of this tile.
 	 * @param piece
 	 */
 	public void setImage(Image piece)
@@ -95,7 +116,7 @@ public class Tile extends StackPane
 	}
 	
 	/**
-	 * 
+	 * Switches the Highlight effect.
 	 */
 	public void switchHighlight()
 	{
@@ -112,7 +133,7 @@ public class Tile extends StackPane
 	}
 	
 	/**
-	 * 
+	 * Toggles on the Highlight effect.
 	 */
 	public void setHighlight()
 	{
@@ -122,7 +143,7 @@ public class Tile extends StackPane
 	}
 	
 	/**
-	 * 
+	 * Toggles off the Highlight effect.
 	 */
 	public void unsetHighlight()
 	{
@@ -131,7 +152,8 @@ public class Tile extends StackPane
 	}
 	
 	/**
-	 * @return
+	 * Method returns true when no image of piece is set to this tile or false when image is set.
+	 * @return True if piece is not set in this tile.
 	 */
 	public boolean isEmpty()
 	{

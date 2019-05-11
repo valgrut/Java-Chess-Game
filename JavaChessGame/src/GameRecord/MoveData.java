@@ -3,8 +3,9 @@ package GameRecord;
 import Figures.PieceColor;
 
 /**
+ * Class that stores complete informations about move.
+ * 
  * @author xpeska05
- *
  */
 public class MoveData 
 {
@@ -17,9 +18,10 @@ public class MoveData
 	private MoveSituation situation = null;
 
 	/**
-	 * 
+	 * Constructor.
 	 */
 	public MoveData() {}
+	
 	/**
 	 * @param number
 	 * @param currentColor

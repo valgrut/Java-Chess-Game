@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
  */
 
 /**
+ * Notation validator class is used for validating given notation lines or moves. For validation are used regular expressions for 
+ * long moves, short moves and for lines.
+ * 
  * @author xpeska05
  *
  */

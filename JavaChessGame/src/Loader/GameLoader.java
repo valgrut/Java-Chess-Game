@@ -6,14 +6,19 @@ import GameRecord.Pair;
 import GameSaver.NotationType;
 
 /**
+ * This class handles loading the game from notation file, parsing it and create Move objects.
+ * 
  * @author xpeska05
- *
  */
 public class GameLoader 
 {
 	/**
-	 * @param gameRecord
-	 * @param notationFile
+	 * Constructor that initializes given gameRecord with move data created from given notationFile.
+	 * <p>
+	 * Method reads line by line using Reader instance and validates these lines, then parses them and creates MoveData.
+	 * MoveData are inserted to game record instance.
+	 * @param gameRecord Instance of game record that will be initialized with move data.
+	 * @param notationFile File with notation records that will be readed and parsed.
 	 */
 	public GameLoader(GameRecord gameRecord, String notationFile)
 	{

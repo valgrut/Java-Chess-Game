@@ -1,14 +1,31 @@
 package GameRecord;
 
 /**
+ * Class translates chess tile positions to coordinates and vice versa.
+ * <p>
+ * <b>Example:</b>
+ * <pre>
+ * 		c3 -> [3, 3]
+ * 		b8 -> [2, 8]
+ * 
+ * 		[4, 2] -> d2
+ * 		[1, 1] -> a1
+ * </pre>
+ * 
  * @author xpeska05
- *
  */
-public class PositionTranslator {
-	
+public class PositionTranslator 
+{	
 	/**
-	 * @param position
-	 * @return
+	 * Method translates chess position to x,y coordinates.
+	 * <p>
+	 * <b>Example:</b>
+	 * <pre>
+	 * 		c3 -> [3, 3]
+	 * 		b8 -> [2, 8]
+	 * </pre>
+	 * @param position Position in chess form (a3, h7, d1, ...).
+	 * @return Pair of x,y coordinates.
 	 */
 	public static PairInt positionToCoords(String position)
 	{
@@ -18,11 +35,17 @@ public class PositionTranslator {
 		return p;
 	}
 
-	
 	/**
-	 * @param col
-	 * @param row
-	 * @return
+	 * Method translates column and row coordinates to chess position.
+	 * <p>
+	 * <b>Example:</b>
+	 * <pre>
+	 * 		[4, 2] -> d2
+	 * 		[1, 1] -> a1
+	 * </pre>
+	 * @param col Column coordinate.
+	 * @param row Row coordinate.
+	 * @return Chess position (c1, f4, ...).
 	 */
 	public static String coordsToPosition(int col, int row)
 	{
@@ -33,14 +56,18 @@ public class PositionTranslator {
 	}
 	
 	/**
-	 * Transforms number column to Character column
-	 * Input: integer in range from 1 to 8
-	 * Output: character representing column
-	 * Example: 8 -> H,   1 -> A,   3 -> C
-	 * @param col
-	 * @return
+	 * Transforms number column to Character column.
+	 * <p>
+	 * <b>Example:</b>
+	 * <pre>
+	 * 		8 -> H
+	 * 		1 -> A
+	 * 	    3 -> C
+	 * </pre>
+	 * @param col Column that will be translated to character representation of column. Col is integer in range 1 to 8.
+	 * @return Char representing the given column.
 	 */
-	public static char columnToChar(int col)
+	private static char columnToChar(int col)
 	{
 		assert(col > 0 && col <= 8);
 		String src1 = Integer.toString(col);
@@ -57,10 +84,18 @@ public class PositionTranslator {
 	}
 	
 	/**
-	 * @param charcol
-	 * @return
+	 * Transforms Character column to number column.
+	 * <p>
+	 * <b>Example:</b>
+	 * <pre>
+	 * 		H -> 8
+	 * 		A -> 1
+	 * 	    C -> 3
+	 * </pre>
+	 * @param charcol Char representing column.
+	 * @return Column that corresponds with given character.
 	 */
-	public static int charToColumn(char charcol)
+	private static int charToColumn(char charcol)
 	{
 		String src1 = Character.toString(charcol);
 		src1 = src1.replace("a", "1");

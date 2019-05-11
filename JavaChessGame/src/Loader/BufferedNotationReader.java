@@ -5,26 +5,30 @@ import java.io.IOException;
 
 
 /**
+ * Class that handles reading from notation file. Contains opened file and is able to read the input file line by line.
+ * These lines can be provided for further processing. This concrete class uses Buffered reader for handling the files and reading.
  * @author xpeska05
  *
  */
 public class BufferedNotationReader implements IReader 
 {
+	/**
+	 * Instance of buffered reader.
+	 */
 	private BufferedReader reader;
+	
+	/**
+	 * Name of the file that is handled by this class.
+	 */
 	private String inputFilePath;
 
 	/**
-	 * @author Jiri Peska
-	 * @param input file path
-	 * @see Constructor, creates instance of BufferedReader
-	 */
-	/**
-	 * @param input
+	 * @param input Name of file that will be opened.
+	 * @see Constructor, creates instance of BufferedReader.
 	 */
 	public BufferedNotationReader(String input)
 	{
 		this.setInput(input);
-		
 		this.openReader();
 	}
 	
@@ -55,7 +59,8 @@ public class BufferedNotationReader implements IReader
 	}
 	
 	/**
-	 * @return
+	 * Method returns input file path.
+	 * @return Input file path.
 	 */
 	public String getInput()
 	{

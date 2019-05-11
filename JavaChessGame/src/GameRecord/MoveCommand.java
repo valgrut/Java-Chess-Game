@@ -11,13 +11,21 @@ import Loader.FigureFactory;
 
 /**
  * @author xpeska05
- *
+ * @see GameRecord.IMoveCommand
  */
 public class MoveCommand implements IMoveCommand {
+	/**
+	 * Informations about this move. MoveData is needed for execute and revert operations.
+	 */
 	private MoveData moveData;
+	
+	/**
+	 * Instance of Piece that has been taken in this concrete move.
+	 */
 	private AbstractPiece takenEnemy;
 
 	/**
+	 * Constructor. Initializes MoveData of this command, that will be used for execute and revert operations.
 	 * @param move
 	 */
 	public MoveCommand(MoveData move)
@@ -111,7 +119,8 @@ public class MoveCommand implements IMoveCommand {
 	 * Funkce slouzi pro otestovani prave zahraneho tahu hracem - je-li tah mozny.
 	 */
 	/**
-	 * @param board
+	 * Method tries to execute move according to MoveData and solves Kings checks and checkmates.
+	 * @param board Board object that is used for check the situation.
 	 * @throws InvalidMoveException
 	 */
 	public void tryToExecute(ChessBoard board) throws InvalidMoveException 

@@ -17,7 +17,6 @@ public class ShortNotationBuilder implements INotationBuilder
 	{
 		
 		String notationMove = "";
-		
 			
 		return notationMove;
 	}
