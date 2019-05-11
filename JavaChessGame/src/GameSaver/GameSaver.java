@@ -10,29 +10,32 @@ import GameRecord.MoveData;
 
 
 /**
+ * Class that is used when current game record is required to be saved to file. GameSaver uses for 
+ * creating the notation lines from MoveDatas appropriate NotationBuilder according to notation type.
  * @author xpeska05
  *
  */
 public class GameSaver 
 {
 	/**
-	 * 
+	 * Instance of gameRecord that contains moves, that will be transformed to notation and saved to file.
 	 */
 	private GameRecord gameRecord;
 	
-
 	/**
-	 * @param gameRecord
+	 * Constructor. 
+	 * @param gameRecord Instance of GameRecord that will be saved to file.
 	 */
 	public GameSaver(GameRecord gameRecord)
 	{
 		this.gameRecord = gameRecord;
 	}
 	
-
 	/**
-	 * @param fileName
-	 * @throws IOException
+	 * Method constructs appropriate notation builder and writer. Then retrieves newest moves from gameRecord and for each move builds 
+	 * notation record that writes to the output file.
+	 * @param fileName Name of output notation file to which new notation will be saved.
+	 * @throws IOException Throws exception when error occurs during writing.
 	 */
 	public void saveGame(String fileName) throws IOException
 	{
