@@ -21,18 +21,30 @@ public class NotationValidator implements IValidator
 	private Pattern linePattern;
 	
 	/**
-	 * Regex for some move validation.
+	 * Regex for short move validation.
 	 */
 	private Pattern movePattern;
+	
+	/**
+	 * Regex pattern for long line validation
+	 */
+	private Pattern lineLongPattern;
+	/**
+	 * Regex for long move validation
+	 */
+	private Pattern longMovePattern;
 	
 	/**
 	 * Constructor of validator. Regex patterns are created here.
 	 */
 	public NotationValidator()
 	{
-		linePattern = Pattern.compile("^\\d+.\\s[a-zA-Z0-8+#]{2,8}\\s[a-zA-Z0-8+#]{2,8}$");
+		lineLongPattern = Pattern.compile("^\\d+.\\s[a-hVDKJSpx0-8+#]{4,8}\\s{0,1}([a-hVDKJSpx0-8+#]{4,8}){0,1}$");
+		linePattern = Pattern.compile("^\\d+.\\s[a-hVDKJSpx0-8+#]{2,6}\\s{0,1}([a-hVDKJSpx0-8+#]{2,6}){0,1}$");
 		movePattern = Pattern.compile("^(([VJSDK]x?[a-h1-8]?[a-h][1-8])|([a-h1-8]?x?[a-h][1-8]))[VJSDK]?[+#]?$");
+		longMovePattern = Pattern.compile("^[VDKJSp]{0,1}[a-h1-8]{1,2}x[a-h1-8]{1,2}[VDKJSp]{0,1}[+#]{0,1}$");
 	}
+
 	
 	/**
 	 * @see Loader.IValidator#validateLine(java.lang.String)
@@ -50,6 +62,24 @@ public class NotationValidator implements IValidator
 	public boolean validateMove(String currentMove) 
 	{
 		return movePattern.matcher(currentMove).matches();  
+	}
+	/**
+	 * This function tests a long  move and return true if valid 
+	 * @param currentMove
+	 * @return
+	 */
+	public boolean longvalidateMove(String currentMove) 
+	{
+		return longMovePattern.matcher(currentMove).matches();  
+	}
+	/**
+	 * This function tests a long  line and return true if valid 
+	 * @param currentMove
+	 * @return
+	 */
+	public boolean longvalidateLine(String currentLine) 
+	{
+		return lineLongPattern.matcher(currentLine).matches();  
 	}
 	
 }

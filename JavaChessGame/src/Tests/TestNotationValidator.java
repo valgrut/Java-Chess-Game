@@ -58,6 +58,9 @@ class TestNotationValidator
 	@Test
 	void testMove15() {assertEquals(Boolean.FALSE, tester.validateMove("Kxf4$"), "Invalid notation");}
 	
+	@Test
+	void testMove16() {assertEquals(Boolean.TRUE, tester.validateMove("Sc6b5+"), "Bishop moves and check.");}
+	
 	/*
 	@Test
 	void testMove16() {assertEquals(Boolean.TRUE, tester.validateMove("e2e4"), "Valid LONG notation");}
