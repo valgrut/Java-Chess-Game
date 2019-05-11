@@ -1,81 +1,124 @@
-<project name="project" default="compile" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
-    <description>
-        Schema application
-        Jiří Peška - xpeska02
-        Kryštof Halmo - xhalmo00
-    </description>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" xmlns:fx="javafx:com.sun.javafx.tools.ant" name="JavaChessGame">
 
-    <property name="src.dir" value="src"/>
-    <property name="lib.dir" location="lib/"/>
-    <property name="doc.dir" value="doc/"/>
-    <property name="build.dir" value="build/"/>
-    <property name="dest.serv.dir" location="dest-server"/>
+    <property name="JAVA_HOME" value="./lib/jre1.8.0_211/"/>
 
-    <!-- COMPILE -->
-    <target name="compile" depends=" doc">
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="./lib/plugins/org.junit.jupiter.api_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.jupiter.engine_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.jupiter.migrationsupport_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.jupiter.params_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.platform.commons_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.platform.engine_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.platform.launcher_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.platform.runner_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.platform.suite.api_1.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.junit.vintage.engine_5.3.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.opentest4j_1.1.1.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/org.apiguardian_1.0.0.v20181005-1442.jar"/>
+        <pathelement location="./lib/plugins/junit.jar"/>
+        <pathelement location="./lib/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+    </path>
+    <path id="JavaFX12.userclasspath">
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
+        <pathelement location="./lib/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
+    </path>
 
-        <echo>${java.home}/../lib/ant-javafx.jar</echo>
-        <!-- COPY FXML FILES TO BUILD DIRECTORY -->
-        <!--copy todir="${bin.dir}/FXML_src">
-            <fileset dir="${src.dir}/FXML_src"/>
-        </copy-->
+    <path id="JavaChessGame.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <path refid="JavaFX12.userclasspath"/>
+    </path>
 
-
-        <!-- COPY IMAGES TO BUILD DIRECTORY -->
-        <copy todir="${build.dir}/img">
-            <fileset dir="${lib.dir}/img"/>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
+                <exclude name="**/*.java"/>
+            </fileset>
         </copy>
-
-        <mkdir dir="dest-server"></mkdir>
-
-        <!-- SETTING ANT PATH -->
-        <path id="antInit">
-            <filelist>
-                <file name="${java.home}/../lib/ant-javafx.jar"/>
-                <file name="${java.home}/lib/jfxrt.jar"/>
-                <file name="${basedir}"/>
-            </filelist>
-        </path>
-
-        <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
-                 uri="javafx:com.sun.javafx.tools.ant"
-                 classpathref="antInit"/>
-
-        <!-- COMPILE -->
-        <javac includeantruntime="false"
-               srcdir="${src.dir}"
-               destdir="${build.dir}"
-               fork="yes"
-               executable="jvc"
-               source="1.8">
-        </javac>
-
-        <!-- CREATING JAR -->
-        <fx:jar destfile="${src.dir}/UserInterfaceMain.jar">
-            <fx:application name="ChessGame"
-                            mainClass="UserInterfaceMain"/>
-            <fileset dir="${src.dir}"/>
-        </fx:jar>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="lib">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
     </target>
-
-     <!--RUN -->
-     <target name="run" depends="compile">
-         <java jar="${dest.dir}/UserInterfaceMain.jar" fork="true" spawn="true"/>
-     </target>
-
-    <!-- GENERATING DOCUMENTATION -->
-    <target name="doc">
-        <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
-    </target>
-
-    <!-- CLEAN -->
     <target name="clean">
-        <delete includeEmptyDirs="true">
-            <fileset dir="${build.dir}" includes="**/*" />
-            <fileset dir="${doc.dir}" includes="**/*"/>
-        </delete>
-        <delete includeEmptyDirs="true">
-            <fileset dir="${dest.dir}" includes="**/*"/>
-        </delete>
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="lib"/>
+            <classpath refid="JavaChessGame.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+
+    <target name="UserInterfaceMain">
+	<java classname="UserInterfaceMain" failonerror="true" fork="yes">
+		<javac fork="yes" executable="./lib/jre1.8.0_211/bin/java" failonerror="true">
+		    <classpath refid="JavaChessGame.classpath"/>
+		</javac>
+	</java>
+    </target>
+
+<!--
+<property name="javac.jre" location="./lib/jre1.8.0_211/bin/java" />
+
+<target name="UserInterfaceMain">
+  <javac executable="${javac.jre}" 
+      fork="yes"
+      includeantruntime="false" 
+      srcdir="${source}">
+    <classpath refid="JavaChessGame.classpath"/>
+  </javac>
+</target>
+-->
+
+    <target name="ChessBoardTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="Tests.ChessBoardTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="JavaChessGame.classpath"/>
+        </junit>
+    </target>
+
+<target name="run">
+  <exec executable="/bin/bash">
+    <arg value="./cmdline.sh"/>
+    <arg value="/tmp"/>
+  </exec>
+</target>
+
+    <target name="Main">
+        <java classname="Main" failonerror="true" fork="yes">
+            <classpath refid="JavaChessGame.classpath"/>
+        </java>
     </target>
 </project>
