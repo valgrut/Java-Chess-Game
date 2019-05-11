@@ -15,11 +15,18 @@ import java.util.regex.Pattern;
  */
 public class NotationValidator implements IValidator
 {
+	/**
+	 * Regex pattern for line validation.
+	 */
 	private Pattern linePattern;
+	
+	/**
+	 * Regex for some move validation.
+	 */
 	private Pattern movePattern;
 	
 	/**
-	 * 
+	 * Constructor of validator. Regex patterns are created here.
 	 */
 	public NotationValidator()
 	{

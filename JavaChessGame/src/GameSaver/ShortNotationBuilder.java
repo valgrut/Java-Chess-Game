@@ -3,6 +3,7 @@ package GameSaver;
 import GameRecord.MoveData;
 
 /**
+ * Class that is used for building the short notation from MoveDatas.
  * @author xpeska05, xhalmo00
  *
  */

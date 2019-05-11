@@ -4,13 +4,14 @@ import GameRecord.MoveData;
 import GameRecord.MoveSituation;
 
 /**
+ * Class that is used for building the long notation from MoveDatas.
  * @author xpeska05
  *
  */
 public class LongNotationBuilder implements INotationBuilder 
 {
 	/**
-	 * 
+	 * Constructor
 	 */
 	public LongNotationBuilder() 
 	{

@@ -211,7 +211,7 @@ public class Board extends GridPane
 	}
 	
 	/**
-	 * Nacte a aplikuje zmeny v zavislosti na stavu this.board
+	 * Loads current state from backend board and applies changes to the frontend according to backend board.
 	 * @param board ChessBoard instance from backend used as model for placing figures.
 	 * @throws Exception Thrown when error occurs during update.
 	 */

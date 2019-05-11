@@ -5,24 +5,43 @@ import java.util.Vector;
 import ChessGame.BoardTile;
 
 /**
+ * Class represents abstract piece from which concrete pieces will inherit methods and properties. Each concrete piece will implement their 
+ * own move rules.
  * @author xpeska05
  *
  */
 public abstract class AbstractPiece implements IMovable 
 {
+	/**
+	 * Position of this piece. Tile where this piece is placed.
+	 */
 	BoardTile position = null;
+	
+	/**
+	 * Notation character of this figure (V, D, K, p, ).
+	 */
 	String notation = null;
+	
+	/**
+	 * Color of this piece.
+	 */
 	PieceColor color = null;
+	
+	/**
+	 * Flag indicates whether this piece has been taken.
+	 */
 	boolean isCaptured = false;
 		
 	/**
-	 * @return
+	 * Method returns vector of tiles where piece can move to according to its moving rules.
+	 * @return Vector of BoardTile objects.
 	 */
 	public abstract Vector<BoardTile> getPossibleMoves();
 	
 	/**
-	 * @param dst
-	 * @return
+	 * Method checks if piece can be moved to given destination tile according to its move rules.
+	 * @param dst Destination tile we want to move piece to.
+	 * @return True if this piece can move to destination tile dst.
 	 */
 	public boolean canMoveTo(BoardTile dst) 
 	{
@@ -35,7 +54,7 @@ public abstract class AbstractPiece implements IMovable
 	}
 	
 	/**
-	 * Function swaps positions of source and destination figures and sets new tiles for them
+	 * Function swaps positions of source and destination figures and sets new tiles for them.
 	 * @see Figures.IMovable#move(ChessGame.BoardTile)
 	 */
 	@Override
@@ -83,8 +102,9 @@ public abstract class AbstractPiece implements IMovable
 	}
 	
 	/**
-	 * @param dst
-	 * @return
+	 * This method moves current position to destination tile without checking the move rules of moved figure.
+	 * @param dst Destination tile where this piece will be moved to.
+	 * @return True if move is successfull.
 	 */
 	public boolean moveHard(BoardTile dst) 
 	{
@@ -122,14 +142,16 @@ public abstract class AbstractPiece implements IMovable
 	}
 	
 	/**
-	 * @return
+	 * Method returns tile position of this figure.
+	 * @return Tile where this figure is placed.
 	 */
 	public BoardTile getPosition() {
 		return position;
 	}
 	
 	/**
-	 * @param position
+	 * Method sets tile position of this figure.
+	 * @param position Tile will be set for this figure.
 	 */
 	public void setPosition(BoardTile position) {
 		this.position = position;
