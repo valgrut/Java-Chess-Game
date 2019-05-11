@@ -138,8 +138,8 @@ public class Tile extends StackPane
 	public void setHighlight()
 	{
 		isHighlighted = true;
-		//setEffect(glowEffect);
-		setStyle("-fx-background-color: green;");
+		//setEffect(new Bloom());
+		setStyle("-fx-background-color: orange;");
 	}
 	
 	/**
@@ -148,6 +148,7 @@ public class Tile extends StackPane
 	public void unsetHighlight()
 	{
 		isHighlighted = false;
+		//setEffect(null);
 		setStyle(this.css);
 	}
 	

@@ -581,10 +581,6 @@ public class UserInterfaceMain extends Application
     	try
     	{
     		record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).setStyle("-fx-background-color: yellow;");
-        	
-    		//String lastMoveNotation = record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).getText();
-    		//MoveData lastMoveData = new MoveData();
-    		//parser.parseSubMove(parser.splitString(lastMoveNotation)[1], lastMoveData);
     	}
     	catch(java.lang.ArrayIndexOutOfBoundsException e)
     	{
@@ -609,8 +605,12 @@ public class UserInterfaceMain extends Application
     		String lastMoveNotation = record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).getText();
     		MoveData lastMoveData = new MoveData();
     		parser.parseSubMove(parser.splitString(lastMoveNotation)[1], lastMoveData);
-    		PairInt coords = PositionTranslator.positionToCoords(lastMoveData.getDestinationPosition());
-    		guiboard.getTileOn(coords.getFirst(), coords.getSecond()).setHighlight();
+    		
+    		PairInt destinationCoords = PositionTranslator.positionToCoords(lastMoveData.getDestinationPosition());
+    		guiboard.getTileOn(destinationCoords.getFirst(), destinationCoords.getSecond()).setHighlight();
+    		
+    		PairInt sourceCoords = PositionTranslator.positionToCoords(lastMoveData.getSourcePosition());
+    		guiboard.getTileOn(sourceCoords.getFirst(), sourceCoords.getSecond()).setHighlight();
     	}
     	catch(java.lang.ArrayIndexOutOfBoundsException e)
     	{

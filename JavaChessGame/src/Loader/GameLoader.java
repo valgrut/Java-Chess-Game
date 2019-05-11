@@ -36,15 +36,26 @@ public class GameLoader
 		{
 			System.out.println(fullMoveLine);
 			
-			Pair fullMove = parser.parseLine(fullMoveLine);
-			fullMove.getFirst().printThisMove();
-			
-			
-			gameRecord.addMove(new MoveCommand(fullMove.getFirst())); //white
-			if(fullMove.getSecond() != null)
-			{	
-				fullMove.getSecond().printThisMove();
-				gameRecord.addMove(new MoveCommand(fullMove.getSecond())); //black
+			Pair fullMove;
+			try 
+			{
+				fullMove = parser.parseLine(fullMoveLine);
+	
+				fullMove.getFirst().printThisMove();
+				
+				gameRecord.addMove(new MoveCommand(fullMove.getFirst())); //white
+				if(fullMove.getSecond() != null)
+				{	
+					fullMove.getSecond().printThisMove();
+					gameRecord.addMove(new MoveCommand(fullMove.getSecond())); //black
+				}
+			} 
+			catch (InvalidNotationException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Invalid notatioin detected, reading terminated.");
+				break;
 			}
 		}
 	}

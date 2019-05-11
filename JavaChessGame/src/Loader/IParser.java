@@ -14,6 +14,7 @@ public interface IParser
 	 * the white's move data and black's move data.
 	 * @param line Line of notation from file.
 	 * @return Pair of white's move data and black's move data.
+	 * @throws InvalidNotationException 
 	 */
-	Pair parseLine(String line);
+	Pair parseLine(String line) throws InvalidNotationException;
 }

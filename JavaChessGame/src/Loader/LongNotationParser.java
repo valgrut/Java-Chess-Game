@@ -23,15 +23,16 @@ public class LongNotationParser implements IParser
 	}
 	
 	/**
+	 * @throws InvalidNotationException Exception thrown when invalid move detected in notation.
 	 * @see Loader.IParser#parseLine(java.lang.String)
 	 */
 	@Override
-	public Pair parseLine(String line)
+	public Pair parseLine(String line) throws InvalidNotationException
 	{
 		if( ! notationValidator.validateLine(line))
 		{
 			System.out.println("Invalid notation found. Parsing terminated.");
-			//TODO throw InvalidNotationException
+			throw new InvalidNotationException("Invalid notation found. Parsing terminated.");
 		}
 		
 		String partials[] = this.splitString(line);
