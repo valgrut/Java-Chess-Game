@@ -2,6 +2,8 @@
 import java.io.File;
 import java.util.Vector;
 
+import com.sun.xml.internal.fastinfoset.Notation;
+
 import ChessGame.ChessBoard;
 import ChessGame.GameManager;
 import GUI.Board;
@@ -72,36 +74,7 @@ public class UserInterfaceMain extends Application
     public void start(Stage primaryStage) 
     {
     	VBox layout = new VBox();
-    	HBox currentGameLayout = new HBox();
-    	
-    	/*
-    	 * Loading the game from notation
-    	 */
-    	/*
-        final FileChooser fileChooserLoad = new FileChooser();
-		File filename = fileChooserLoad.showOpenDialog(primaryStage);
-        if (filename != null) 
-        {
-            //gm.getActiveGame().saveGame(filename.getAbsolutePath());
-        	try
-        	{
-        		gm.loadGame(filename.getAbsolutePath());
-        	}
-        	catch(SecurityException e)
-        	{
-            	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
-        		gm.createNewGame();
-        	}
-        }
-        else
-        {
-        	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
-        	gm.createNewGame();
-        }
-        */
-    	
-    	//gm.loadGame(filename.getAbsolutePath());
-    	//gm.createNewGame();   	
+    	HBox currentGameLayout = new HBox();	
     	
     	Board guiBoard = new Board();
     	
@@ -110,7 +83,7 @@ public class UserInterfaceMain extends Application
     	 */
     	ListView<Label> moveRecord = new ListView<Label>();
     	moveRecord.setPrefWidth(200);
-    	moveRecord.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() 
+    	moveRecord.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
 		{
             public void handle(MouseEvent e) 
 			{
@@ -137,11 +110,13 @@ public class UserInterfaceMain extends Application
             	}
 			}
 		});
+    	
     	ObservableList<Label> items = FXCollections.observableArrayList();
     	moveRecord.setItems(items);
     	
     	if(gm.getOpenedGameCount() != 0)
-    	{
+    	{	
+    		System.out.println("----> Number of Opened game: zero");
 	    	updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 	    	moveRecord.setFocusTraversable(false);
     	}
@@ -154,7 +129,7 @@ public class UserInterfaceMain extends Application
         Tab newGameTab = new Tab("+");
         newGameTab.setContent(new Label("This is Tab: +"));
         newGameTab.setOnSelectionChanged(new EventHandler<Event>()
-        { 
+        {
             public void handle(Event e)
             {
             	// if clicked on '+' tab
@@ -165,29 +140,37 @@ public class UserInterfaceMain extends Application
             		File filename = fileChooserLoad.showOpenDialog(primaryStage);
                     if (filename != null) 
                     {
-                        //gm.getActiveGame().saveGame(filename.getAbsolutePath());
+                    	System.out.println("-------> Loading and Creating game from notation");
                     	try
                     	{
                     		gm.loadGame(filename.getAbsolutePath());
                     	}
                     	catch(SecurityException ex)
                     	{
-                        	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+                        	System.out.println("SecException: Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
                     		gm.createNewGame();
                     	}
                     }
                     else
                     {
-                    	System.out.println("Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
+                    	System.out.println("-----> filename == null: Nebyl vybran nazev souboru takze hra z notace nebyla nactena.");
                     	gm.createNewGame();
+                    	System.out.println("-------> Active game index: " + gm.getActiveGameIndex() + " | opened game count: " + gm.getOpenedGameCount());
                     }
                     
-                	
                     // create Tab 
-                    //Tab newTab = new Tab("Hra_" + (int)(tabCounter + 1)); 
-                    Tab newTab = new Tab(filename.getName()); 
+                    String notationName = null;
+                    if(filename == null)
+                    {
+                    	notationName = "Hra_" + (int)(tabCounter + 1);
+                    }
+                    else
+                    {
+                    	notationName = filename.getName();
+                    }
+                    
+                    Tab newTab = new Tab(notationName); 
 
-      
                     // create a label       
                     newTab.setContent(new Label("This is Tab: " + (int)(tabCounter + 1)));
                     newTab.setId(String.valueOf(tabCounter + 1));
@@ -206,7 +189,10 @@ public class UserInterfaceMain extends Application
 						updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
 						updateHighlightCurrentMove(moveRecord);
 					} 
-                	catch (Exception e1) {}
+                	catch (Exception e1) 
+                    {
+                		System.out.println("-------> Exception when update after tab create.");
+                    }
                     
                     newTab.setOnSelectionChanged(new EventHandler<Event>()
                     { 
@@ -256,7 +242,9 @@ public class UserInterfaceMain extends Application
 				try 
 				{
 					guiBoard.update(getActiveGameBoard());
-					updateRecordList(moveRecord, gm.getActiveGame().getCurrentGameRecord());
+					Vector<String> currentGameRecordVector = gm.getActiveGame().getCurrentGameRecord();
+					if( ! currentGameRecordVector.isEmpty())
+						updateRecordList(moveRecord, currentGameRecordVector);
 					updateHighlightCurrentMove(moveRecord);				
 				} 
 				catch (Exception e) 
@@ -587,6 +575,10 @@ public class UserInterfaceMain extends Application
     		record.getItems().get(gm.getActiveGame().getPlayersCurrentMoveNumber()-1).setStyle("-fx-background-color: yellow;");
     	}
     	catch(java.lang.ArrayIndexOutOfBoundsException e)
+    	{
+    		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
+    	}
+    	catch(java.lang.IndexOutOfBoundsException e)
     	{
     		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
     	}

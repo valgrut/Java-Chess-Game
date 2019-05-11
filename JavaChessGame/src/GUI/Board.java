@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 /**
  * This class represents part of the GUI, the ChessBoard.
  * Class is used for drawing pieces according to given board instance 
- * located in (retrieved from) backend.  
+ * located in (retrieved from) backend.
  * @author xpeska05
  */
 public class Board extends GridPane

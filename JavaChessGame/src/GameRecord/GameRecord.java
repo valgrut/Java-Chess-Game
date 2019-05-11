@@ -83,6 +83,9 @@ public class GameRecord
 	 */
 	public GameRecord()
 	{
+		// default notation
+		setNotationType(NotationType.LONG);
+		
 		moves = new ArrayList<MoveCommand>();
 		undoMoveStack = new Stack<MoveCommand>();
 		redoMoveStack = new Stack<MoveCommand>();
