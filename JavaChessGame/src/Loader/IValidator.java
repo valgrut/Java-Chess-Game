@@ -48,4 +48,32 @@ public interface IValidator
 	 * @return Result of validation.
 	 */
 	boolean validateMove(String move);
+	
+	/**
+	 * This method takes notation move and validates it.
+	 * <p>
+	 * <b>Example:</b>
+	 * <pre>
+	 * 	Jc3d5
+	 * 	h2xg3V+
+	 * 	a2a4+ 
+	 * 	Vc2c6
+	 * </pre>
+	 * @param move Move notation to be validated.
+	 * @return Result of validation.
+	 */
+	boolean longvalidateMove(String currentMove);
+
+	/**
+	 * This method takes one line of notation and validates it.
+	 * <p>
+	 * <b>Example:</b>
+	 * <pre>
+	 * 	1. Jc3d5 h2xg3V+
+	 * 	2. a2a4+ Vc2c6
+	 * </pre>
+	 * @param line Line of notation to be validated.
+	 * @return Result of validation.
+	 */
+	boolean longvalidateLine(String currentLine) ;
 }

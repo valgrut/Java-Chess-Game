@@ -63,7 +63,7 @@ import javafx.stage.Stage;
  * TODO stridani cerne a bile !!!
  * TODO oznaceni vybrane figurky
  * TODO klikani pouze na figurky
- * TODO rychlost prehravani menit - pridat nejake omezeni
+ * TODO rychlost prehravani - pridat nejake omezeni
  * ......
  * 
  * TODO >>>>> FOUND BUGS <<<<<<

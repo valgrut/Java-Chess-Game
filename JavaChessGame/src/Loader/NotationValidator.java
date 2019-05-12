@@ -65,8 +65,7 @@ public class NotationValidator implements IValidator
 	}
 	/**
 	 * This function tests a long  move and return true if valid 
-	 * @param currentMove
-	 * @return
+	 * @see Loader.IValidator#longvalidateMove(java.lang.String)
 	 */
 	public boolean longvalidateMove(String currentMove) 
 	{
@@ -74,8 +73,7 @@ public class NotationValidator implements IValidator
 	}
 	/**
 	 * This function tests a long  line and return true if valid 
-	 * @param currentMove
-	 * @return
+	 * @see Loader.IValidator#longvalidateLine(java.lang.String)
 	 */
 	public boolean longvalidateLine(String currentLine) 
 	{

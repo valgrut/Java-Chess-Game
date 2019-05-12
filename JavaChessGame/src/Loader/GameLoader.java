@@ -53,8 +53,8 @@ public class GameLoader
 			catch (InvalidNotationException e) 
 			{
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("Invalid notatioin detected, reading terminated.");
+				//e.printStackTrace();
+				System.out.println(e.getMessage());
 				break;
 			}
 		}

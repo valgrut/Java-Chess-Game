@@ -29,9 +29,8 @@ public class LongNotationParser implements IParser
 	@Override
 	public Pair parseLine(String line) throws InvalidNotationException
 	{
-		if( ! notationValidator.validateLine(line))
+		if( ! notationValidator.longvalidateLine(line))
 		{
-			System.out.println("Invalid notation found. Parsing terminated.");
 			throw new InvalidNotationException("Invalid notation found. Parsing terminated.");
 		}
 		
