@@ -60,6 +60,7 @@ public class LongNotationBuilder implements INotationBuilder
 			// ...
 		}
 		
+		System.out.println(notationMove);
 		return notationMove;
 	}
 

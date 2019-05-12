@@ -2,8 +2,6 @@
 import java.io.File;
 import java.util.Vector;
 
-import com.sun.xml.internal.fastinfoset.Notation;
-
 import ChessGame.ChessBoard;
 import ChessGame.GameManager;
 import GUI.Board;
@@ -57,6 +55,19 @@ import javafx.stage.Stage;
  * TODO check that opened games are saved, otherwise ask for save or throw when clicked on x.
  * TODO pridat k Board cislovani radku a sloupcu a pismenka 1-8 A-H
  * TODO zvyrazneni posledniho tahu, moznych tahu vybrane figurky a zvyrazneni vybrane figurky.
+ * 
+ * ......
+ * TODO nachystat notation file pro check, checkmate, se spatnou notaci od zacatku, od pulky a 
+ * s validni notaci ale s neproveditelnymi tahy.
+ * ......
+ * 
+ * TODO >>>>> FOUND BUGS <<<<<<
+ *  - zase neco spatne s detekci sachmatu nebo sachu pri prehrani nactene notace a proklikani se k tomu
+ *  sachu pomoci next / prev. - ta notace by v tomto pripade mela byt jiz ze souboru napsana v labelu ale 
+ *  nekam ten znak # a + zmizel.
+ *  
+ *  - pokud je v notaci validni tah, ale je neproveditelny figurkou, tak lze notaci porad prehrava.
+ *  Mela by se nastavit jako invalidMoveDetected a nemoct ji provadet dal.
  */
 
 /**
@@ -606,9 +617,11 @@ public class UserInterfaceMain extends Application
     		MoveData lastMoveData = new MoveData();
     		parser.parseSubMove(parser.splitString(lastMoveNotation)[1], lastMoveData);
     		
+    		// highlight destination tile of move.
     		PairInt destinationCoords = PositionTranslator.positionToCoords(lastMoveData.getDestinationPosition());
     		guiboard.getTileOn(destinationCoords.getFirst(), destinationCoords.getSecond()).setHighlight();
     		
+    		// highlight source tile of move.
     		PairInt sourceCoords = PositionTranslator.positionToCoords(lastMoveData.getSourcePosition());
     		guiboard.getTileOn(sourceCoords.getFirst(), sourceCoords.getSecond()).setHighlight();
     	}

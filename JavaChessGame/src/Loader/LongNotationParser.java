@@ -98,17 +98,14 @@ public class LongNotationParser implements IParser
 		dstPosition = Character.toString(move.charAt(index+2));
 		dstPosition += move.charAt(index+3);
 		
-		try 
+		if(move.charAt(move.length()-1) == '+')
 		{
-			if(move.charAt(index+4) == '+' || move.charAt(index+5) == '+' || move.charAt(index+6) == '+')
-			{
-				moveObj.setSituation(MoveSituation.CHECK);
-			}
-			else if(move.charAt(index+4) == '#' || move.charAt(index+5) == '#' || move.charAt(index+6) == '#')
-			{
-				moveObj.setSituation(MoveSituation.CHECKMATE);
-			}
-		} catch(Exception e) {}
+			moveObj.setSituation(MoveSituation.CHECK);
+		}
+		else if(move.charAt(move.length()-1) == '#')
+		{
+			moveObj.setSituation(MoveSituation.CHECKMATE);
+		}
 				
 		moveObj.setFigure(figure);
 		moveObj.setDestinationPosition(dstPosition);
