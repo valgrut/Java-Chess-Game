@@ -4,7 +4,7 @@ import GameRecord.Pair;
 
 /**
  * Interface for parsers of notation files. 
- * @author xpeska05
+ * @author xpeska05, xhalmo00
  *
  */
 public interface IParser 

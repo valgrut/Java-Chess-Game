@@ -120,7 +120,7 @@
 </junit>
 </target>
 
-<!-- Run -->
+<!-- Download libraries -->
 <target name="download">
   <exec executable="/bin/bash">
     <arg value="./lib/get-libs.sh"/>

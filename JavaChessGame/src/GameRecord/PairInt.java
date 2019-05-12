@@ -28,7 +28,11 @@ public class Pair<F, S> {
 }
 */
 
-
+/**
+ * Object that can hold two values. It is used for returning of two values.
+ * @author xpeska05, xhalmo00
+ *
+ */
 public class PairInt {
 	private int firstObject;
 	private int secondObject;
