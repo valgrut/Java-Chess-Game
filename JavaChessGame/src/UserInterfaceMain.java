@@ -17,6 +17,7 @@ import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
@@ -54,20 +55,23 @@ import javafx.stage.Stage;
 /*
  * TODO check that opened games are saved, otherwise ask for save or throw when clicked on x.
  * TODO pridat k Board cislovani radku a sloupcu a pismenka 1-8 A-H
- * TODO zvyrazneni posledniho tahu, moznych tahu vybrane figurky a zvyrazneni vybrane figurky.
+ * TODO zvyrazneni moznych tahu vybrane figurky a zvyrazneni vybrane figurky.
  * 
  * ......
  * TODO nachystat notation file pro check, checkmate, se spatnou notaci od zacatku, od pulky a 
  * s validni notaci ale s neproveditelnymi tahy.
+ * TODO stridani cerne a bile !!!
+ * TODO oznaceni vybrane figurky
+ * TODO klikani pouze na figurky
+ * TODO rychlost prehravani menit - pridat nejake omezeni
  * ......
  * 
  * TODO >>>>> FOUND BUGS <<<<<<
- *  - zase neco spatne s detekci sachmatu nebo sachu pri prehrani nactene notace a proklikani se k tomu
- *  sachu pomoci next / prev. - ta notace by v tomto pripade mela byt jiz ze souboru napsana v labelu ale 
- *  nekam ten znak # a + zmizel.
- *  
  *  - pokud je v notaci validni tah, ale je neproveditelny figurkou, tak lze notaci porad prehrava.
  *  Mela by se nastavit jako invalidMoveDetected a nemoct ji provadet dal.
+ *
+ *	- notation validator detekoval nejaky move ktery by mel byt ok jako invalidni, proc?
+ *		NotCheckBytWhy file.
  */
 
 /**
@@ -145,7 +149,7 @@ public class UserInterfaceMain extends Application
     	TabPane tabpane = new TabPane();
 	        
         Tab newGameTab = new Tab("+");
-        newGameTab.setContent(new Label("This is Tab: +"));
+        //newGameTab.setContent(new Label("This is Tab: +"));
         newGameTab.setOnSelectionChanged(new EventHandler<Event>()
         {
             public void handle(Event e)
@@ -189,7 +193,7 @@ public class UserInterfaceMain extends Application
                     Tab newTab = new Tab(notationName); 
 
                     // create a label       
-                    newTab.setContent(new Label("This is Tab: " + (int)(tabCounter + 1)));
+                    //newTab.setContent(new Label("This is Tab: " + (int)(tabCounter + 1)));
                     newTab.setId(String.valueOf(tabCounter + 1));
 
                     tabCounter++; 
@@ -335,12 +339,10 @@ public class UserInterfaceMain extends Application
     	 * Auto Play forward
     	 */
     	TextField speedAnimationField = new TextField();
-    	speedAnimationField.setPrefWidth(10);
+    	speedAnimationField.setPrefWidth(50);
     	speedAnimationField.setAccessibleText("0.5");
-		
-    	// TODO Pozn.: pokud to nevymyslim pres TextBox, tak tam pridat dve tlacitka, jedno +, jedno -, ktere budou 
-    	// modifikovat rychlost animace.
-    	
+    	speedAnimationField.setText("0.5");
+
     	double playSpeed = Double.valueOf(speedAnimationField.getAccessibleText());
     	Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(playSpeed), e -> {
     				nextButton.fire();
@@ -350,8 +352,14 @@ public class UserInterfaceMain extends Application
     	timeline.setCycleCount(Timeline.INDEFINITE);
     	timeline.setAutoReverse(true);
 
+    	speedAnimationField.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            	speedAnimationField.setText(newValue);
+            	timeline.setRate(Double.valueOf(speedAnimationField.getText()));
+        });
+    	
+    	
     	Button playAutomaticGameButton = new Button("Play");
-		playAutomaticGameButton.setBackground(new Background(new BackgroundFill(Color.ORANGERED, null, null)));
+		playAutomaticGameButton.setBackground(new Background(new BackgroundFill(Color.CORAL, null, null)));
 		Runnable autoPlayRunnable = ()-> playAutomaticGameButton.fire();
 		playAutomaticGameButton.setOnAction(e -> {
 			if(timeline.getStatus() == Status.RUNNING)
@@ -595,11 +603,11 @@ public class UserInterfaceMain extends Application
     	}
     	catch(java.lang.ArrayIndexOutOfBoundsException e)
     	{
-    		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
+    		System.out.println("No move selected, nothing to highlight.");
     	}
     	catch(java.lang.IndexOutOfBoundsException e)
     	{
-    		System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
+    		//System.out.println("updateHighlightCurrentMove(): Out of bound: -1 index");
     	}    	
     }
     
