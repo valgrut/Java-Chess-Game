@@ -3,14 +3,24 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" xmlns:fx="javafx:com.sun.javafx.tools.ant" name="JavaChessGame">
-
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" xmlns:fx="javafx:com.sun.javafx.tools.ant" name="JavaChessGame">
+    <description>
+        Chess application
+        Jiri Peska    - xpeska05
+        Krystof Halmo - xhalmo00
+    </description>
     <property name="JAVA_HOME" value="./lib/jre1.8.0_211/"/>
+    <property name="java.home" value="./lib/jre1.8.0_211/"/>
 
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
+
+	<property name="source.dir" value="src/"/>
+ 	<property name="doc.dir" value="doc/"/>
+	
     <path id="JUnit 5.libraryclasspath">
         <pathelement location="./lib/plugins/org.junit.jupiter.api_5.3.1.v20181005-1442.jar"/>
         <pathelement location="./lib/plugins/org.junit.jupiter.engine_5.3.1.v20181005-1442.jar"/>
@@ -61,6 +71,7 @@
             </fileset>
         </copy>
     </target>
+
     <target name="clean">
         <delete dir="bin"/>
     </target>
@@ -99,21 +110,44 @@
 </target>
 -->
 
-    <target name="ChessBoardTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="Tests.ChessBoardTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="JavaChessGame.classpath"/>
-        </junit>
-    </target>
+<target name="ChessBoardTest">
+<mkdir dir="${junit.output.dir}"/>
+<junit fork="yes" printsummary="withOutAndErr">
+    <formatter type="xml"/>
+    <test name="Tests.ChessBoardTest" todir="${junit.output.dir}"/>
+    <jvmarg line="-ea"/>
+    <classpath refid="JavaChessGame.classpath"/>
+</junit>
+</target>
 
-<target name="run">
+<!-- Run -->
+<target name="download">
+  <exec executable="/bin/bash">
+    <arg value="./lib/get-libs.sh"/>
+    <arg value="/tmp"/>
+  </exec>
+</target>
+	
+<!-- Run -->
+<target name="run" depends="compile">
   <exec executable="/bin/bash">
     <arg value="./cmdline.sh"/>
     <arg value="/tmp"/>
   </exec>
+</target>
+
+<!-- Generating Javadoc -->
+<target name="doc" depends="init" description="generate documentation">
+<delete dir="${doc.dir}" />
+<mkdir dir="${doc.dir}" />
+    <javadoc destdir="${doc.dir}">
+        <fileset dir="${source.dir}/" />
+    </javadoc>
+</target>
+
+<!-- COMPILE -->
+<target name="compile" depends="clean, download, build">
+	<echo>${JAVA_HOME}/../lib/ant-javafx.jar</echo>
 </target>
 
     <target name="Main">
