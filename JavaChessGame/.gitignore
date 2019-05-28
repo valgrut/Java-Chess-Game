@@ -1,2 +1,4 @@
 /bin/
-/lib/
+/lib/*
+!/lib/get-libs.sh
+/doc/
