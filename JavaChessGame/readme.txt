@@ -4,6 +4,7 @@ Authors:
 	Jiri Peska - xpeska05
 	Krystof Halmo - xhalmo00
 
+
 Java Chess application that is able to replay games by notation record move by move. 
 Game can be traversed back and forward and also player can anytime play own moves, which can be undone lately and redoed again.
 
