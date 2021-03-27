@@ -16,6 +16,8 @@ User can create new game and export played game as new notation file in the form
 2. Graphical User Interface
   Default - Graphical interface of the program offers options to load multiple games and replay loaded games from notation.
 
+**Note**: Design of the program logic and code design can be viewed [in this pdf](1380_001).
+
 <b>Functions</b>
   1. Create new empty game
   2. Load game from notation file
@@ -29,5 +31,3 @@ User can create new game and export played game as new notation file in the form
   9. Redo lastly undone players move
   10. Save current game to the file
 
-  <b>Design</b>
-  Code design [here](1380_001.pdf).
