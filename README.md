@@ -33,8 +33,8 @@ User can create new game and export played game as new notation file in the form
 
 
 <b>Preview</b>
-[GUI and CLI showcase](code_gui_preview.png)
+![GUI and CLI showcase](code_gui_preview.png)
 
-[GUI preview](gui_preview_new.png)
+![GUI preview](gui_preview_new.png)
 
-[GUI preview 2 (older)](gui_preview_old.png)
+![GUI preview 2 (older)](gui_preview_old.png)
