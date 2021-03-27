@@ -1,0 +1,468 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AbstractPiece	JavaChessGame/src/Figures/AbstractPiece.java	/^public abstract class AbstractPiece implements IMovable $/;"	c
+BLACK	JavaChessGame/src/Figures/PieceColor.java	/^	BLACK, $/;"	e	enum:PieceColor	file:
+Bishop	JavaChessGame/src/Figures/Bishop.java	/^	public Bishop() {$/;"	m	class:Bishop
+Bishop	JavaChessGame/src/Figures/Bishop.java	/^public class Bishop extends AbstractPiece implements IMovable $/;"	c
+Board	JavaChessGame/src/GUI/Board.java	/^	public Board()$/;"	m	class:Board
+Board	JavaChessGame/src/GUI/Board.java	/^public class Board extends GridPane$/;"	c
+BoardTile	JavaChessGame/src/ChessGame/BoardTile.java	/^	public BoardTile(int colX, int rowY)$/;"	m	class:BoardTile
+BoardTile	JavaChessGame/src/ChessGame/BoardTile.java	/^public class BoardTile $/;"	c
+BufferedNotationReader	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	public BufferedNotationReader(String input)$/;"	m	class:BufferedNotationReader
+BufferedNotationReader	JavaChessGame/src/Loader/BufferedNotationReader.java	/^public class BufferedNotationReader implements IReader $/;"	c
+CAPTURE	JavaChessGame/src/GameRecord/MoveSituation.java	/^	CHECK, CHECKMATE, CAPTURE, CASTING, PROMOTION, CHANGE$/;"	e	enum:MoveSituation	file:
+CASTING	JavaChessGame/src/GameRecord/MoveSituation.java	/^	CHECK, CHECKMATE, CAPTURE, CASTING, PROMOTION, CHANGE$/;"	e	enum:MoveSituation	file:
+CHANGE	JavaChessGame/src/GameRecord/MoveSituation.java	/^	CHECK, CHECKMATE, CAPTURE, CASTING, PROMOTION, CHANGE$/;"	e	enum:MoveSituation	file:
+CHECK	JavaChessGame/src/GameRecord/MoveSituation.java	/^	CHECK, CHECKMATE, CAPTURE, CASTING, PROMOTION, CHANGE$/;"	e	enum:MoveSituation	file:
+CHECKMATE	JavaChessGame/src/GameRecord/MoveSituation.java	/^	CHECK, CHECKMATE, CAPTURE, CASTING, PROMOTION, CHANGE$/;"	e	enum:MoveSituation	file:
+ChessBoard	JavaChessGame/src/ChessGame/ChessBoard.java	/^	public ChessBoard()$/;"	m	class:ChessBoard
+ChessBoard	JavaChessGame/src/ChessGame/ChessBoard.java	/^public class ChessBoard $/;"	c
+ChessBoardTest	JavaChessGame/src/Tests/ChessBoardTest.java	/^class ChessBoardTest {$/;"	c
+ChessGame	JavaChessGame/src/ChessGame/BoardTile.java	/^package ChessGame;$/;"	p
+ChessGame	JavaChessGame/src/ChessGame/ChessBoard.java	/^package ChessGame;$/;"	p
+ChessGame	JavaChessGame/src/ChessGame/CurrentGame.java	/^package ChessGame;$/;"	p
+ChessGame	JavaChessGame/src/ChessGame/GameManager.java	/^package ChessGame;$/;"	p
+ChessGame	JavaChessGame/src/ChessGame/TerminalUserInterface.java	/^package ChessGame;$/;"	p
+CurrentGame	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public CurrentGame()$/;"	m	class:CurrentGame
+CurrentGame	JavaChessGame/src/ChessGame/CurrentGame.java	/^public class CurrentGame $/;"	c
+D	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+Direction	JavaChessGame/src/ChessGame/BoardTile.java	/^	public static enum Direction implements java.io.Serializable, java.lang.Comparable<BoardTile.Direction>$/;"	g	class:BoardTile
+EmptyMoveStackException	JavaChessGame/src/Exceptions/EmptyMoveStackException.java	/^	public EmptyMoveStackException(String errorMessage) {$/;"	m	class:EmptyMoveStackException
+EmptyMoveStackException	JavaChessGame/src/Exceptions/EmptyMoveStackException.java	/^public class EmptyMoveStackException extends Exception $/;"	c
+EmptyPlace	JavaChessGame/src/Figures/EmptyPlace.java	/^	public EmptyPlace() {$/;"	m	class:EmptyPlace
+EmptyPlace	JavaChessGame/src/Figures/EmptyPlace.java	/^public class EmptyPlace extends AbstractPiece implements IMovable $/;"	c
+Exceptions	JavaChessGame/src/Exceptions/EmptyMoveStackException.java	/^package Exceptions;$/;"	p
+Exceptions	JavaChessGame/src/Exceptions/InvalidMoveException.java	/^package Exceptions;$/;"	p
+FigureFactory	JavaChessGame/src/Loader/FigureFactory.java	/^public class FigureFactory $/;"	c
+Figures	JavaChessGame/src/Figures/AbstractPiece.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/Bishop.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/EmptyPlace.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/IMovable.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/King.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/Knight.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/Pawn.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/PieceColor.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/Queen.java	/^package Figures;$/;"	p
+Figures	JavaChessGame/src/Figures/Rook.java	/^package Figures;$/;"	p
+GUI	JavaChessGame/src/GUI/Board.java	/^package GUI;$/;"	p
+GUI	JavaChessGame/src/GUI/MyButton.java	/^package GUI;$/;"	p
+GUI	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^package GUI;$/;"	p
+GUI	JavaChessGame/src/GUI/PlayersMoveEventHandler.java	/^package GUI;$/;"	p
+GUI	JavaChessGame/src/GUI/Tile.java	/^package GUI;$/;"	p
+GameLoader	JavaChessGame/src/Loader/GameLoader.java	/^	public GameLoader(GameRecord gameRecord, String notationFile)$/;"	m	class:GameLoader
+GameLoader	JavaChessGame/src/Loader/GameLoader.java	/^public class GameLoader $/;"	c
+GameLoop	JavaChessGame/src/ChessGame/TerminalUserInterface.java	/^	public void GameLoop()$/;"	m	class:TerminalUserInterface
+GameManager	JavaChessGame/src/ChessGame/GameManager.java	/^	public GameManager()$/;"	m	class:GameManager
+GameManager	JavaChessGame/src/ChessGame/GameManager.java	/^public class GameManager $/;"	c
+GameRecord	JavaChessGame/src/GameRecord/GameRecord.java	/^	public GameRecord()$/;"	m	class:GameRecord
+GameRecord	JavaChessGame/src/GameRecord/GameRecord.java	/^package GameRecord;$/;"	p
+GameRecord	JavaChessGame/src/GameRecord/GameRecord.java	/^public class GameRecord $/;"	c
+GameRecord	JavaChessGame/src/GameRecord/IMoveCommand.java	/^package GameRecord;$/;"	p
+GameRecord	JavaChessGame/src/GameRecord/MoveCommand.java	/^package GameRecord;$/;"	p
+GameRecord	JavaChessGame/src/GameRecord/MoveData.java	/^package GameRecord;$/;"	p
+GameRecord	JavaChessGame/src/GameRecord/MoveSituation.java	/^package GameRecord;$/;"	p
+GameRecord	JavaChessGame/src/GameRecord/Pair.java	/^package GameRecord;$/;"	p
+GameRecord	JavaChessGame/src/GameRecord/PairInt.java	/^package GameRecord;$/;"	p
+GameRecord	JavaChessGame/src/GameRecord/PositionTranslator.java	/^package GameRecord;$/;"	p
+GameSaver	JavaChessGame/src/GameSaver/GameSaver.java	/^	public GameSaver(GameRecord gameRecord)$/;"	m	class:GameSaver
+GameSaver	JavaChessGame/src/GameSaver/GameSaver.java	/^package GameSaver;$/;"	p
+GameSaver	JavaChessGame/src/GameSaver/GameSaver.java	/^public class GameSaver $/;"	c
+GameSaver	JavaChessGame/src/GameSaver/INotationBuilder.java	/^package GameSaver;$/;"	p
+GameSaver	JavaChessGame/src/GameSaver/LongNotationBuilder.java	/^package GameSaver;$/;"	p
+GameSaver	JavaChessGame/src/GameSaver/NotationBuilderFactory.java	/^package GameSaver;$/;"	p
+GameSaver	JavaChessGame/src/GameSaver/NotationType.java	/^package GameSaver;$/;"	p
+GameSaver	JavaChessGame/src/GameSaver/ShortNotationBuilder.java	/^package GameSaver;$/;"	p
+GetFieldBasicCheckPieceTest	JavaChessGame/src/Tests/ChessBoardTest.java	/^	void GetFieldBasicCheckPieceTest() {$/;"	m	class:ChessBoardTest
+GetFieldInDirection	JavaChessGame/src/Tests/ChessBoardTest.java	/^	void GetFieldInDirection() {$/;"	m	class:ChessBoardTest
+GetFieldInDirectionCoords	JavaChessGame/src/Tests/ChessBoardTest.java	/^	void GetFieldInDirectionCoords() {$/;"	m	class:ChessBoardTest
+GetFieldOutOfRangeNegative	JavaChessGame/src/Tests/ChessBoardTest.java	/^	void GetFieldOutOfRangeNegative() {$/;"	m	class:ChessBoardTest
+GetFieldOutOfRangeNine	JavaChessGame/src/Tests/ChessBoardTest.java	/^	void GetFieldOutOfRangeNine() {$/;"	m	class:ChessBoardTest
+GetFieldOutOfRangeZero	JavaChessGame/src/Tests/ChessBoardTest.java	/^	void GetFieldOutOfRangeZero() {$/;"	m	class:ChessBoardTest
+IMovable	JavaChessGame/src/Figures/IMovable.java	/^public interface IMovable {$/;"	i
+IMoveCommand	JavaChessGame/src/GameRecord/IMoveCommand.java	/^public interface IMoveCommand {$/;"	i
+INotationBuilder	JavaChessGame/src/GameSaver/INotationBuilder.java	/^public interface INotationBuilder $/;"	i
+IParser	JavaChessGame/src/Loader/IParser.java	/^public interface IParser $/;"	i
+IReader	JavaChessGame/src/Loader/IReader.java	/^public interface IReader $/;"	i
+IValidator	JavaChessGame/src/Loader/IValidator.java	/^public interface IValidator $/;"	i
+InvalidMoveException	JavaChessGame/src/Exceptions/InvalidMoveException.java	/^	public InvalidMoveException(String errorMessage) {$/;"	m	class:InvalidMoveException
+InvalidMoveException	JavaChessGame/src/Exceptions/InvalidMoveException.java	/^public class InvalidMoveException extends Exception {$/;"	c
+InvalidNotationException	JavaChessGame/src/Loader/InvalidNotationException.java	/^	public InvalidNotationException(String errorMessage) {$/;"	m	class:InvalidNotationException
+InvalidNotationException	JavaChessGame/src/Loader/InvalidNotationException.java	/^public class InvalidNotationException extends Exception {$/;"	c
+King	JavaChessGame/src/Figures/King.java	/^	public King() {$/;"	m	class:King
+King	JavaChessGame/src/Figures/King.java	/^public class King extends AbstractPiece implements IMovable $/;"	c
+Knight	JavaChessGame/src/Figures/Knight.java	/^	public Knight() $/;"	m	class:Knight
+Knight	JavaChessGame/src/Figures/Knight.java	/^public class Knight extends AbstractPiece implements IMovable {$/;"	c
+L	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+LD	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+LONG	JavaChessGame/src/GameSaver/NotationType.java	/^	LONG, $/;"	e	enum:NotationType	file:
+LU	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+Loader	JavaChessGame/src/Loader/BufferedNotationReader.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/FigureFactory.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/GameLoader.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/IParser.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/IReader.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/IValidator.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/InvalidNotationException.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/LongNotationParser.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/NotationValidator.java	/^package Loader;$/;"	p
+Loader	JavaChessGame/src/Loader/ShortNotationParser.java	/^package Loader;$/;"	p
+LongNotationBuilder	JavaChessGame/src/GameSaver/LongNotationBuilder.java	/^	public LongNotationBuilder() $/;"	m	class:LongNotationBuilder
+LongNotationBuilder	JavaChessGame/src/GameSaver/LongNotationBuilder.java	/^public class LongNotationBuilder implements INotationBuilder $/;"	c
+LongNotationParser	JavaChessGame/src/Loader/LongNotationParser.java	/^	public LongNotationParser()$/;"	m	class:LongNotationParser
+LongNotationParser	JavaChessGame/src/Loader/LongNotationParser.java	/^public class LongNotationParser implements IParser $/;"	c
+Main	JavaChessGame/src/Main.java	/^public class Main $/;"	c
+MoveCommand	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public MoveCommand(MoveData move)$/;"	m	class:MoveCommand
+MoveCommand	JavaChessGame/src/GameRecord/MoveCommand.java	/^public class MoveCommand implements IMoveCommand {$/;"	c
+MoveData	JavaChessGame/src/GameRecord/MoveData.java	/^	public MoveData() {}$/;"	m	class:MoveData
+MoveData	JavaChessGame/src/GameRecord/MoveData.java	/^	public MoveData(int number, PieceColor currentColor) $/;"	m	class:MoveData
+MoveData	JavaChessGame/src/GameRecord/MoveData.java	/^public class MoveData $/;"	c
+MoveSituation	JavaChessGame/src/GameRecord/MoveSituation.java	/^public enum MoveSituation {$/;"	g
+MyButton	JavaChessGame/src/GUI/MyButton.java	/^	public MyButton()$/;"	m	class:MyButton
+MyButton	JavaChessGame/src/GUI/MyButton.java	/^public class MyButton extends Button $/;"	c
+NONE	JavaChessGame/src/Figures/PieceColor.java	/^	WHITE, NONE$/;"	e	enum:PieceColor	file:
+NotationBuilderFactory	JavaChessGame/src/GameSaver/NotationBuilderFactory.java	/^public class NotationBuilderFactory $/;"	c
+NotationType	JavaChessGame/src/GameSaver/NotationType.java	/^public enum NotationType $/;"	g
+NotationValidator	JavaChessGame/src/Loader/NotationValidator.java	/^	public NotationValidator()$/;"	m	class:NotationValidator
+NotationValidator	JavaChessGame/src/Loader/NotationValidator.java	/^public class NotationValidator implements IValidator$/;"	c
+PLAYERS_MOVE	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^    public static final EventType<PlayersMoveEvent> PLAYERS_MOVE = new EventType<>(Event.ANY, "PLAYERS_MOVE");$/;"	f	class:PlayersMoveEvent
+PROMOTION	JavaChessGame/src/GameRecord/MoveSituation.java	/^	CHECK, CHECKMATE, CAPTURE, CASTING, PROMOTION, CHANGE$/;"	e	enum:MoveSituation	file:
+Pair	JavaChessGame/src/GameRecord/Pair.java	/^	public Pair(MoveData first, MoveData second)$/;"	m	class:Pair
+Pair	JavaChessGame/src/GameRecord/Pair.java	/^public class Pair {$/;"	c
+PairInt	JavaChessGame/src/GameRecord/PairInt.java	/^	public PairInt(int i, int j)$/;"	m	class:PairInt
+PairInt	JavaChessGame/src/GameRecord/PairInt.java	/^public class PairInt {$/;"	c
+Pawn	JavaChessGame/src/Figures/Pawn.java	/^	public Pawn() $/;"	m	class:Pawn
+Pawn	JavaChessGame/src/Figures/Pawn.java	/^public class Pawn extends AbstractPiece implements IMovable $/;"	c
+PieceColor	JavaChessGame/src/Figures/PieceColor.java	/^public enum PieceColor $/;"	g
+PlayersMoveEvent	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	public PlayersMoveEvent(EventType<? extends Event> eventType) $/;"	m	class:PlayersMoveEvent
+PlayersMoveEvent	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^public class PlayersMoveEvent extends Event $/;"	c
+PlayersMoveEventHandler	JavaChessGame/src/GUI/PlayersMoveEventHandler.java	/^public abstract class PlayersMoveEventHandler implements EventHandler<PlayersMoveEvent> {$/;"	c
+PositionTranslator	JavaChessGame/src/GameRecord/PositionTranslator.java	/^public class PositionTranslator $/;"	c
+Queen	JavaChessGame/src/Figures/Queen.java	/^	public Queen()$/;"	m	class:Queen
+Queen	JavaChessGame/src/Figures/Queen.java	/^	public Queen(String position)$/;"	m	class:Queen
+Queen	JavaChessGame/src/Figures/Queen.java	/^public class Queen extends AbstractPiece implements IMovable $/;"	c
+R	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+RD	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+RU	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+Rook	JavaChessGame/src/Figures/Rook.java	/^	public Rook()$/;"	m	class:Rook
+Rook	JavaChessGame/src/Figures/Rook.java	/^public class Rook extends AbstractPiece implements IMovable {$/;"	c
+SHORT	JavaChessGame/src/GameSaver/NotationType.java	/^	SHORT$/;"	e	enum:NotationType	file:
+ShortNotationBuilder	JavaChessGame/src/GameSaver/ShortNotationBuilder.java	/^public class ShortNotationBuilder implements INotationBuilder $/;"	c
+ShortNotationParser	JavaChessGame/src/Loader/ShortNotationParser.java	/^	public ShortNotationParser()$/;"	m	class:ShortNotationParser
+ShortNotationParser	JavaChessGame/src/Loader/ShortNotationParser.java	/^public class ShortNotationParser implements IParser $/;"	c
+TerminalUserInterface	JavaChessGame/src/ChessGame/TerminalUserInterface.java	/^	public TerminalUserInterface()$/;"	m	class:TerminalUserInterface
+TerminalUserInterface	JavaChessGame/src/ChessGame/TerminalUserInterface.java	/^public class TerminalUserInterface {$/;"	c
+TestNotationValidator	JavaChessGame/src/Tests/TestNotationValidator.java	/^class TestNotationValidator $/;"	c
+Tests	JavaChessGame/src/Tests/ChessBoardTest.java	/^package Tests;$/;"	p
+Tests	JavaChessGame/src/Tests/TestNotationValidator.java	/^package Tests;$/;"	p
+Tile	JavaChessGame/src/GUI/Tile.java	/^	public Tile(String identifier)$/;"	m	class:Tile
+Tile	JavaChessGame/src/GUI/Tile.java	/^public class Tile extends StackPane $/;"	c
+U	JavaChessGame/src/ChessGame/BoardTile.java	/^		D, L, LD, LU, R, RD, RU, U$/;"	e	enum:BoardTile.Direction	file:
+UserInterfaceMain	JavaChessGame/src/UserInterfaceMain.java	/^public class UserInterfaceMain extends Application $/;"	c
+WHITE	JavaChessGame/src/Figures/PieceColor.java	/^	WHITE, NONE$/;"	e	enum:PieceColor	file:
+activeGameIndex	JavaChessGame/src/ChessGame/GameManager.java	/^	private int activeGameIndex;$/;"	f	class:GameManager	file:
+addMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void addMove(MoveCommand newMove)$/;"	m	class:GameRecord
+addNextField	JavaChessGame/src/ChessGame/BoardTile.java	/^	public void addNextField(Direction dirs, BoardTile field) {$/;"	m	class:BoardTile
+addPlayersMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void addPlayersMove(MoveCommand newMove)$/;"	m	class:GameRecord
+allFigures	JavaChessGame/src/ChessGame/ChessBoard.java	/^	private Vector<AbstractPiece> allFigures;$/;"	f	class:ChessBoard	file:
+arrayColX	JavaChessGame/src/ChessGame/BoardTile.java	/^	private int arrayColX;$/;"	f	class:BoardTile	file:
+arrayRowY	JavaChessGame/src/ChessGame/BoardTile.java	/^	private int arrayRowY;$/;"	f	class:BoardTile	file:
+board	JavaChessGame/src/ChessGame/ChessBoard.java	/^	private BoardTile[][] board;$/;"	f	class:ChessBoard	file:
+board	JavaChessGame/src/ChessGame/CurrentGame.java	/^	private ChessBoard board;$/;"	f	class:CurrentGame	file:
+board	JavaChessGame/src/Tests/ChessBoardTest.java	/^	ChessBoard board = new ChessBoard();$/;"	f	class:ChessBoardTest
+boardTiles	JavaChessGame/src/GUI/Board.java	/^	private Tile[][] boardTiles;$/;"	f	class:Board	file:
+canMoveTo	JavaChessGame/src/Figures/AbstractPiece.java	/^	public boolean canMoveTo(BoardTile dst) $/;"	m	class:AbstractPiece
+canMoveTo	JavaChessGame/src/Figures/EmptyPlace.java	/^	boolean canMoveTo(BoardTile dst) {$/;"	m	class:EmptyPlace
+charToColumn	JavaChessGame/src/GameRecord/PositionTranslator.java	/^	private static int charToColumn(char charcol)$/;"	m	class:PositionTranslator	file:
+check_container_dir	JavaChessGame/lib/jre1.8.0_211/bin/jcontrol	/^check_container_dir() {$/;"	f
+check_parts	JavaChessGame/lib/jre1.8.0_211/bin/jcontrol	/^check_parts() {$/;"	f
+chessColX	JavaChessGame/src/ChessGame/BoardTile.java	/^	private int chessColX;$/;"	f	class:BoardTile	file:
+chessFiguresImageMap	JavaChessGame/src/GUI/Board.java	/^	private Map<String, Image> chessFiguresImageMap;$/;"	f	class:Board	file:
+chessRowY	JavaChessGame/src/ChessGame/BoardTile.java	/^	private int chessRowY;$/;"	f	class:BoardTile	file:
+closeGame	JavaChessGame/src/ChessGame/GameManager.java	/^	public void closeGame()$/;"	m	class:GameManager
+closeReader	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	public void closeReader()$/;"	m	class:BufferedNotationReader
+closeReader	JavaChessGame/src/Loader/IReader.java	/^	void closeReader();$/;"	m	interface:IReader
+color	JavaChessGame/src/Figures/AbstractPiece.java	/^	PieceColor color = null;$/;"	f	class:AbstractPiece
+color	JavaChessGame/src/GameRecord/MoveData.java	/^	private PieceColor color;$/;"	f	class:MoveData	file:
+columnToChar	JavaChessGame/src/GameRecord/PositionTranslator.java	/^	private static char columnToChar(int col)$/;"	m	class:PositionTranslator	file:
+coordsToPosition	JavaChessGame/src/GameRecord/PositionTranslator.java	/^	public static String coordsToPosition(int col, int row)$/;"	m	class:PositionTranslator
+createFigureByNotation	JavaChessGame/src/Loader/FigureFactory.java	/^	public static AbstractPiece createFigureByNotation(Character figureNotation) \/\/, Color color, ChessPosition position)$/;"	m	class:FigureFactory
+createLineOfNotation	JavaChessGame/src/GameSaver/INotationBuilder.java	/^	public String createLineOfNotation(int line, MoveData whiteMove, MoveData blackMove);$/;"	m	interface:INotationBuilder
+createLineOfNotation	JavaChessGame/src/GameSaver/LongNotationBuilder.java	/^	public String createLineOfNotation(int line, MoveData whiteMove, MoveData blackMove) $/;"	m	class:LongNotationBuilder
+createLineOfNotation	JavaChessGame/src/GameSaver/ShortNotationBuilder.java	/^	public String createLineOfNotation(int line, MoveData whiteMove, MoveData blackMove) $/;"	m	class:ShortNotationBuilder
+createNewGame	JavaChessGame/src/ChessGame/GameManager.java	/^	public void createNewGame()$/;"	m	class:GameManager
+createNotationBuilder	JavaChessGame/src/GameSaver/NotationBuilderFactory.java	/^	public static INotationBuilder createNotationBuilder(NotationType notationType)$/;"	m	class:NotationBuilderFactory
+createNotationFromMove	JavaChessGame/src/GameSaver/INotationBuilder.java	/^	public String createNotationFromMove(MoveData move);$/;"	m	interface:INotationBuilder
+createNotationFromMove	JavaChessGame/src/GameSaver/LongNotationBuilder.java	/^	public String createNotationFromMove(MoveData move) $/;"	m	class:LongNotationBuilder
+createNotationFromMove	JavaChessGame/src/GameSaver/ShortNotationBuilder.java	/^	public String createNotationFromMove(MoveData move) $/;"	m	class:ShortNotationBuilder
+css	JavaChessGame/src/GUI/Tile.java	/^	private String css;$/;"	f	class:Tile	file:
+currentMoveNumber	JavaChessGame/src/GameRecord/GameRecord.java	/^	private int currentMoveNumber = 0;$/;"	f	class:GameRecord	file:
+dereference	JavaChessGame/lib/jre1.8.0_211/bin/jcontrol	/^dereference() {$/;"	f
+destinationPosition	JavaChessGame/src/GameRecord/MoveData.java	/^	private String destinationPosition;$/;"	f	class:MoveData	file:
+directions	JavaChessGame/src/Figures/Bishop.java	/^	private static Vector<Direction> directions = new Vector<Direction>(Arrays.asList(Direction.RU, Direction.RD, Direction.LU, Direction.LD));$/;"	f	class:Bishop	file:
+directions	JavaChessGame/src/Figures/Queen.java	/^	private static Vector<Direction> directions = new Vector<Direction>(Arrays.asList(Direction.RU, Direction.RD, Direction.LU, Direction.LD, Direction.U, Direction.R, Direction.D, Direction.L));$/;"	f	class:Queen	file:
+directions	JavaChessGame/src/Figures/Rook.java	/^	private static Vector<Direction> directions = new Vector<Direction>(Arrays.asList(Direction.U, Direction.R, Direction.D, Direction.L));$/;"	f	class:Rook	file:
+dstMove	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	String dstMove;$/;"	f	class:PlayersMoveEvent
+execute	JavaChessGame/src/GameRecord/IMoveCommand.java	/^	boolean execute(ChessBoard board) throws Exception;$/;"	m	interface:IMoveCommand
+execute	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public boolean execute(ChessBoard board) throws Exception $/;"	m	class:MoveCommand
+figure	JavaChessGame/src/ChessGame/BoardTile.java	/^	private AbstractPiece figure;$/;"	f	class:BoardTile	file:
+figure	JavaChessGame/src/GameRecord/MoveData.java	/^	private String figure;$/;"	f	class:MoveData	file:
+firstObject	JavaChessGame/src/GameRecord/Pair.java	/^	private MoveData firstObject;$/;"	f	class:Pair	file:
+firstObject	JavaChessGame/src/GameRecord/PairInt.java	/^	private int firstObject;$/;"	f	class:PairInt	file:
+gameManager	JavaChessGame/src/ChessGame/TerminalUserInterface.java	/^	private GameManager gameManager;$/;"	f	class:TerminalUserInterface	file:
+gameRecord	JavaChessGame/src/ChessGame/CurrentGame.java	/^	private GameRecord gameRecord;$/;"	f	class:CurrentGame	file:
+gameRecord	JavaChessGame/src/GameSaver/GameSaver.java	/^	private GameRecord gameRecord;$/;"	f	class:GameSaver	file:
+getActiveGame	JavaChessGame/src/ChessGame/GameManager.java	/^	public CurrentGame getActiveGame()$/;"	m	class:GameManager
+getActiveGameBoard	JavaChessGame/src/UserInterfaceMain.java	/^    public ChessBoard getActiveGameBoard()$/;"	m	class:UserInterfaceMain
+getActiveGameIndex	JavaChessGame/src/ChessGame/GameManager.java	/^	public int getActiveGameIndex()$/;"	m	class:GameManager
+getAllFigures	JavaChessGame/src/ChessGame/ChessBoard.java	/^	public Vector<AbstractPiece> getAllFigures() $/;"	m	class:ChessBoard
+getArrayColX	JavaChessGame/src/ChessGame/BoardTile.java	/^	public int getArrayColX() {$/;"	m	class:BoardTile
+getArrayRowY	JavaChessGame/src/ChessGame/BoardTile.java	/^	public int getArrayRowY() {$/;"	m	class:BoardTile
+getBoard	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public ChessBoard getBoard()$/;"	m	class:CurrentGame
+getBoardField	JavaChessGame/src/ChessGame/ChessBoard.java	/^	public BoardTile getBoardField(String tile) {$/;"	m	class:ChessBoard
+getBoardField	JavaChessGame/src/ChessGame/ChessBoard.java	/^	public BoardTile getBoardField(int col, int row) {$/;"	m	class:ChessBoard
+getChessColX	JavaChessGame/src/ChessGame/BoardTile.java	/^	public int getChessColX() {$/;"	m	class:BoardTile
+getChessColor	JavaChessGame/src/GameRecord/MoveData.java	/^	public PieceColor getChessColor()$/;"	m	class:MoveData
+getChessRowY	JavaChessGame/src/ChessGame/BoardTile.java	/^	public int getChessRowY() {$/;"	m	class:BoardTile
+getColor	JavaChessGame/src/Figures/AbstractPiece.java	/^	public PieceColor getColor() {$/;"	m	class:AbstractPiece
+getCss	JavaChessGame/src/GUI/Tile.java	/^	public String getCss() {$/;"	m	class:Tile
+getCurrentGameRecord	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public Vector<String> getCurrentGameRecord()$/;"	m	class:CurrentGame
+getCurrentMoveNumber	JavaChessGame/src/GameRecord/GameRecord.java	/^	public int getCurrentMoveNumber() {$/;"	m	class:GameRecord
+getCurrentRecord	JavaChessGame/src/GameRecord/GameRecord.java	/^	public Vector<MoveData> getCurrentRecord()$/;"	m	class:GameRecord
+getDestinationPosition	JavaChessGame/src/GameRecord/MoveData.java	/^	public String getDestinationPosition() {$/;"	m	class:MoveData
+getDstMove	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	public String getDstMove() {return this.dstMove;}$/;"	m	class:PlayersMoveEvent
+getField	JavaChessGame/src/ChessGame/ChessBoard.java	/^	public BoardTile getField(int col, int row) $/;"	m	class:ChessBoard
+getFigure	JavaChessGame/src/ChessGame/BoardTile.java	/^	public AbstractPiece getFigure() {$/;"	m	class:BoardTile
+getFigure	JavaChessGame/src/GameRecord/MoveData.java	/^	public String getFigure() {$/;"	m	class:MoveData
+getFirst	JavaChessGame/src/GameRecord/Pair.java	/^	public MoveData getFirst() {return this.firstObject;}$/;"	m	class:Pair
+getFirst	JavaChessGame/src/GameRecord/PairInt.java	/^	public int getFirst() {return this.firstObject;}$/;"	m	class:PairInt
+getInput	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	public String getInput()$/;"	m	class:BufferedNotationReader
+getLastMoveNumber	JavaChessGame/src/GameRecord/GameRecord.java	/^	public int getLastMoveNumber() {$/;"	m	class:GameRecord
+getLastRedoMoveNumber	JavaChessGame/src/GameRecord/GameRecord.java	/^	public int getLastRedoMoveNumber()$/;"	m	class:GameRecord
+getMoveData	JavaChessGame/src/GameRecord/IMoveCommand.java	/^	MoveData getMoveData();$/;"	m	interface:IMoveCommand
+getMoveData	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public MoveData getMoveData() {$/;"	m	class:MoveCommand
+getMoveNumber	JavaChessGame/src/GameRecord/MoveData.java	/^	public Integer getMoveNumber() {$/;"	m	class:MoveData
+getNextLine	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	public String getNextLine() {$/;"	m	class:BufferedNotationReader
+getNextLine	JavaChessGame/src/Loader/IReader.java	/^	String getNextLine();$/;"	m	interface:IReader
+getNextMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public MoveCommand getNextMove() throws Exception$/;"	m	class:GameRecord
+getNotation	JavaChessGame/src/Figures/AbstractPiece.java	/^	public String getNotation() {$/;"	m	class:AbstractPiece
+getNotationType	JavaChessGame/src/GameRecord/GameRecord.java	/^	public NotationType getNotationType() {$/;"	m	class:GameRecord
+getOpenedGameCount	JavaChessGame/src/ChessGame/GameManager.java	/^	public int getOpenedGameCount()$/;"	m	class:GameManager
+getPlayersCurrentMoveNumber	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public int getPlayersCurrentMoveNumber()$/;"	m	class:CurrentGame
+getPlayersLastMoveNumber	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public int getPlayersLastMoveNumber()$/;"	m	class:CurrentGame
+getPosition	JavaChessGame/src/Figures/AbstractPiece.java	/^	public BoardTile getPosition() {$/;"	m	class:AbstractPiece
+getPossibleMoves	JavaChessGame/src/Figures/AbstractPiece.java	/^	public abstract Vector<BoardTile> getPossibleMoves();$/;"	m	class:AbstractPiece
+getPossibleMoves	JavaChessGame/src/Figures/Bishop.java	/^	public Vector<BoardTile> getPossibleMoves() $/;"	m	class:Bishop
+getPossibleMoves	JavaChessGame/src/Figures/EmptyPlace.java	/^	Vector<BoardTile> getPossibleMoves() {$/;"	m	class:EmptyPlace
+getPossibleMoves	JavaChessGame/src/Figures/King.java	/^	public Vector<BoardTile> getPossibleMoves() {$/;"	m	class:King
+getPossibleMoves	JavaChessGame/src/Figures/Knight.java	/^	public Vector<BoardTile> getPossibleMoves() $/;"	m	class:Knight
+getPossibleMoves	JavaChessGame/src/Figures/Pawn.java	/^	public Vector<BoardTile> getPossibleMoves() $/;"	m	class:Pawn
+getPossibleMoves	JavaChessGame/src/Figures/Queen.java	/^	public Vector<BoardTile> getPossibleMoves() {$/;"	m	class:Queen
+getPossibleMoves	JavaChessGame/src/Figures/Rook.java	/^	public Vector<BoardTile> getPossibleMoves() $/;"	m	class:Rook
+getPrevMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public MoveCommand getPrevMove() throws Exception$/;"	m	class:GameRecord
+getSecond	JavaChessGame/src/GameRecord/Pair.java	/^	public MoveData getSecond() {return this.secondObject;}$/;"	m	class:Pair
+getSecond	JavaChessGame/src/GameRecord/PairInt.java	/^	public int getSecond() {return this.secondObject;}$/;"	m	class:PairInt
+getSituation	JavaChessGame/src/GameRecord/MoveData.java	/^	public MoveSituation getSituation() {$/;"	m	class:MoveData
+getSize	JavaChessGame/src/ChessGame/ChessBoard.java	/^	public int getSize() $/;"	m	class:ChessBoard
+getSourcePosition	JavaChessGame/src/GameRecord/MoveData.java	/^	public String getSourcePosition() {$/;"	m	class:MoveData
+getSrcMove	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	public String getSrcMove() {return this.srcMove;}$/;"	m	class:PlayersMoveEvent
+getTakenEnemy	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public AbstractPiece getTakenEnemy() {$/;"	m	class:MoveCommand
+getTakenEnemy	JavaChessGame/src/GameRecord/MoveData.java	/^	public String getTakenEnemy() {$/;"	m	class:MoveData
+getTileOn	JavaChessGame/src/GUI/Board.java	/^	public Tile getTileOn(int col, int row)$/;"	m	class:Board
+gm	JavaChessGame/src/UserInterfaceMain.java	/^    GameManager gm = new GameManager();$/;"	f	class:UserInterfaceMain
+gotoMove	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void gotoMove(int numberOfMove)$/;"	m	class:CurrentGame
+handle	JavaChessGame/src/GUI/PlayersMoveEventHandler.java	/^    public void handle(PlayersMoveEvent event) {$/;"	m	class:PlayersMoveEventHandler
+height	JavaChessGame/src/ChessGame/ChessBoard.java	/^	private int height = 8;$/;"	f	class:ChessBoard	file:
+initialSetup	JavaChessGame/src/ChessGame/ChessBoard.java	/^	private final Character initialSetup[][] = {$/;"	f	class:ChessBoard	file:
+inputFilePath	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	private String inputFilePath;$/;"	f	class:BufferedNotationReader	file:
+invalidMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	private boolean invalidMove = false;$/;"	f	class:GameRecord	file:
+invokeHandler	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	public void invokeHandler(PlayersMoveEventHandler handler) {$/;"	m	class:PlayersMoveEvent
+isCaptured	JavaChessGame/src/Figures/AbstractPiece.java	/^	boolean isCaptured = false;$/;"	f	class:AbstractPiece
+isCaptured	JavaChessGame/src/Figures/AbstractPiece.java	/^	public boolean isCaptured() {$/;"	m	class:AbstractPiece
+isEmpty	JavaChessGame/src/ChessGame/BoardTile.java	/^	public boolean isEmpty()$/;"	m	class:BoardTile
+isEmpty	JavaChessGame/src/GUI/Tile.java	/^	public boolean isEmpty()$/;"	m	class:Tile
+isHighlighted	JavaChessGame/src/GUI/Tile.java	/^	private boolean isHighlighted = false;$/;"	f	class:Tile	file:
+isInvalidMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public boolean isInvalidMove() {$/;"	m	class:GameRecord
+isMovable	JavaChessGame/src/Figures/Bishop.java	/^	public boolean isMovable() {$/;"	m	class:Bishop
+isMovable	JavaChessGame/src/Figures/EmptyPlace.java	/^	public boolean isMovable() {$/;"	m	class:EmptyPlace
+isMovable	JavaChessGame/src/Figures/IMovable.java	/^	boolean isMovable = true;$/;"	f	interface:IMovable
+isMovable	JavaChessGame/src/Figures/IMovable.java	/^	boolean isMovable();$/;"	m	interface:IMovable
+isMovable	JavaChessGame/src/Figures/King.java	/^	public boolean isMovable() {$/;"	m	class:King
+isMovable	JavaChessGame/src/Figures/Knight.java	/^	public boolean isMovable() {$/;"	m	class:Knight
+isMovable	JavaChessGame/src/Figures/Pawn.java	/^	public boolean isMovable() $/;"	m	class:Pawn
+isMovable	JavaChessGame/src/Figures/Queen.java	/^	public boolean isMovable() {$/;"	m	class:Queen
+isMovable	JavaChessGame/src/Figures/Rook.java	/^	public boolean isMovable() {$/;"	m	class:Rook
+isRedoStackEmpty	JavaChessGame/src/GameRecord/GameRecord.java	/^	public boolean isRedoStackEmpty()$/;"	m	class:GameRecord
+isUndoStackEmpty	JavaChessGame/src/GameRecord/GameRecord.java	/^	public boolean isUndoStackEmpty()$/;"	m	class:GameRecord
+lastMoveNumber	JavaChessGame/src/GameRecord/GameRecord.java	/^	private int lastMoveNumber = 0;$/;"	f	class:GameRecord	file:
+lastPlayersMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	MoveCommand lastPlayersMove = null;$/;"	f	class:GameRecord
+launch_jcp	JavaChessGame/lib/jre1.8.0_211/bin/jcontrol	/^launch_jcp() {$/;"	f
+lineLongPattern	JavaChessGame/src/Loader/NotationValidator.java	/^	private Pattern lineLongPattern;$/;"	f	class:NotationValidator	file:
+linePattern	JavaChessGame/src/Loader/NotationValidator.java	/^	private Pattern linePattern;$/;"	f	class:NotationValidator	file:
+link_logic	JavaChessGame/lib/jre1.8.0_211/bin/jcontrol	/^link_logic() {$/;"	f
+loadGame	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void loadGame(String notationFile) $/;"	m	class:CurrentGame
+loadGame	JavaChessGame/src/ChessGame/GameManager.java	/^	public void loadGame(String notationFile)$/;"	m	class:GameManager
+loadPieceImages	JavaChessGame/src/GUI/Board.java	/^	private void loadPieceImages()$/;"	m	class:Board	file:
+longMovePattern	JavaChessGame/src/Loader/NotationValidator.java	/^	private Pattern longMovePattern;$/;"	f	class:NotationValidator	file:
+longvalidateLine	JavaChessGame/src/Loader/IValidator.java	/^	boolean longvalidateLine(String currentLine) ;$/;"	m	interface:IValidator
+longvalidateLine	JavaChessGame/src/Loader/NotationValidator.java	/^	public boolean longvalidateLine(String currentLine) $/;"	m	class:NotationValidator
+longvalidateMove	JavaChessGame/src/Loader/IValidator.java	/^	boolean longvalidateMove(String currentMove);$/;"	m	interface:IValidator
+longvalidateMove	JavaChessGame/src/Loader/NotationValidator.java	/^	public boolean longvalidateMove(String currentMove) $/;"	m	class:NotationValidator
+main	JavaChessGame/src/Main.java	/^	public static void main(String[] args) $/;"	m	class:Main
+main	JavaChessGame/src/UserInterfaceMain.java	/^    public static void main(String[] args) $/;"	m	class:UserInterfaceMain
+manage_container	JavaChessGame/lib/jre1.8.0_211/bin/jcontrol	/^manage_container() {$/;"	f
+move	JavaChessGame/src/Figures/AbstractPiece.java	/^	public boolean move(BoardTile dst) $/;"	m	class:AbstractPiece
+move	JavaChessGame/src/Figures/EmptyPlace.java	/^	public boolean move(BoardTile Position) {$/;"	m	class:EmptyPlace
+move	JavaChessGame/src/Figures/IMovable.java	/^	boolean move(BoardTile position);$/;"	m	interface:IMovable
+moveData	JavaChessGame/src/GameRecord/MoveCommand.java	/^	private MoveData moveData;$/;"	f	class:MoveCommand	file:
+moveHard	JavaChessGame/src/Figures/AbstractPiece.java	/^	public boolean moveHard(BoardTile dst) $/;"	m	class:AbstractPiece
+moveNumber	JavaChessGame/src/GameRecord/MoveData.java	/^	private Integer moveNumber;$/;"	f	class:MoveData	file:
+movePattern	JavaChessGame/src/Loader/NotationValidator.java	/^	private Pattern movePattern;$/;"	f	class:NotationValidator	file:
+moves	JavaChessGame/src/GameRecord/GameRecord.java	/^	ArrayList<MoveCommand> moves;$/;"	f	class:GameRecord
+nextField	JavaChessGame/src/ChessGame/BoardTile.java	/^	public BoardTile nextField(Direction ld) {$/;"	m	class:BoardTile
+nextMoveStack	JavaChessGame/src/GameRecord/GameRecord.java	/^	Stack<MoveCommand> nextMoveStack;$/;"	f	class:GameRecord
+notation	JavaChessGame/src/Figures/AbstractPiece.java	/^	String notation = null;$/;"	f	class:AbstractPiece
+notationType	JavaChessGame/src/GameRecord/GameRecord.java	/^	private NotationType notationType;$/;"	f	class:GameRecord	file:
+notationValidator	JavaChessGame/src/Loader/LongNotationParser.java	/^	private IValidator notationValidator;$/;"	f	class:LongNotationParser	file:
+notationValidator	JavaChessGame/src/Loader/ShortNotationParser.java	/^	private IValidator notationValidator;$/;"	f	class:ShortNotationParser	file:
+onEvent1	JavaChessGame/src/GUI/PlayersMoveEventHandler.java	/^    public void onEvent1(String srcMove) $/;"	m	class:PlayersMoveEventHandler
+onEvent2	JavaChessGame/src/GUI/PlayersMoveEventHandler.java	/^    public void onEvent2(String dstMove)$/;"	m	class:PlayersMoveEventHandler
+openReader	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	public void openReader()$/;"	m	class:BufferedNotationReader
+openReader	JavaChessGame/src/Loader/IReader.java	/^	void openReader();$/;"	m	interface:IReader
+openedGames	JavaChessGame/src/ChessGame/GameManager.java	/^	private Vector<CurrentGame> openedGames;$/;"	f	class:GameManager	file:
+parseLine	JavaChessGame/src/Loader/IParser.java	/^	Pair parseLine(String line) throws InvalidNotationException;$/;"	m	interface:IParser
+parseLine	JavaChessGame/src/Loader/LongNotationParser.java	/^	public Pair parseLine(String line) throws InvalidNotationException$/;"	m	class:LongNotationParser
+parseLine	JavaChessGame/src/Loader/ShortNotationParser.java	/^	public Pair parseLine(String line)$/;"	m	class:ShortNotationParser
+parseMoveNumber	JavaChessGame/src/Loader/LongNotationParser.java	/^	private Integer parseMoveNumber(String dotNumber)$/;"	m	class:LongNotationParser	file:
+parseMoveNumber	JavaChessGame/src/Loader/ShortNotationParser.java	/^	private Integer parseMoveNumber(String dotNumber)$/;"	m	class:ShortNotationParser	file:
+parseSubMove	JavaChessGame/src/Loader/LongNotationParser.java	/^	public void parseSubMove(String move, MoveData moveObj)$/;"	m	class:LongNotationParser
+parseSubMove	JavaChessGame/src/Loader/ShortNotationParser.java	/^	private void parseSubMove(String move, MoveData moveObj)$/;"	m	class:ShortNotationParser	file:
+parser	JavaChessGame/src/UserInterfaceMain.java	/^    LongNotationParser parser = new LongNotationParser();$/;"	f	class:UserInterfaceMain
+pieceShadow	JavaChessGame/src/GUI/Tile.java	/^	private DropShadow pieceShadow;$/;"	f	class:Tile	file:
+playersMove	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void playersMove(String sourcePosition, String destinationPosition)$/;"	m	class:CurrentGame
+playersMove1	JavaChessGame/src/GUI/Board.java	/^	private String playersMove1 = "";$/;"	f	class:Board	file:
+playersMove2	JavaChessGame/src/GUI/Board.java	/^	private String playersMove2 = "";$/;"	f	class:Board	file:
+position	JavaChessGame/src/Figures/AbstractPiece.java	/^	BoardTile position = null;$/;"	f	class:AbstractPiece
+positionToCoords	JavaChessGame/src/GameRecord/PositionTranslator.java	/^	public static PairInt positionToCoords(String position)$/;"	m	class:PositionTranslator
+previousMoveStack	JavaChessGame/src/GameRecord/GameRecord.java	/^	Stack<MoveCommand> previousMoveStack;$/;"	f	class:GameRecord
+printAll	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	public void printAll() {$/;"	m	class:BufferedNotationReader
+printAll	JavaChessGame/src/Loader/IReader.java	/^	void printAll();$/;"	m	interface:IReader
+printBoard	JavaChessGame/src/ChessGame/ChessBoard.java	/^	public void printBoard()$/;"	m	class:ChessBoard
+printBoard	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void printBoard() $/;"	m	class:CurrentGame
+printGameBoard	JavaChessGame/src/ChessGame/GameManager.java	/^	public void printGameBoard()$/;"	m	class:GameManager
+printGameMenu	JavaChessGame/src/ChessGame/TerminalUserInterface.java	/^	public void printGameMenu()$/;"	m	class:TerminalUserInterface
+printMainMenu	JavaChessGame/src/ChessGame/TerminalUserInterface.java	/^	public void printMainMenu()$/;"	m	class:TerminalUserInterface
+printThisMove	JavaChessGame/src/GameRecord/MoveData.java	/^	public void printThisMove()$/;"	m	class:MoveData
+reader	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	private BufferedReader reader;$/;"	f	class:BufferedNotationReader	file:
+redo	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void redo() $/;"	m	class:CurrentGame
+redoLastPlayersMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void redoLastPlayersMove() throws EmptyMoveStackException$/;"	m	class:GameRecord
+redoMoveStack	JavaChessGame/src/GameRecord/GameRecord.java	/^	Stack<MoveCommand> redoMoveStack;$/;"	f	class:GameRecord
+revert	JavaChessGame/src/GameRecord/IMoveCommand.java	/^	boolean revert(ChessBoard board);$/;"	m	interface:IMoveCommand
+revert	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public boolean revert(ChessBoard board)$/;"	m	class:MoveCommand
+saveGame	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void saveGame(String filename) $/;"	m	class:CurrentGame
+saveGame	JavaChessGame/src/ChessGame/GameManager.java	/^	public void saveGame(String filename)$/;"	m	class:GameManager
+saveGame	JavaChessGame/src/GameSaver/GameSaver.java	/^	public void saveGame(String fileName) throws IOException$/;"	m	class:GameSaver
+secondObject	JavaChessGame/src/GameRecord/Pair.java	/^	private MoveData secondObject;$/;"	f	class:Pair	file:
+secondObject	JavaChessGame/src/GameRecord/PairInt.java	/^	private int secondObject;$/;"	f	class:PairInt	file:
+serialVersionUID	JavaChessGame/src/Exceptions/EmptyMoveStackException.java	/^	private static final long serialVersionUID = 1345052908729478510L;$/;"	f	class:EmptyMoveStackException	file:
+serialVersionUID	JavaChessGame/src/Exceptions/InvalidMoveException.java	/^	private static final long serialVersionUID = -2961462139064943623L;$/;"	f	class:InvalidMoveException	file:
+serialVersionUID	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	private static final long serialVersionUID = 1L;$/;"	f	class:PlayersMoveEvent	file:
+serialVersionUID	JavaChessGame/src/Loader/InvalidNotationException.java	/^	private static final long serialVersionUID = 4162095269966841203L;$/;"	f	class:InvalidNotationException	file:
+setActiveGame	JavaChessGame/src/ChessGame/GameManager.java	/^	public void setActiveGame(int index)$/;"	m	class:GameManager
+setCaptured	JavaChessGame/src/Figures/AbstractPiece.java	/^	public void setCaptured(boolean isCaptured) {$/;"	m	class:AbstractPiece
+setChessColX	JavaChessGame/src/ChessGame/BoardTile.java	/^	public void setChessColX(int chessColX) {$/;"	m	class:BoardTile
+setChessColor	JavaChessGame/src/GameRecord/MoveData.java	/^	public void setChessColor(PieceColor color)$/;"	m	class:MoveData
+setChessRowY	JavaChessGame/src/ChessGame/BoardTile.java	/^	public void setChessRowY(int chessRowY) {$/;"	m	class:BoardTile
+setColor	JavaChessGame/src/Figures/AbstractPiece.java	/^	public void setColor(PieceColor color) {$/;"	m	class:AbstractPiece
+setCss	JavaChessGame/src/GUI/Tile.java	/^	public void setCss(String css) {$/;"	m	class:Tile
+setCurrentMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void setCurrentMove(int currentMove) {$/;"	m	class:GameRecord
+setDestinationPosition	JavaChessGame/src/GameRecord/MoveData.java	/^	public void setDestinationPosition(String destinationPosition) {$/;"	m	class:MoveData
+setDstMove	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	public void setDstMove(String dstmove) {this.dstMove = dstmove;}$/;"	m	class:PlayersMoveEvent
+setFigure	JavaChessGame/src/ChessGame/BoardTile.java	/^	public void setFigure(AbstractPiece figure) {$/;"	m	class:BoardTile
+setFigure	JavaChessGame/src/GameRecord/MoveData.java	/^	public void setFigure(String figure) {$/;"	m	class:MoveData
+setHighlight	JavaChessGame/src/GUI/Tile.java	/^	public void setHighlight()$/;"	m	class:Tile
+setImage	JavaChessGame/src/GUI/Tile.java	/^	public void setImage(Image piece)$/;"	m	class:Tile
+setImageOn	JavaChessGame/src/GUI/Board.java	/^	private void setImageOn(int col, int row, Image piece)$/;"	m	class:Board	file:
+setInput	JavaChessGame/src/Loader/BufferedNotationReader.java	/^	public void setInput(String inputFile) {$/;"	m	class:BufferedNotationReader
+setInput	JavaChessGame/src/Loader/IReader.java	/^	void setInput(String inputFile);$/;"	m	interface:IReader
+setInvalidMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void setInvalidMove(boolean invalidMove) {$/;"	m	class:GameRecord
+setLastMoveNumber	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void setLastMoveNumber(int lastMoveNumber) {$/;"	m	class:GameRecord
+setMoveData	JavaChessGame/src/GameRecord/IMoveCommand.java	/^	void setMoveData(MoveData move);$/;"	m	interface:IMoveCommand
+setMoveData	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public void setMoveData(MoveData move) {$/;"	m	class:MoveCommand
+setMoveNumber	JavaChessGame/src/GameRecord/MoveData.java	/^	public void setMoveNumber(Integer moveNumber) {$/;"	m	class:MoveData
+setNotation	JavaChessGame/src/Figures/AbstractPiece.java	/^	public void setNotation(String notation) {$/;"	m	class:AbstractPiece
+setNotationType	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void setNotationType(NotationType notationType) {$/;"	m	class:GameRecord
+setPosition	JavaChessGame/src/Figures/AbstractPiece.java	/^	public void setPosition(BoardTile position) {$/;"	m	class:AbstractPiece
+setSituation	JavaChessGame/src/GameRecord/MoveData.java	/^	public void setSituation(MoveSituation situation) {$/;"	m	class:MoveData
+setSourcePosition	JavaChessGame/src/GameRecord/MoveData.java	/^	public void setSourcePosition(String sourcePosition) {$/;"	m	class:MoveData
+setSrcMove	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^	public void setSrcMove(String srcmove) {this.srcMove = srcmove;}$/;"	m	class:PlayersMoveEvent
+setSurroundingOfField	JavaChessGame/src/ChessGame/ChessBoard.java	/^	private void setSurroundingOfField(BoardTile activeField) $/;"	m	class:ChessBoard	file:
+setTakenEnemy	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public void setTakenEnemy(AbstractPiece takenEnemy) {$/;"	m	class:MoveCommand
+setTakenEnemy	JavaChessGame/src/GameRecord/MoveData.java	/^	public void setTakenEnemy(String enemy) {$/;"	m	class:MoveData
+situation	JavaChessGame/src/GameRecord/MoveData.java	/^	private MoveSituation situation = null;$/;"	f	class:MoveData	file:
+sourcePosition	JavaChessGame/src/GameRecord/MoveData.java	/^	private String sourcePosition;$/;"	f	class:MoveData	file:
+splitString	JavaChessGame/src/Loader/LongNotationParser.java	/^	public String[] splitString(String line)$/;"	m	class:LongNotationParser
+splitString	JavaChessGame/src/Loader/ShortNotationParser.java	/^	private String[] splitString(String line)$/;"	m	class:ShortNotationParser	file:
+srcMove	JavaChessGame/src/GUI/PlayersMoveEvent.java	/^    String srcMove;$/;"	f	class:PlayersMoveEvent
+start	JavaChessGame/src/UserInterfaceMain.java	/^    public void start(Stage primaryStage) $/;"	m	class:UserInterfaceMain
+stepBackward	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void stepBackward() $/;"	m	class:CurrentGame
+stepForward	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void stepForward()$/;"	m	class:CurrentGame
+surrounding	JavaChessGame/src/ChessGame/BoardTile.java	/^	private Map<Direction, BoardTile> surrounding;$/;"	f	class:BoardTile	file:
+switchHighlight	JavaChessGame/src/GUI/Tile.java	/^	public void switchHighlight()$/;"	m	class:Tile
+tabCounter	JavaChessGame/src/UserInterfaceMain.java	/^    int tabCounter = 0;$/;"	f	class:UserInterfaceMain
+takenEnemy	JavaChessGame/src/GameRecord/MoveCommand.java	/^	private AbstractPiece takenEnemy;$/;"	f	class:MoveCommand	file:
+takenFigure	JavaChessGame/src/GameRecord/MoveData.java	/^	private String takenFigure;$/;"	f	class:MoveData	file:
+testLine1	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine1() {assertEquals(Boolean.FALSE, tester.validateLine(""), "Empty Line");}$/;"	m	class:TestNotationValidator
+testLine2	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine2() {assertEquals(Boolean.FALSE, tester.validateLine("x. asdf sdfa"), "Invalid number format");}$/;"	m	class:TestNotationValidator
+testLine3	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine3() {assertEquals(Boolean.FALSE, tester.validateLine("1."), "Invalid Number of moves");}$/;"	m	class:TestNotationValidator
+testLine4	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine4() {assertEquals(Boolean.FALSE, tester.validateLine("1. asdf"), "Invalid Number of moves");}$/;"	m	class:TestNotationValidator
+testLine5	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine5() {assertEquals(Boolean.TRUE, tester.validateLine("1. asdf asdf"), "Valid shape");}$/;"	m	class:TestNotationValidator
+testLine6	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine6() {assertEquals(Boolean.TRUE, tester.validateLine("4. Kf4 d3+"), "Valid shape");}$/;"	m	class:TestNotationValidator
+testLine7	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine7() {assertEquals(Boolean.TRUE, tester.validateLine("42. asdf asdf"), "Valid number");}$/;"	m	class:TestNotationValidator
+testLine8	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine8() {assertEquals(Boolean.FALSE, tester.validateLine("1d8. asdf asdf asdf"), "Invalid number format");}$/;"	m	class:TestNotationValidator
+testLine9	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testLine9() {assertEquals(Boolean.FALSE, tester.validateLine("5 asdf asdf"), "Missing dot after move number.");}$/;"	m	class:TestNotationValidator
+testMove1	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove1() {assertEquals(Boolean.FALSE, tester.validateMove(""), "Empty line");}$/;"	m	class:TestNotationValidator
+testMove10	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove10() {assertEquals(Boolean.FALSE, tester.validateMove("Dh7+#"), "Dama moves and Checkmate and check.");}$/;"	m	class:TestNotationValidator
+testMove11	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove11() {assertEquals(Boolean.FALSE, tester.validateMove("p4"), "Invalid notation range");}$/;"	m	class:TestNotationValidator
+testMove12	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove12() {assertEquals(Boolean.FALSE, tester.validateMove("d9"), "Invalid notation range");}$/;"	m	class:TestNotationValidator
+testMove13	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove13() {assertEquals(Boolean.FALSE, tester.validateMove("Gh5"), "Invalid figure");}$/;"	m	class:TestNotationValidator
+testMove14	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove14() {assertEquals(Boolean.FALSE, tester.validateMove("Ld4"), "Invalid figure");}$/;"	m	class:TestNotationValidator
+testMove15	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove15() {assertEquals(Boolean.FALSE, tester.validateMove("Kxf4$"), "Invalid notation");}$/;"	m	class:TestNotationValidator
+testMove16	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove16() {assertEquals(Boolean.TRUE, tester.validateMove("Sc6b5+"), "Bishop moves and check.");}$/;"	m	class:TestNotationValidator
+testMove2	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove2() {assertEquals(Boolean.TRUE, tester.validateMove("e4"), "Pawn move");}$/;"	m	class:TestNotationValidator
+testMove3	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove3() {assertEquals(Boolean.TRUE, tester.validateMove("Sc4"), "Strelec basic move");}$/;"	m	class:TestNotationValidator
+testMove4	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove4() {assertEquals(Boolean.TRUE, tester.validateMove("Df6"), "Dama basic move");}$/;"	m	class:TestNotationValidator
+testMove5	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove5() {assertEquals(Boolean.TRUE, tester.validateMove("dxe8V#"), "Pawn specified move and change of Vez and Checkmate");}$/;"	m	class:TestNotationValidator
+testMove6	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove6() {assertEquals(Boolean.TRUE, tester.validateMove("d8D"), "Pawn move and takes Dama");}$/;"	m	class:TestNotationValidator
+testMove7	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove7() {assertEquals(Boolean.TRUE, tester.validateMove("V7a4"), "Vez basic move, specified row");}$/;"	m	class:TestNotationValidator
+testMove8	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove8() {assertEquals(Boolean.TRUE, tester.validateMove("Dh7#"), "Dama moves and Checkmate");}$/;"	m	class:TestNotationValidator
+testMove9	JavaChessGame/src/Tests/TestNotationValidator.java	/^	void testMove9() {assertEquals(Boolean.FALSE, tester.validateMove("Dh7#+"), "Dama moves and Checkmate and check.");}$/;"	m	class:TestNotationValidator
+tester	JavaChessGame/src/Tests/TestNotationValidator.java	/^	private NotationValidator tester = new NotationValidator();$/;"	f	class:TestNotationValidator	file:
+toEnd	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void toEnd() $/;"	m	class:CurrentGame
+toStart	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void toStart() $/;"	m	class:CurrentGame
+toString	JavaChessGame/src/ChessGame/BoardTile.java	/^	public String toString() {$/;"	m	class:BoardTile
+toString	JavaChessGame/src/Figures/Bishop.java	/^	public String toString() {$/;"	m	class:Bishop
+toString	JavaChessGame/src/Figures/EmptyPlace.java	/^	public String toString() {$/;"	m	class:EmptyPlace
+toString	JavaChessGame/src/Figures/King.java	/^	public String toString() {$/;"	m	class:King
+toString	JavaChessGame/src/Figures/Knight.java	/^	public String toString() {$/;"	m	class:Knight
+toString	JavaChessGame/src/Figures/Pawn.java	/^	public String toString() $/;"	m	class:Pawn
+toString	JavaChessGame/src/Figures/Queen.java	/^	public String toString() {$/;"	m	class:Queen
+toString	JavaChessGame/src/Figures/Rook.java	/^	public String toString() {$/;"	m	class:Rook
+tryToExecute	JavaChessGame/src/GameRecord/MoveCommand.java	/^	public void tryToExecute(ChessBoard board) throws InvalidMoveException $/;"	m	class:MoveCommand
+undo	JavaChessGame/src/ChessGame/CurrentGame.java	/^	public void undo() $/;"	m	class:CurrentGame
+undoLastPlayersMove	JavaChessGame/src/GameRecord/GameRecord.java	/^	public void undoLastPlayersMove() throws EmptyMoveStackException$/;"	m	class:GameRecord
+undoMoveStack	JavaChessGame/src/GameRecord/GameRecord.java	/^	Stack<MoveCommand> undoMoveStack;$/;"	f	class:GameRecord
+unsetHighlight	JavaChessGame/src/GUI/Tile.java	/^	public void unsetHighlight()$/;"	m	class:Tile
+update	JavaChessGame/src/GUI/Board.java	/^	public void update(ChessBoard board) throws Exception $/;"	m	class:Board
+updateHighlightCurrentMove	JavaChessGame/src/UserInterfaceMain.java	/^    public void updateHighlightCurrentMove(ListView<Label> record)$/;"	m	class:UserInterfaceMain
+updateHighlightOfLastMove	JavaChessGame/src/UserInterfaceMain.java	/^    public void updateHighlightOfLastMove(ListView<Label> record, Board guiboard)$/;"	m	class:UserInterfaceMain
+updateRecordList	JavaChessGame/src/UserInterfaceMain.java	/^    public void updateRecordList(ListView<Label> destination, Vector<String> sourceRecord)$/;"	m	class:UserInterfaceMain
+validateLine	JavaChessGame/src/Loader/IValidator.java	/^	boolean validateLine(String line);$/;"	m	interface:IValidator
+validateLine	JavaChessGame/src/Loader/NotationValidator.java	/^	public boolean validateLine(String currentLine) $/;"	m	class:NotationValidator
+validateMove	JavaChessGame/src/Loader/IValidator.java	/^	boolean validateMove(String move);$/;"	m	interface:IValidator
+validateMove	JavaChessGame/src/Loader/NotationValidator.java	/^	public boolean validateMove(String currentMove) $/;"	m	class:NotationValidator
+view	JavaChessGame/src/GUI/Tile.java	/^	private ImageView view;$/;"	f	class:Tile	file:
+width	JavaChessGame/src/ChessGame/ChessBoard.java	/^	private int width = 8;$/;"	f	class:ChessBoard	file:

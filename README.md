@@ -28,3 +28,6 @@ User can create new game and export played game as new notation file in the form
   8. Undo last players move
   9. Redo lastly undone players move
   10. Save current game to the file
+
+  <b>Design</b>
+  Code design [here](1380_001.pdf).
