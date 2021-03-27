@@ -31,3 +31,10 @@ User can create new game and export played game as new notation file in the form
   9. Redo lastly undone players move
   10. Save current game to the file
 
+
+<b>Preview</b>
+[GUI and CLI showcase](code_gui_preview.png)
+
+[GUI preview](gui_preview_new.png)
+
+[GUI preview 2 (older)](gui_preview_old.png)
