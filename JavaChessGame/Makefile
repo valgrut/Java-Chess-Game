@@ -12,5 +12,6 @@ clean:
 package: javachess
 	mvn package
 
-run: package
-	java -jar target/chess-game-1.0-SNAPSHOT.jar
+run:
+	mvn clean javafx:run
+	# java -jar target/chess-game-1.0-SNAPSHOT.jar
