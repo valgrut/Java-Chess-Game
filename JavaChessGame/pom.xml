@@ -15,6 +15,7 @@
     <groupId>chessgame</groupId>
     <artifactId>chess-game</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -23,54 +24,42 @@
             <version>5.8.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>22.0.1</version>
-        </dependency>
-
+        <!-- JavaFx -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>22.0.1</version>
         </dependency>
-        
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>22.0.1</version>
-        </dependency>
-
     </dependencies>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>16</java.version>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
+        <javafx.version>21</javafx.version>
     </properties>
 
     <build>
         <sourceDirectory>src/main</sourceDirectory>
-        <!-- <resourcesDirectory>src/main/resources</resourcesDirectory> -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>3.8.0</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>UserInterfaceMain</mainClass>
-                        </manifest>
-                    </archive>
+                    <release>11</release>
+                    <mainClass>UserInterfaceMain</mainClass>
                 </configuration>
             </plugin>
-        </plugins>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>UserInterfaceMain</mainClass>
+                </configuration>
+            </plugin>
+    </plugins>
     </build>
 </project>

@@ -10,7 +10,7 @@
 - openjdk 16
 - Apache Maven 3.9.1
 
-## How to compile the project
+## How to run the app
 
 - 1. Install dependencies
 
@@ -19,6 +19,32 @@
     sudo dnf install java-latest-openjdk
     # sudo dnf install java-17-openjdk-devel
     ```
+    
+- 2. Make sure JAVA_HOME is set
+    
+    - Insert this into .bashrc
+    
+    ```
+    export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")
+    ```
+    
+    - Apply changes:
+    
+    ```
+    source ~/.bashrc
+    ```
+
+### How to compile and run app - Simple
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- 2. Compile and run
+
+    ```
+    mvn clean javafx:run
+    ```
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+### How to compile and run project - longer
 
 - 2. Compile project (Create "binaries")
 

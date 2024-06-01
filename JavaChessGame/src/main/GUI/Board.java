@@ -189,7 +189,7 @@ public class Board extends GridPane
 	 */
 	private void loadPieceImages()
 	{
-		String path = "/img/";
+		String path = "/";
 
 		chessFiguresImageMap.put("BLACKS", new Image(path + "Chess_bdt60.png"));
 		chessFiguresImageMap.put("WHITES", new Image(path + "Chess_blt60.png"));
